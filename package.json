@@ -1,0 +1,16 @@
+{
+	"name": "exports-loader",
+	"version": "0.1.0",
+	"author": "Tobias Koppers @sokra",
+	"description": "exports loader module for webpack",
+	"dependencies": {
+		"loader-utils": "0.1.x"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	],
+	"license": "MIT"
+}
