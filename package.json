@@ -7,6 +7,10 @@
 		"loader-utils": "0.2.x",
 		"source-map": "0.1.x"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:webpack/exports-loader.git"
+	},
 	"licenses": [
 		{
 			"type": "MIT",
