@@ -12,7 +12,7 @@ module.exports = function(content, sourceMap) {
 	var exports = [];
 	var keys = Object.keys(query);
 	if(keys.length == 1 && typeof query[keys[0]] == "boolean") {
-		exports.push("module.exports = " + keys[0]);
+		exports.push("module.exports = " + keys[0] + ";");
 	} else {
 		keys.forEach(function(name) {
 			var mod = name;
