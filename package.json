@@ -1,6 +1,6 @@
 {
 	"name": "exports-loader",
-	"version": "0.6.2",
+	"version": "0.6.3",
 	"author": "Tobias Koppers @sokra",
 	"description": "exports loader module for webpack",
 	"dependencies": {
