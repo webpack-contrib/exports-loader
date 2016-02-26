@@ -1,5 +1,11 @@
 # exports loader for webpack
 
+## Installation
+
+```
+npm install exports-loader
+```
+
 ## Usage
 
 ``` javascript
