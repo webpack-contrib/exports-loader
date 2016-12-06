@@ -10,12 +10,12 @@ npm install exports-loader
 
 ``` javascript
 require("exports-loader?file,parse=helpers.parse!./file.js");
-// adds below code the the file's source:
+// adds below code as the file's source:
 //  exports["file"] = file;
 //  exports["parse"] = helpers.parse;
 
 require("exports-loader?file!./file.js");
-// adds below code the the file's source:
+// adds below code as the file's source:
 //  module.exports = file;
 ```
 
