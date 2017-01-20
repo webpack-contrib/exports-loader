@@ -8,6 +8,8 @@ npm install exports-loader
 
 ## Usage
 
+The `exports-loader` loader exports variables from inside the file by appending `exports[...] = ...` statements.
+
 ``` javascript
 require("exports-loader?file,parse=helpers.parse!./file.js");
 // adds below code the the file's source:
