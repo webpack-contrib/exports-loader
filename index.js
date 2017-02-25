@@ -8,7 +8,7 @@ var SourceMapConsumer = require("source-map").SourceMapConsumer;
 var FOOTER = "/*** EXPORTS FROM exports-loader ***/\n";
 module.exports = function(content, sourceMap) {
 	if(this.cacheable) this.cacheable();
-	var query = loaderUtils.parseQuery(this.query);
+	var query = loaderUtils.getOptions(this) || {};
 	var exports = [];
 	var keys = Object.keys(query);
 	if(keys.length == 1 && typeof query[keys[0]] == "boolean") {
