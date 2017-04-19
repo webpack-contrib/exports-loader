@@ -18,7 +18,7 @@
 npm i exports-loader --save
 ```
 
-<h2 align="center">Usage</h2>
+<h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
 
 ``` javascript
 require("exports-loader?file,parse=helpers.parse!./file.js");
@@ -30,8 +30,6 @@ require("exports-loader?file!./file.js");
 // adds below code to the file's source:
 //  module.exports = file;
 ```
-
-[Documentation: Using loaders](https://webpack.js.org/concepts/loaders/)
 
 <h2 align="center">Maintainers</h2>
 
