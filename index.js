@@ -11,6 +11,10 @@ module.exports = function(content, sourceMap) {
 	var query = loaderUtils.getOptions(this) || {};
 	var exports = [];
 	var keys = Object.keys(query);
+	// apply name interpolation i.e. substitute strings like [name] or [ext]
+	for (var i = 0; i < keys.length; i++) {
+		keys[i] = loaderUtils.interpolateName(this, keys[i], {});
+	};
 	if(keys.length == 1 && typeof query[keys[0]] == "boolean") {
 		exports.push("module.exports = " + keys[0] + ";");
 	} else {
