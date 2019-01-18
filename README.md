@@ -29,14 +29,14 @@ $ npm install exports-loader --save-dev
 Then add the loader to the desired `require` calls. For example:
 
 ```js
-require('exports-loader?file,parse=helpers.parse!./file.js');
+require('exports-loader?run,parse=helpers.parse!./file.js');
 // adds the following code to the file's source:
-//  exports['file'] = file;
+//  exports['run'] = run;
 //  exports['parse'] = helpers.parse;
 
-require('exports-loader?file!./file.js');
+require('exports-loader?run!./file.js');
 // adds the following code to the file's source:
-//  module.exports = file;
+//  module.exports = run;
 
 require('exports-loader?[name]!./file.js');
 // adds the following code to the file's source:
