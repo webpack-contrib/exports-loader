@@ -31,8 +31,8 @@ Then add the loader to the desired `require` calls. For example:
 ```js
 require('exports-loader?run,parse=helpers.parse!./file.js');
 // adds the following code to the file's source:
-//  exports['run'] = run;
-//  exports['parse'] = helpers.parse;
+//  exports["run"] = run;
+//  exports["parse"] = helpers.parse;
 
 require('exports-loader?run!./file.js');
 // adds the following code to the file's source:
