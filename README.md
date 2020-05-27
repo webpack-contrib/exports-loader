@@ -8,15 +8,13 @@
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
+[![size][size]][size-url]
 
 # exports-loader
 
-exports loader module for webpack
-
-## Requirements
-
-This module requires a minimum of Node v6.9.0 and Webpack v4.0.0.
+Allow to setup custom exports `module.exports`/`export` for modules.
 
 ## Getting Started
 
@@ -49,26 +47,22 @@ And run `webpack` via your preferred method.
 
 Please take a moment to read our contributing guidelines if you haven't yet done so.
 
-#### [CONTRIBUTING](./.github/CONTRIBUTING.md)
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
 
 ## License
 
-#### [MIT](./LICENSE)
+[MIT](./LICENSE)
 
 [npm]: https://img.shields.io/npm/v/exports-loader.svg
 [npm-url]: https://npmjs.com/package/exports-loader
-
 [node]: https://img.shields.io/node/v/exports-loader.svg
 [node-url]: https://nodejs.org
-
 [deps]: https://david-dm.org/webpack-contrib/exports-loader.svg
 [deps-url]: https://david-dm.org/webpack-contrib/exports-loader
-
-[tests]: 	https://img.shields.io/circleci/project/github/webpack-contrib/exports-loader.svg
-[tests-url]: https://circleci.com/gh/webpack-contrib/exports-loader
-
+[tests]: https://github.com/webpack-contrib/exports-loader/workflows/exports-loader/badge.svg
+[tests-url]: https://github.com/webpack-contrib/exports-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/exports-loader/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/webpack-contrib/exports-loader
-
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
+[chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
+[size]: https://packagephobia.now.sh/badge?p=exports-loader
