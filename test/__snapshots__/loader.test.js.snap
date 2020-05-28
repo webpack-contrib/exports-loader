@@ -2,7 +2,7 @@
 
 exports[`loader should throw an error without options: errors 1`] = `
 Array [
-  "ModuleBuildError: Module build failed (from /src/index.js):
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
 ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
 ]
 `;
