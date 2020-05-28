@@ -19,14 +19,7 @@ export default function loader(content, sourceMap) {
   });
 
   const callback = this.async();
-
   const keys = Object.keys(options);
-
-  if (keys.length === 0) {
-    callback(null, content, sourceMap);
-
-    return;
-  }
 
   // Apply name interpolation i.e. substitute strings like [name] or [ext]
   for (let i = 0; i < keys.length; i++) {
