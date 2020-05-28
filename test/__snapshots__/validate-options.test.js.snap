@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate options should throw an error on the "name" option with "() => {}" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options['name'] should be one of these:
+   boolean | string
+   Details:
+    * options['name'] should be a boolean.
+    * options['name'] should be a string."
+`;
+
+exports[`validate options should throw an error on the "name" option with "[1,2,3]" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options['name'] should be one of these:
+   boolean | string
+   Details:
+    * options['name'] should be a boolean.
+    * options['name'] should be a string."
+`;

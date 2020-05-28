@@ -4,7 +4,7 @@ describe('validate options', () => {
   const tests = {
     name: {
       success: [true, false, 'test'],
-      failure: [],
+      failure: [() => {}, [1, 2, 3]],
     },
   };
 
