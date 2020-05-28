@@ -13,6 +13,12 @@ export default function loader(content, sourceMap) {
 
   const keys = Object.keys(options);
 
+  if (keys.length === 0) {
+    callback(null, content, sourceMap);
+
+    return;
+  }
+
   // Apply name interpolation i.e. substitute strings like [name] or [ext]
   for (let i = 0; i < keys.length; i++) {
     keys[i] = loaderUtils.interpolateName(this, keys[i], {});
@@ -20,19 +26,19 @@ export default function loader(content, sourceMap) {
 
   const exports = [];
 
-  if (keys.length === 1 && typeof options[keys[0]] === 'boolean') {
-    exports.push(`module.exports = ${keys[0]};`);
-  } else {
-    keys.forEach((name) => {
-      let mod = name;
+  exports.push(`module.exports = exports = {`);
 
-      if (typeof options[name] === 'string') {
-        mod = options[name];
-      }
+  keys.forEach((name) => {
+    let mod = name;
 
-      exports.push(`exports[${JSON.stringify(name)}] = (${mod});`);
-    });
-  }
+    if (typeof options[name] === 'string') {
+      mod = options[name];
+    }
+
+    exports.push(`  ${JSON.stringify(name)}: (${mod}),`);
+  });
+
+  exports.push('};');
 
   if (sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
