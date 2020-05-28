@@ -16,6 +16,8 @@
 
 Allow to setup custom exports `module.exports`/`export` for modules.
 
+> ⚠ Be careful, existing exports (`module.exports`/`exports`) will be overwritten.
+
 ## Getting Started
 
 To begin, you'll need to install `exports-loader`:
@@ -23,6 +25,8 @@ To begin, you'll need to install `exports-loader`:
 ```console
 $ npm install exports-loader --save-dev
 ```
+
+### Inline
 
 Then add the loader to the desired `require` calls. For example:
 
@@ -37,18 +41,18 @@ myFunction('Hello world');
 
 ```js
 const {
-  myFunction,
   myVariable,
-} = require('exports-loader?myFunction,myVariable=helpers.parse!./file.js');
+  myFunction,
+} = require('exports-loader?myVariable,myFunction=helpers.parse!./file.js');
 // Adds the following code to the file's source:
 //
-// module.exports = exports = { 'myFunction': myFunction, 'myVariable' : myVariable };
-
-myFunction('Hello world');
+// module.exports = exports = { 'myVariable' : myVariable, 'myFunction': helpers.parse };
 
 const newVariable = myVariable + '!!!';
 
 console.log(newVariable);
+
+myFunction('Hello world');
 ```
 
 ```js
@@ -60,9 +64,32 @@ const { file } = require('exports-loader?[name]!./file.js');
 file('string');
 ```
 
-And run `webpack` via your preferred method.
+### Using Configuration
 
-> ⚠ Be careful, existing exports (`module.exports`/`exports`) will be overwritten.
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        // You can use `regexp`
+        // test: /vendor\.js/$
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          myFunction: true,
+          myVariable: true,
+          myNestedFunction: 'lib.parse',
+          '[name]': true,
+        },
+      },
+    ],
+  },
+};
+```
+
+And run `webpack` via your preferred method.
 
 ## Contributing
 
