@@ -3,7 +3,7 @@ import { getCompiler, compile } from './helpers';
 describe('validate options', () => {
   const tests = {
     name: {
-      success: [1, true, false, 'test', /test/, [], {}, { foo: 'bar' }],
+      success: [true, false, 'test'],
       failure: [],
     },
   };
@@ -23,7 +23,7 @@ describe('validate options', () => {
     it(`should ${
       type === 'success' ? 'successfully validate' : 'throw an error on'
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
-      const compiler = getCompiler('commonjs.js', { [key]: value });
+      const compiler = getCompiler('simple.js', { [key]: value });
 
       let stats;
 
