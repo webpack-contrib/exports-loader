@@ -27,21 +27,42 @@ $ npm install exports-loader --save-dev
 Then add the loader to the desired `require` calls. For example:
 
 ```js
-require('exports-loader?file,parse=helpers.parse!./file.js');
-// adds the following code to the file's source:
-//  exports['file'] = file;
-//  exports['parse'] = helpers.parse;
+const { myFunction } = require('exports-loader?myFunction!./file.js');
+// Adds the following code to the file's source:
+//
+// module.exports = exports = { 'myFunction': myFunction };
 
-require('exports-loader?file!./file.js');
-// adds the following code to the file's source:
-//  module.exports = file;
+myFunction('Hello world');
+```
 
-require('exports-loader?[name]!./file.js');
-// adds the following code to the file's source:
-//  module.exports = file;
+```js
+const {
+  myFunction,
+  myVariable,
+} = require('exports-loader?myFunction,myVariable=helpers.parse!./file.js');
+// Adds the following code to the file's source:
+//
+// module.exports = exports = { 'myFunction': myFunction, 'myVariable' : myVariable };
+
+myFunction('Hello world');
+
+const newVariable = myVariable + '!!!';
+
+console.log(newVariable);
+```
+
+```js
+const { file } = require('exports-loader?[name]!./file.js');
+// Adds the following code to the file's source:
+//
+// module.exports = exports = { 'file' : file };
+
+file('string');
 ```
 
 And run `webpack` via your preferred method.
+
+> ⚠ Be careful, existing exports (`module.exports`/`exports`) will be overwritten.
 
 ## Contributing
 

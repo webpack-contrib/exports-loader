@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should work for multiple CommonJS exports with source maps: errors 1`] = `Array []`;
+exports[`loader should work for multiple CommonJS exports with "exports": errors 1`] = `Array []`;
 
-exports[`loader should work for multiple CommonJS exports with source maps: module 1`] = `
+exports[`loader should work for multiple CommonJS exports with "exports": module 1`] = `
 "const object = {
   key: 'value'
 };
@@ -10,47 +10,32 @@ const otherObject = {
   otherKey: 'otherValue'
 };
 
-module.exports = { foo: 'bar' };
+exports = { foo: 'bar' };
 
 
 /*** EXPORTS FROM exports-loader ***/
-exports[\\"object\\"] = (object);
-exports[\\"otherObject\\"] = (otherObject);"
+module.exports = exports = {
+  \\"object\\": (object),
+  \\"otherObject\\": (otherObject),
+};"
 `;
 
-exports[`loader should work for multiple CommonJS exports with source maps: result 1`] = `Object {}`;
-
-exports[`loader should work for multiple CommonJS exports with source maps: warnings 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports: errors 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports: module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
-};
-
-module.exports = { foo: 'bar' };
-
-
-/*** EXPORTS FROM exports-loader ***/
-exports[\\"object\\"] = (object);
-exports[\\"otherObject\\"] = (otherObject);"
-`;
-
-exports[`loader should work for multiple CommonJS exports: result 1`] = `
+exports[`loader should work for multiple CommonJS exports with "exports": result 1`] = `
 Object {
-  "foo": "bar",
+  "object": Object {
+    "key": "value",
+  },
+  "otherObject": Object {
+    "otherKey": "otherValue",
+  },
 }
 `;
 
-exports[`loader should work for multiple CommonJS exports: warnings 1`] = `Array []`;
+exports[`loader should work for multiple CommonJS exports with "exports": warnings 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with source maps: errors 1`] = `Array []`;
+exports[`loader should work for multiple CommonJS exports with "module.exports": errors 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with source maps: module 1`] = `
+exports[`loader should work for multiple CommonJS exports with "module.exports": module 1`] = `
 "const object = {
   key: 'value'
 };
@@ -62,37 +47,82 @@ module.exports = { foo: 'bar' };
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = object;"
+module.exports = exports = {
+  \\"object\\": (object),
+  \\"otherObject\\": (otherObject),
+};"
 `;
 
-exports[`loader should work for single CommonJS export with source maps: result 1`] = `Object {}`;
-
-exports[`loader should work for single CommonJS export with source maps: warnings 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export: errors 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export: module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
-};
-
-module.exports = { foo: 'bar' };
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = object;"
-`;
-
-exports[`loader should work for single CommonJS export: result 1`] = `
+exports[`loader should work for multiple CommonJS exports with "module.exports": result 1`] = `
 Object {
-  "key": "value",
+  "object": Object {
+    "key": "value",
+  },
+  "otherObject": Object {
+    "otherKey": "otherValue",
+  },
 }
 `;
 
-exports[`loader should work for single CommonJS export: warnings 1`] = `Array []`;
+exports[`loader should work for multiple CommonJS exports with "module.exports": warnings 1`] = `Array []`;
+
+exports[`loader should work for single CommonJS export with "exports": errors 1`] = `Array []`;
+
+exports[`loader should work for single CommonJS export with "exports": module 1`] = `
+"const object = {
+  key: 'value'
+};
+const otherObject = {
+  otherKey: 'otherValue'
+};
+
+exports = { foo: 'bar' };
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = exports = {
+  \\"object\\": (object),
+};"
+`;
+
+exports[`loader should work for single CommonJS export with "exports": result 1`] = `
+Object {
+  "object": Object {
+    "key": "value",
+  },
+}
+`;
+
+exports[`loader should work for single CommonJS export with "exports": warnings 1`] = `Array []`;
+
+exports[`loader should work for single CommonJS export with "module.exports": errors 1`] = `Array []`;
+
+exports[`loader should work for single CommonJS export with "module.exports": module 1`] = `
+"const object = {
+  key: 'value'
+};
+const otherObject = {
+  otherKey: 'otherValue'
+};
+
+module.exports = { foo: 'bar' };
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = exports = {
+  \\"object\\": (object),
+};"
+`;
+
+exports[`loader should work for single CommonJS export with "module.exports": result 1`] = `
+Object {
+  "object": Object {
+    "key": "value",
+  },
+}
+`;
+
+exports[`loader should work for single CommonJS export with "module.exports": warnings 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: errors 1`] = `Array []`;
 
@@ -103,29 +133,56 @@ exports[`loader should work with inline syntax: module 1`] = `
 
 exports[`loader should work with inline syntax: result 1`] = `
 Object {
-  "Image": [Function],
-  "stackBoxBlurMult": Array [
-    1,
-    171,
-    205,
-    293,
-    57,
-    373,
-    79,
-    137,
-    241,
-    27,
-    391,
-    357,
-    41,
-    19,
-    283,
-    265,
-  ],
+  "CV": Object {
+    "Image": [Function],
+    "stackBoxBlurMult": Array [
+      1,
+      171,
+      205,
+      293,
+      57,
+      373,
+      79,
+      137,
+      241,
+      27,
+      391,
+      357,
+      41,
+      19,
+      283,
+      265,
+    ],
+  },
 }
 `;
 
 exports[`loader should work with inline syntax: warnings 1`] = `Array []`;
+
+exports[`loader should work with source maps: errors 1`] = `Array []`;
+
+exports[`loader should work with source maps: module 1`] = `
+"var CV = CV || {};
+
+CV.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+CV.stackBoxBlurMult =
+  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = exports = {
+  \\"CV\\": (CV),
+};"
+`;
+
+exports[`loader should work with source maps: result 1`] = `Object {}`;
+
+exports[`loader should work with source maps: warnings 1`] = `Array []`;
 
 exports[`loader should work without options: errors 1`] = `Array []`;
 
@@ -140,9 +197,6 @@ CV.Image = function(width, height, data){
 
 CV.stackBoxBlurMult =
   [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
-
-
-/*** EXPORTS FROM exports-loader ***/
 "
 `;
 
@@ -166,30 +220,34 @@ CV.stackBoxBlurMult =
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = CV;"
+module.exports = exports = {
+  \\"CV\\": (CV),
+};"
 `;
 
 exports[`loader should work: result 1`] = `
 Object {
-  "Image": [Function],
-  "stackBoxBlurMult": Array [
-    1,
-    171,
-    205,
-    293,
-    57,
-    373,
-    79,
-    137,
-    241,
-    27,
-    391,
-    357,
-    41,
-    19,
-    283,
-    265,
-  ],
+  "CV": Object {
+    "Image": [Function],
+    "stackBoxBlurMult": Array [
+      1,
+      171,
+      205,
+      293,
+      57,
+      373,
+      79,
+      137,
+      241,
+      27,
+      391,
+      357,
+      41,
+      19,
+      283,
+      265,
+    ],
+  },
 }
 `;
 

@@ -48,13 +48,15 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work for single CommonJS export', async () => {
-    const compiler = getCompiler('commonjs.js', {
+  it('should work for single CommonJS export with "module.exports"', async () => {
+    const compiler = getCompiler('commonjs-module-exports.js', {
       object: true,
     });
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./commonjs.js', stats)).toMatchSnapshot('module');
+    expect(
+      getModuleSource('./commonjs-module-exports.js', stats)
+    ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
@@ -62,30 +64,16 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work for single CommonJS export with source maps', async () => {
-    const compiler = getCompiler(
-      'commonjs.js',
-      { object: true },
-      { devtool: 'source-map' }
-    );
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./commonjs.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work for multiple CommonJS exports', async () => {
-    const compiler = getCompiler('commonjs.js', {
+  it('should work for multiple CommonJS exports with "module.exports"', async () => {
+    const compiler = getCompiler('commonjs-module-exports.js', {
       object: true,
       otherObject: true,
     });
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./commonjs.js', stats)).toMatchSnapshot('module');
+    expect(
+      getModuleSource('./commonjs-module-exports.js', stats)
+    ).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
@@ -93,18 +81,48 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work for multiple CommonJS exports with source maps', async () => {
+  it('should work for single CommonJS export with "exports"', async () => {
+    const compiler = getCompiler('commonjs-exports.js', {
+      object: true,
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./commonjs-exports.js', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work for multiple CommonJS exports with "exports"', async () => {
+    const compiler = getCompiler('commonjs-exports.js', {
+      object: true,
+      otherObject: true,
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./commonjs-exports.js', stats)).toMatchSnapshot(
+      'module'
+    );
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with source maps', async () => {
     const compiler = getCompiler(
-      'commonjs.js',
-      {
-        object: true,
-        otherObject: true,
-      },
+      'simple.js',
+      { CV: true },
       { devtool: 'source-map' }
     );
     const stats = await compile(compiler);
 
-    expect(getModuleSource('./commonjs.js', stats)).toMatchSnapshot('module');
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
