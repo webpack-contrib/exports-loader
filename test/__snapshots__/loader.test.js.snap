@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`loader should throw an error without options: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from /src/index.js):
+ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
+]
+`;
+
+exports[`loader should throw an error without options: warnings 1`] = `Array []`;
+
 exports[`loader should work for multiple CommonJS exports with "exports": errors 1`] = `Array []`;
 
 exports[`loader should work for multiple CommonJS exports with "exports": module 1`] = `
@@ -183,26 +192,6 @@ module.exports = exports = {
 exports[`loader should work with source maps: result 1`] = `Object {}`;
 
 exports[`loader should work with source maps: warnings 1`] = `Array []`;
-
-exports[`loader should work without options: errors 1`] = `Array []`;
-
-exports[`loader should work without options: module 1`] = `
-"var CV = CV || {};
-
-CV.Image = function(width, height, data){
-  this.width = width || 0;
-  this.height = height || 0;
-  this.data = data || [];
-};
-
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
-"
-`;
-
-exports[`loader should work without options: result 1`] = `Object {}`;
-
-exports[`loader should work without options: warnings 1`] = `Array []`;
 
 exports[`loader should work: errors 1`] = `Array []`;
 

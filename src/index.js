@@ -4,11 +4,20 @@
 */
 import loaderUtils from 'loader-utils';
 import { SourceMapConsumer, SourceNode } from 'source-map';
+import validateOptions from 'schema-utils';
+
+import schema from './options.json';
 
 const FOOTER = '/*** EXPORTS FROM exports-loader ***/\n';
 
 export default function loader(content, sourceMap) {
   const options = loaderUtils.getOptions(this);
+
+  validateOptions(schema, options, {
+    name: 'Exports Loader',
+    baseDataPath: 'options',
+  });
+
   const callback = this.async();
 
   const keys = Object.keys(options);

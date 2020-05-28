@@ -9,18 +9,6 @@ import {
 } from './helpers';
 
 describe('loader', () => {
-  it('should work without options', async () => {
-    const compiler = getCompiler('simple.js');
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
   it('should work', async () => {
     const compiler = getCompiler('simple.js', {
       CV: true,
@@ -31,6 +19,14 @@ describe('loader', () => {
     expect(
       execute(readAsset('main.bundle.js', compiler, stats))
     ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should throw an error without options', async () => {
+    const compiler = getCompiler('simple.js');
+    const stats = await compile(compiler);
+
     expect(getErrors(stats)).toMatchSnapshot('errors');
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });

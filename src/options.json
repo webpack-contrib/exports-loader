@@ -1,9 +1,14 @@
 {
   "type": "object",
-  "properties": {
-    "name": {
-      "type": "boolean"
-    }
-  },
-  "additionalProperties": true
+  "minProperties": 1,
+  "additionalProperties": {
+    "anyOf": [
+      {
+        "type": "boolean"
+      },
+      {
+        "type": "string"
+      }
+    ]
+  }
 }
