@@ -1,142 +1,740 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should throw an error without options: errors 1`] = `
+exports[`loader should not work with "commonjs-single" exports with alias: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
+Error: The \\"commonjs-single\\" exports type is not support aliases",
 ]
 `;
 
-exports[`loader should throw an error without options: warnings 1`] = `Array []`;
+exports[`loader should not work with "commonjs-single" exports with alias: warnings 1`] = `Array []`;
 
-exports[`loader should work for multiple CommonJS exports with "exports": errors 1`] = `Array []`;
+exports[`loader should not work with "module-default" exports with alias: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module-default\\" exports type is not support aliases",
+]
+`;
 
-exports[`loader should work for multiple CommonJS exports with "exports": module 1`] = `
-"const object = {
-  key: 'value'
+exports[`loader should not work with "module-default" exports with alias: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" export with multiple values: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" export with multiple values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
 };
-const otherObject = {
-  otherKey: 'otherValue'
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
 };
 
-exports = { foo: 'bar' };
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-  \\"otherObject\\": (otherObject),
+module.exports = {
+  Foo,
+  Bar
 };"
 `;
 
-exports[`loader should work for multiple CommonJS exports with "exports": result 1`] = `
+exports[`loader should work with "commonjs-multiple" export with multiple values: result 1`] = `
 Object {
-  "object": Object {
-    "key": "value",
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
   },
-  "otherObject": Object {
-    "otherKey": "otherValue",
+  "Foo": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work for multiple CommonJS exports with "exports": warnings 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" export with multiple values: warnings 1`] = `Array []`;
 
-exports[`loader should work for multiple CommonJS exports with "module.exports": errors 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" export with single value: errors 1`] = `Array []`;
 
-exports[`loader should work for multiple CommonJS exports with "module.exports": module 1`] = `
-"const object = {
-  key: 'value'
+exports[`loader should work with "commonjs-multiple" export with single value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
 };
-const otherObject = {
-  otherKey: 'otherValue'
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
 };
 
-module.exports = { foo: 'bar' };
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-  \\"otherObject\\": (otherObject),
+module.exports = {
+  Foo
 };"
 `;
 
-exports[`loader should work for multiple CommonJS exports with "module.exports": result 1`] = `
+exports[`loader should work with "commonjs-multiple" export with single value: result 1`] = `
 Object {
-  "object": Object {
-    "key": "value",
-  },
-  "otherObject": Object {
-    "otherKey": "otherValue",
+  "Foo": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work for multiple CommonJS exports with "module.exports": warnings 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" export with single value: warnings 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with "exports": errors 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" exports and interpolation of multiple string values: errors 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with "exports": module 1`] = `
-"const object = {
-  key: 'value'
+exports[`loader should work with "commonjs-multiple" exports and interpolation of multiple string values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
 };
-const otherObject = {
-  otherKey: 'otherValue'
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
 };
 
-exports = { foo: 'bar' };
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
+module.exports = {
+  simple,
+  simple_foo
 };"
 `;
 
-exports[`loader should work for single CommonJS export with "exports": result 1`] = `
+exports[`loader should work with "commonjs-multiple" exports and interpolation of multiple string values: result 1`] = `
 Object {
-  "object": Object {
-    "key": "value",
+  "simple": [Function],
+  "simple_foo": Array [
+    1,
+    2,
+    3,
+    4,
+    5,
+  ],
+}
+`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of multiple string values: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of object value: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of object value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"simpleAlias\\": (simple)
+};"
+`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of object value: result 1`] = `
+Object {
+  "simpleAlias": [Function],
+}
+`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of object value: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of string value: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of string value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  simple
+};"
+`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of string value: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with "commonjs-multiple" exports and interpolation of string value: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports with alias: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports with alias: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"FooAlias\\": (Foo)
+};"
+`;
+
+exports[`loader should work with "commonjs-multiple" exports with alias: result 1`] = `
+Object {
+  "FooAlias": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work for single CommonJS export with "exports": warnings 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" exports with alias: warnings 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with "module.exports": errors 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" exports with aliases: errors 1`] = `Array []`;
 
-exports[`loader should work for single CommonJS export with "module.exports": module 1`] = `
-"const object = {
-  key: 'value'
+exports[`loader should work with "commonjs-multiple" exports with aliases: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
 };
-const otherObject = {
-  otherKey: 'otherValue'
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
 };
 
-module.exports = { foo: 'bar' };
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
+module.exports = {
+  \\"FooAlias\\": (Foo),
+  \\"BarAlias\\": (Bar)
 };"
 `;
 
-exports[`loader should work for single CommonJS export with "module.exports": result 1`] = `
+exports[`loader should work with "commonjs-multiple" exports with aliases: result 1`] = `
 Object {
-  "object": Object {
-    "key": "value",
+  "BarAlias": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "FooAlias": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work for single CommonJS export with "module.exports": warnings 1`] = `Array []`;
+exports[`loader should work with "commonjs-multiple" exports with aliases: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports with special character in alias: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-multiple" exports with special character in alias: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"foo-bar\\": (Foo)
+};"
+`;
+
+exports[`loader should work with "commonjs-multiple" exports with special character in alias: result 1`] = `
+Object {
+  "foo-bar": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "commonjs-multiple" exports with special character in alias: warnings 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-single" export: errors 1`] = `Array []`;
+
+exports[`loader should work with "commonjs-single" export: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = 
+  Foo
+;"
+`;
+
+exports[`loader should work with "commonjs-single" export: result 1`] = `
+Object {
+  "Image": [Function],
+}
+`;
+
+exports[`loader should work with "commonjs-single" export: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-default" export: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-default" export: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export default
+  Foo
+;"
+`;
+
+exports[`loader should work with "module-default" export: result 1`] = `
+Object {
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-default" export: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of multiple string values: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of multiple string values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple,
+  simple_foo
+};"
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of multiple string values: result 1`] = `
+Object {
+  "simple": [Function],
+  "simple_foo": Array [
+    1,
+    2,
+    3,
+    4,
+    5,
+  ],
+}
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of multiple string values: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of object value: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of object value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple as simpleAlias
+};"
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of object value: result 1`] = `
+Object {
+  "simpleAlias": [Function],
+}
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of object value: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of string value: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports and interpolation of string value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple
+};"
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of string value: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with "module-named" exports and interpolation of string value: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with alias: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with alias: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as FooAlias
+};"
+`;
+
+exports[`loader should work with "module-named" exports with alias: result 1`] = `
+Object {
+  "FooAlias": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-named" exports with alias: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with aliases (with default): errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with aliases (with default): module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as default,
+  Bar as BarAlias
+};"
+`;
+
+exports[`loader should work with "module-named" exports with aliases (with default): result 1`] = `
+Object {
+  "BarAlias": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-named" exports with aliases (with default): warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with aliases: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with aliases: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as FooAlias,
+  Bar as BarAlias
+};"
+`;
+
+exports[`loader should work with "module-named" exports with aliases: result 1`] = `
+Object {
+  "BarAlias": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "FooAlias": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-named" exports with aliases: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with multiple values: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with multiple values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo,
+  Bar
+};"
+`;
+
+exports[`loader should work with "module-named" exports with multiple values: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-named" exports with multiple values: warnings 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with single value: errors 1`] = `Array []`;
+
+exports[`loader should work with "module-named" exports with single value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};"
+`;
+
+exports[`loader should work with "module-named" exports with single value: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with "module-named" exports with single value: warnings 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: errors 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: module 1`] = `
-"module.exports = require('../../src/cjs.js?CV!./exports/cv.js');
+"module.exports = require('../../src/cjs.js?exports=CV!./exports/cv.js');
 "
 `;
 
@@ -168,24 +766,159 @@ Object {
 
 exports[`loader should work with inline syntax: warnings 1`] = `Array []`;
 
-exports[`loader should work with source maps: errors 1`] = `Array []`;
+exports[`loader should work with multiple object and string values: errors 1`] = `Array []`;
 
-exports[`loader should work with source maps: module 1`] = `
-"var CV = CV || {};
+exports[`loader should work with multiple object and string values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
 
-CV.Image = function(width, height, data){
+Foo.Image = function(width, height, data){
   this.width = width || 0;
   this.height = height || 0;
   this.data = data || [];
 };
 
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"CV\\": (CV),
+export {
+  Foo,
+  Bar
+};"
+`;
+
+exports[`loader should work with multiple object and string values: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with multiple object and string values: warnings 1`] = `Array []`;
+
+exports[`loader should work with multiple string values: errors 1`] = `Array []`;
+
+exports[`loader should work with multiple string values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo,
+  Bar
+};"
+`;
+
+exports[`loader should work with multiple string values: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with multiple string values: warnings 1`] = `Array []`;
+
+exports[`loader should work with object value: errors 1`] = `Array []`;
+
+exports[`loader should work with object value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};"
+`;
+
+exports[`loader should work with object value: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with object value: warnings 1`] = `Array []`;
+
+exports[`loader should work with source maps: errors 1`] = `Array []`;
+
+exports[`loader should work with source maps: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
 };"
 `;
 
@@ -193,51 +926,39 @@ exports[`loader should work with source maps: result 1`] = `Object {}`;
 
 exports[`loader should work with source maps: warnings 1`] = `Array []`;
 
-exports[`loader should work: errors 1`] = `Array []`;
+exports[`loader should work with string value: errors 1`] = `Array []`;
 
-exports[`loader should work: module 1`] = `
-"var CV = CV || {};
+exports[`loader should work with string value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
 
-CV.Image = function(width, height, data){
+Foo.Image = function(width, height, data){
   this.width = width || 0;
   this.height = height || 0;
   this.data = data || [];
 };
 
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+Bar.test = [1, 2, 3, 4];
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"CV\\": (CV),
+export {
+  Foo
 };"
 `;
 
-exports[`loader should work: result 1`] = `
+exports[`loader should work with string value: result 1`] = `
 Object {
-  "CV": Object {
+  "Foo": Object {
     "Image": [Function],
-    "stackBoxBlurMult": Array [
-      1,
-      171,
-      205,
-      293,
-      57,
-      373,
-      79,
-      137,
-      241,
-      27,
-      391,
-      357,
-      41,
-      19,
-      283,
-      265,
-    ],
   },
 }
 `;
 
-exports[`loader should work: warnings 1`] = `Array []`;
+exports[`loader should work with string value: warnings 1`] = `Array []`;

@@ -1,14 +1,59 @@
 {
-  "type": "object",
-  "minProperties": 1,
-  "additionalProperties": {
-    "anyOf": [
-      {
-        "type": "boolean"
+  "definitions": {
+    "ExportListItem": {
+      "type": "string"
+    },
+    "ExportObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alias": {
+          "type": "string",
+          "minLength": 1
+        }
       },
-      {
-        "type": "string"
-      }
-    ]
+      "required": ["name"]
+    },
+    "ExportItem": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "$ref": "#/definitions/ExportObject"
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "enum": [
+        "commonjs-single",
+        "commonjs-multiple",
+        "module-default",
+        "module-named"
+      ]
+    },
+    "exports": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ExportItem"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExportItem"
+          },
+          "minItems": 1
+        }
+      ]
+    }
   }
 }

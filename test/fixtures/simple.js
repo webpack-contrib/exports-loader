@@ -1,10 +1,16 @@
-var CV = CV || {};
+var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
 
-CV.Image = function(width, height, data){
+Foo.Image = function(width, height, data){
   this.width = width || 0;
   this.height = height || 0;
   this.data = data || [];
 };
 
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+Bar.test = [1, 2, 3, 4];

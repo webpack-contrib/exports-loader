@@ -1,1 +1,1 @@
-module.exports = require('../../src/cjs.js?CV!./exports/cv.js');
+module.exports = require('../../src/cjs.js?exports=CV!./exports/cv.js');
