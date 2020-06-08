@@ -40,6 +40,15 @@ Foo.Image = function (width, height, data) {
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+
+}
+
+const myVariable = new MyClass();
+
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
@@ -75,6 +84,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -122,6 +139,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
@@ -158,6 +183,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -202,6 +235,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
@@ -237,6 +278,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
@@ -271,6 +320,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -308,6 +365,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -355,6 +420,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
@@ -392,6 +465,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = 
@@ -426,6 +507,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -463,6 +552,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -507,6 +604,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -542,6 +647,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -576,6 +689,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -613,6 +734,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -660,6 +789,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -706,6 +843,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -751,6 +896,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -824,6 +977,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -869,6 +1030,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
@@ -916,6 +1085,14 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
 
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -955,6 +1132,15 @@ Foo.Image = function (width, height, data) {
 
 Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+
+}
+
+const myVariable = new MyClass();
+
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
@@ -984,6 +1170,14 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/

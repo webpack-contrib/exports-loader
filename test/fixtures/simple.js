@@ -14,3 +14,11 @@ Foo.Image = function(width, height, data){
 };
 
 Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
