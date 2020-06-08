@@ -300,6 +300,24 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work with "commonjs-multiple" exports and nested values', async () => {
+    const compiler = getCompiler('simple.js', {
+      type: 'commonjs-multiple',
+      exports: {
+        name: 'myVariable.myFunction',
+        alias: 'myFunction',
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work with "module-default" export', async () => {
     const compiler = getCompiler('simple.js', {
       type: 'module-default',
