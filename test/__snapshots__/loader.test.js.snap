@@ -18,6 +18,44 @@ Error: The \\"module-default\\" exports type is not support aliases",
 
 exports[`loader should not work with "module-default" exports with alias: warnings 1`] = `Array []`;
 
+exports[`loader should not work with source maps when the "devtool" options are disabled: errors 1`] = `Array []`;
+
+exports[`loader should not work with source maps when the "devtool" options are disabled: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+
+var simple = function simple() {};
+
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function (width, height, data) {
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};"
+`;
+
+exports[`loader should not work with source maps when the "devtool" options are disabled: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should not work with source maps when the "devtool" options are disabled: warnings 1`] = `Array []`;
+
 exports[`loader should work with "commonjs-multiple" export with multiple values: errors 1`] = `Array []`;
 
 exports[`loader should work with "commonjs-multiple" export with multiple values: module 1`] = `
@@ -895,19 +933,21 @@ Object {
 
 exports[`loader should work with object value: warnings 1`] = `Array []`;
 
-exports[`loader should work with source maps: errors 1`] = `Array []`;
+exports[`loader should work with source maps when the "devtool" option is enabled: errors 1`] = `Array []`;
 
-exports[`loader should work with source maps: module 1`] = `
+exports[`loader should work with source maps when the "devtool" option is enabled: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
   nestedNumber: '12',
   nestedFunction: function test() {}
 };
+
 var simple = function simple() {};
+
 var simple_foo = [1, 2, 3, 4, 5];
 
-Foo.Image = function(width, height, data){
+Foo.Image = function (width, height, data) {
   this.width = width || 0;
   this.height = height || 0;
   this.data = data || [];
@@ -915,16 +955,15 @@ Foo.Image = function(width, height, data){
 
 Bar.test = [1, 2, 3, 4];
 
-
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
 };"
 `;
 
-exports[`loader should work with source maps: result 1`] = `Object {}`;
+exports[`loader should work with source maps when the "devtool" option is enabled: result 1`] = `Object {}`;
 
-exports[`loader should work with source maps: warnings 1`] = `Array []`;
+exports[`loader should work with source maps when the "devtool" option is enabled: warnings 1`] = `Array []`;
 
 exports[`loader should work with string value: errors 1`] = `Array []`;
 

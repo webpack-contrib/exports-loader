@@ -93,7 +93,7 @@ export default function loader(content, sourceMap) {
       break;
   }
 
-  if (sourceMap) {
+  if (this.sourceMap && sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
       content,
       new SourceMapConsumer(sourceMap)

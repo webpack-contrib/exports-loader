@@ -1,3 +1,5 @@
+import path from 'path';
+
 import {
   compile,
   execute,
@@ -64,12 +66,63 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  // Todo better test source map
-  it('should work with source maps', async () => {
+  it('should work with source maps when the "devtool" option is enabled', async () => {
     const compiler = getCompiler(
       'simple.js',
-      { exports: 'Foo' },
-      { devtool: 'source-map' }
+      {},
+      {
+        devtool: 'source-map',
+        module: {
+          rules: [
+            {
+              test: /\.js$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { exports: 'Foo' },
+                },
+                {
+                  loader: 'babel-loader',
+                },
+              ],
+            },
+          ],
+        },
+      }
+    );
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should not work with source maps when the "devtool" options are disabled', async () => {
+    const compiler = getCompiler(
+      'simple.js',
+      {},
+      {
+        devtool: false,
+        module: {
+          rules: [
+            {
+              test: /\.js$/i,
+              rules: [
+                {
+                  loader: path.resolve(__dirname, '../src'),
+                  options: { exports: 'Foo' },
+                },
+                {
+                  loader: 'babel-loader',
+                },
+              ],
+            },
+          ],
+        },
+      }
     );
     const stats = await compile(compiler);
 
