@@ -16,7 +16,7 @@
 
 Allow to setup custom exports `module.exports`/`export` for modules.
 
-> ⚠ Be careful, existing exports (`module.exports`/`exports`) will be overwritten.
+> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
 
 ## Getting Started
 
