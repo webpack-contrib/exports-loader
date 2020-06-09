@@ -677,18 +677,18 @@ Object {
 
 exports[`loader should work with string value: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "default" exports type for "Foo" export list: errors 1`] = `
+exports[`loader should work with the "commonjs" module format with the "default" syntax for "Foo" export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"commonjs\\" format can't be used with \\"default\\" export type",
+Error: The \\"commonjs\\" format can't be used with the \\"default\\" syntax",
 ]
 `;
 
-exports[`loader should work with the "commonjs" module format with the "default" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "default" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for "Foo" export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for "Foo" export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -722,7 +722,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for "Foo" export list: result 1`] = `
 Object {
   "Foo": Object {
     "Image": [Function],
@@ -730,11 +730,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo","Bar"] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo","Bar"] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo","Bar"] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo","Bar"] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -769,7 +769,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo","Bar"] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo","Bar"] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -785,11 +785,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo",{"name":"Bar"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo",{"name":"Bar"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo",{"name":"Bar"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo",{"name":"Bar"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -824,7 +824,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo",{"name":"Bar"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo",{"name":"Bar"}] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -840,11 +840,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo",{"name":"Bar"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for ["Foo",{"name":"Bar"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]","alias":"[name]A"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]","alias":"[name]A"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]","alias":"[name]A"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]","alias":"[name]A"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -878,17 +878,17 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
 Object {
   "simpleA": [Function],
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]","alias":"[name]A"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]","alias":"[name]A"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -922,17 +922,17 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]"}] export list: result 1`] = `
 Object {
   "simple": [Function],
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"[name]"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -967,7 +967,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
 Object {
   "BarA": Object {
     "test": Array [
@@ -983,11 +983,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1021,7 +1021,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
 Object {
   "FooA": Object {
     "Image": [Function],
@@ -1029,11 +1029,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo","alias":"FooA"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1068,7 +1068,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -1084,11 +1084,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1122,17 +1122,17 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: result 1`] = `
 Object {
   "myFunction": [Function],
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for [{"name":"myVariable.myFunction","alias":"myFunction"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for {"name":"Foo"} export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for {"name":"Foo"} export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1166,7 +1166,7 @@ module.exports = {
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for {"name":"Foo"} export list: result 1`] = `
 Object {
   "Foo": Object {
     "Image": [Function],
@@ -1174,20 +1174,20 @@ Object {
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "multiple" syntax for {"name":"Foo"} export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "named" exports type for "Foo" export list: errors 1`] = `
+exports[`loader should work with the "commonjs" module format with the "named" syntax for "Foo" export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"commonjs\\" format can't be used with \\"named\\" export type",
+Error: The \\"commonjs\\" format can't be used with the \\"named\\" syntax",
 ]
 `;
 
-exports[`loader should work with the "commonjs" module format with the "named" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "named" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "single" syntax for "Foo" export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "single" syntax for "Foo" export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1219,26 +1219,26 @@ module.exports = Foo;
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "single" syntax for "Foo" export list: result 1`] = `
 Object {
   "Image": [Function],
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "single" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for ["Foo","Bar"] export list: errors 1`] = `
+exports[`loader should work with the "commonjs" module format with the "single" syntax for ["Foo","Bar"] export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"commonjs\\" format can't be used with \\"single\\" export type and multiple export list",
+Error: The \\"commonjs\\" format can't be used with the \\"single\\" syntax and multiple export list",
 ]
 `;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "single" syntax for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for {"name":"Foo"} export list: errors 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "single" syntax for {"name":"Foo"} export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for {"name":"Foo"} export list: module 1`] = `
+exports[`loader should work with the "commonjs" module format with the "single" syntax for {"name":"Foo"} export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1270,17 +1270,17 @@ module.exports = Foo;
 "
 `;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for {"name":"Foo"} export list: result 1`] = `
+exports[`loader should work with the "commonjs" module format with the "single" syntax for {"name":"Foo"} export list: result 1`] = `
 Object {
   "Image": [Function],
 }
 `;
 
-exports[`loader should work with the "commonjs" module format with the "single" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "commonjs" module format with the "single" syntax for {"name":"Foo"} export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "default" exports type for "Foo" export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "default" syntax for "Foo" export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "default" exports type for "Foo" export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "default" syntax for "Foo" export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1312,7 +1312,7 @@ export default Foo;
 "
 `;
 
-exports[`loader should work with the "module" module format with the "default" exports type for "Foo" export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "default" syntax for "Foo" export list: result 1`] = `
 Object {
   "default": Object {
     "Image": [Function],
@@ -1320,20 +1320,20 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "default" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "default" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "default" exports type for ["Foo","Bar"] export list: errors 1`] = `
+exports[`loader should work with the "module" module format with the "default" syntax for ["Foo","Bar"] export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"module\\" format can't be used with \\"default\\" export type and multiple export list",
+Error: The \\"module\\" format can't be used with the \\"default\\" syntax and multiple export list",
 ]
 `;
 
-exports[`loader should work with the "module" module format with the "default" exports type for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "default" syntax for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "default" syntax for {"name":"Foo"} export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "default" syntax for {"name":"Foo"} export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1365,7 +1365,7 @@ export default Foo;
 "
 `;
 
-exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "default" syntax for {"name":"Foo"} export list: result 1`] = `
 Object {
   "default": Object {
     "Image": [Function],
@@ -1373,20 +1373,20 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "default" syntax for {"name":"Foo"} export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "multiple" exports type for "Foo" export list: errors 1`] = `
+exports[`loader should work with the "module" module format with the "multiple" syntax for "Foo" export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"module\\" format can't be used with \\"multiple\\" export type",
+Error: The \\"module\\" format can't be used with the \\"multiple\\" syntax",
 ]
 `;
 
-exports[`loader should work with the "module" module format with the "multiple" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "multiple" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for "Foo" export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for "Foo" export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1420,7 +1420,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for "Foo" export list: result 1`] = `
 Object {
   "Foo": Object {
     "Image": [Function],
@@ -1428,11 +1428,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for "Foo" export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo","Bar"] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo","Bar"] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo","Bar"] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo","Bar"] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1467,7 +1467,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo","Bar"] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo","Bar"] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -1483,11 +1483,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo",{"name":"Bar"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo",{"name":"Bar"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo",{"name":"Bar"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo",{"name":"Bar"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1522,7 +1522,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo",{"name":"Bar"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo",{"name":"Bar"}] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -1538,11 +1538,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for ["Foo",{"name":"Bar"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for ["Foo",{"name":"Bar"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]","alias":"[name]A"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]","alias":"[name]A"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]","alias":"[name]A"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]","alias":"[name]A"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1576,17 +1576,17 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
 Object {
   "simpleA": [Function],
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]","alias":"[name]A"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]","alias":"[name]A"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1620,17 +1620,17 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]"}] export list: result 1`] = `
 Object {
   "simple": [Function],
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"[name]"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1665,7 +1665,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
 Object {
   "BarA": Object {
     "test": Array [
@@ -1681,11 +1681,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1719,7 +1719,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
 Object {
   "FooA": Object {
     "Image": [Function],
@@ -1727,11 +1727,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"FooA"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1766,7 +1766,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: result 1`] = `
 Object {
   "BarA": Object {
     "test": Array [
@@ -1782,11 +1782,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo","alias":"default"},{"name":"Bar","alias":"BarA"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1821,7 +1821,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
 Object {
   "Bar": Object {
     "test": Array [
@@ -1837,11 +1837,11 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for [{"name":"Foo"},{"name":"Bar"}] export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: errors 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for {"name":"Foo"} export list: errors 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: module 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for {"name":"Foo"} export list: module 1`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -1875,7 +1875,7 @@ export {
 "
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: result 1`] = `
+exports[`loader should work with the "module" module format with the "named" syntax for {"name":"Foo"} export list: result 1`] = `
 Object {
   "Foo": Object {
     "Image": [Function],
@@ -1883,13 +1883,13 @@ Object {
 }
 `;
 
-exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "named" syntax for {"name":"Foo"} export list: warnings 1`] = `Array []`;
 
-exports[`loader should work with the "module" module format with the "single" exports type for "Foo" export list: errors 1`] = `
+exports[`loader should work with the "module" module format with the "single" syntax for "Foo" export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"module\\" format can't be used with \\"single\\" export type",
+Error: The \\"module\\" format can't be used with the \\"single\\" syntax",
 ]
 `;
 
-exports[`loader should work with the "module" module format with the "single" exports type for "Foo" export list: warnings 1`] = `Array []`;
+exports[`loader should work with the "module" module format with the "single" syntax for "Foo" export list: warnings 1`] = `Array []`;

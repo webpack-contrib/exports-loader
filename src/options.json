@@ -33,7 +33,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "type": {
+        "syntax": {
           "enum": ["single", "multiple", "default", "named"]
         },
         "list": {

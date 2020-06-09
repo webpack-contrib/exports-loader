@@ -21,32 +21,32 @@ function getExportsList(list) {
 function getExports(moduleType, exports) {
   let result = [];
 
-  const isCommonJs = moduleType === 'commonjs';
-  const defaultExportType = isCommonJs ? 'multiple' : 'named';
+  const isModule = moduleType === 'module';
+  const defaultExportSyntax = isModule ? 'named' : 'multiple';
 
   if (typeof exports === 'string') {
     result.push({
-      type: defaultExportType,
+      syntax: defaultExportSyntax,
       list: getExportsList(exports),
     });
   } else if (Array.isArray(exports)) {
     result = [].concat(exports).map((item) => {
       if (typeof item === 'string') {
         return {
-          type: defaultExportType,
+          syntax: defaultExportSyntax,
           list: getExportsList(item),
         };
       }
 
       return {
-        type: defaultExportType,
+        syntax: defaultExportSyntax,
         ...item,
         list: getExportsList(item.list),
       };
     });
   } else {
     result.push({
-      type: defaultExportType,
+      syntax: defaultExportSyntax,
       ...exports,
       list: getExportsList(exports.list),
     });
@@ -55,20 +55,20 @@ function getExports(moduleType, exports) {
   for (const item of result) {
     if (
       (moduleType === 'commonjs' &&
-        !['single', 'multiple'].includes(item.type)) ||
-      (moduleType === 'module' && !['default', 'named'].includes(item.type))
+        !['single', 'multiple'].includes(item.syntax)) ||
+      (moduleType === 'module' && !['default', 'named'].includes(item.syntax))
     ) {
       throw new Error(
-        `The "${moduleType}" format can't be used with "${item.type}" export type`
+        `The "${moduleType}" format can't be used with the "${item.syntax}" syntax`
       );
     }
 
     if (
-      (item.type === 'single' || item.type === 'default') &&
+      (item.syntax === 'single' || item.syntax === 'default') &&
       item.list.length > 1
     ) {
       throw new Error(
-        `The "${moduleType}" format can't be used with "${item.type}" export type and multiple export list`
+        `The "${moduleType}" format can't be used with the "${item.syntax}" syntax and multiple export list`
       );
     }
   }
@@ -81,8 +81,8 @@ function getExports(moduleType, exports) {
 function renderExports(loaderContext, moduleType, exports) {
   let code = '';
 
-  const exportType = exports.type;
-  const type = `${moduleType}-${exports.type}`;
+  const exportSyntax = exports.syntax;
+  const type = `${moduleType}-${exportSyntax}`;
 
   // eslint-disable-next-line default-case
   switch (type) {
@@ -102,7 +102,8 @@ function renderExports(loaderContext, moduleType, exports) {
 
   const { list } = exports;
   const isCommonJs = moduleType === 'commonjs';
-  const isSingleExport = exportType === 'single' || exportType === 'default';
+  const isSingleExport =
+    exportSyntax === 'single' || exportSyntax === 'default';
 
   list.forEach((item, i) => {
     const needComma = i < list.length - 1;

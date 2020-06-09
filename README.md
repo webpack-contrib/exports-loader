@@ -17,6 +17,7 @@
 Allow to setup custom exports `module.exports`/`export` for modules.
 
 > ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
+> ⚠ By default loader generate ES module named syntax.
 
 ## Getting Started
 
@@ -188,8 +189,6 @@ List of exported values.
 
 Allow to specify exported value.
 
-> ℹ️ Be default loader generates ES modules syntax.
-
 **webpack.config.js**
 
 ```js
@@ -245,7 +244,7 @@ module.exports = {
         loader: 'exports-loader',
         options: {
           exports: {
-            type: 'named',
+            syntax: 'named',
             list: [
               {
                 name: 'Foo',
@@ -295,7 +294,7 @@ module.exports = {
         loader: 'exports-loader',
         options: {
           exports: {
-            type: 'named',
+            syntax: 'named',
             list: [
               {
                 name: 'Foo',
@@ -339,7 +338,7 @@ module.exports = {
         options: {
           exports: [
             {
-              type: 'default',
+              syntax: 'default',
               list: 'Foo',
             },
             {

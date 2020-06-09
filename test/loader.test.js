@@ -70,7 +70,7 @@ describe('loader', () => {
   it('should work with multiple object value with multiple list values with "default"', async () => {
     const compiler = getCompiler('simple.js', {
       exports: [
-        { type: 'default', list: 'Foo' },
+        { syntax: 'default', list: 'Foo' },
         { list: ['Bar', { name: 'Baz', alias: 'BazA' }] },
       ],
     });
@@ -235,16 +235,13 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  function createSuccessCase(moduleType, exportType, list) {
-    it(`should work with the "${moduleType}" module format with the "${exportType}" exports type for ${JSON.stringify(
+  function createSuccessCase(moduleType, syntax, list) {
+    it(`should work with the "${moduleType}" module format with the "${syntax}" syntax for ${JSON.stringify(
       list
     )} export list`, async () => {
       const compiler = getCompiler('simple.js', {
         type: moduleType,
-        exports: {
-          type: exportType,
-          list,
-        },
+        exports: { syntax, list },
       });
       const stats = await compile(compiler);
 
@@ -257,16 +254,13 @@ describe('loader', () => {
     });
   }
 
-  function createFailedCase(moduleType, exportType, list) {
-    it(`should work with the "${moduleType}" module format with the "${exportType}" exports type for ${JSON.stringify(
+  function createFailedCase(moduleType, syntax, list) {
+    it(`should work with the "${moduleType}" module format with the "${syntax}" syntax for ${JSON.stringify(
       list
     )} export list`, async () => {
       const compiler = getCompiler('simple.js', {
         type: moduleType,
-        exports: {
-          type: exportType,
-          list,
-        },
+        exports: { syntax, list },
       });
       const stats = await compile(compiler);
 
