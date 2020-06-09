@@ -1,5 +1,23 @@
 import { interpolateName } from 'loader-utils';
 
+function getExportsList(list) {
+  if (typeof list === 'string') {
+    return [{ name: list }];
+  }
+
+  if (Array.isArray(list)) {
+    return list.map((item) => {
+      if (typeof item === 'string') {
+        return { name: item };
+      }
+
+      return item;
+    });
+  }
+
+  return [list];
+}
+
 function getExports(moduleType, exports) {
   let result = [];
 
@@ -7,32 +25,26 @@ function getExports(moduleType, exports) {
   const defaultExportType = isCommonJs ? 'multiple' : 'named';
 
   if (typeof exports === 'string') {
-    result.push({ type: defaultExportType, list: [{ name: exports }] });
+    result.push({
+      type: defaultExportType,
+      list: getExportsList(exports),
+    });
   } else if (Array.isArray(exports)) {
     result = [].concat(exports).map((item) => {
       if (typeof item === 'string') {
-        return { type: defaultExportType, list: [{ name: item }] };
+        return {
+          type: defaultExportType,
+          list: getExportsList(item),
+        };
       }
 
       return item;
     });
   } else {
-    result.push(
-      typeof exports.list === 'string'
-        ? { ...exports, list: [{ name: exports.list }] }
-        : Array.isArray(exports.list)
-        ? {
-            ...exports,
-            list: exports.list.map((item) => {
-              if (typeof item === 'string') {
-                return { name: item };
-              }
-
-              return item;
-            }),
-          }
-        : exports
-    );
+    result.push({
+      ...exports,
+      list: getExportsList(exports.list),
+    });
   }
 
   for (const item of result) {

@@ -95,6 +95,20 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work with object value when the "list" option is object', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: { list: { name: 'Foo' } },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work with object value when the "list" option is array of string', async () => {
     const compiler = getCompiler('simple.js', {
       exports: { list: ['Foo', 'Bar'] },
