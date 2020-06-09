@@ -38,7 +38,6 @@ function getExports(moduleType, exports) {
         };
       }
 
-      // TODO
       return {
         type: defaultExportType,
         ...item,
