@@ -577,6 +577,15 @@ Object {
 
 exports[`loader should work with string value: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format with the "default" exports type for "Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with \\"default\\" export type",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format with the "default" exports type for "Foo" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: module 1`] = `
@@ -960,6 +969,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format with the "named" exports type for "Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with \\"named\\" export type",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format with the "named" exports type for "Foo" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: module 1`] = `
@@ -1153,6 +1171,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format with the "multiple" exports type for "Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with \\"multiple\\" export type",
+]
+`;
+
+exports[`loader should work with the "module" module format with the "multiple" exports type for "Foo" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: errors 1`] = `Array []`;
 
@@ -1536,3 +1563,12 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format with the "single" exports type for "Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with \\"single\\" export type",
+]
+`;
+
+exports[`loader should work with the "module" module format with the "single" exports type for "Foo" export list: warnings 1`] = `Array []`;

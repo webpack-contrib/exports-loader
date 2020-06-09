@@ -38,16 +38,31 @@ function getExports(moduleType, exports) {
         };
       }
 
-      return item;
+      // TODO
+      return {
+        type: defaultExportType,
+        ...item,
+      };
     });
   } else {
     result.push({
+      type: defaultExportType,
       ...exports,
       list: getExportsList(exports.list),
     });
   }
 
   for (const item of result) {
+    if (
+      (moduleType === 'commonjs' &&
+        !['single', 'multiple'].includes(item.type)) ||
+      (moduleType === 'module' && !['default', 'named'].includes(item.type))
+    ) {
+      throw new Error(
+        `The "${moduleType}" format can't be used with "${item.type}" export type`
+      );
+    }
+
     if (
       (item.type === 'single' || item.type === 'default') &&
       item.list.length > 1
