@@ -102,10 +102,10 @@ And run `webpack` via your preferred method.
 
 ## Options
 
-|           Name           |           Type            |   Default   | Description                 |
-| :----------------------: | :-----------------------: | :---------: | :-------------------------- |
-|   **[`type`](#type)**    |        `{String}`         |  `module`   | Format of generated exports |
-| **[`exports`](#import)** | `{String\|Object\|Array}` | `undefined` | List of exported values     |
+|           Name           |       Type        |   Default   | Description                 |
+| :----------------------: | :---------------: | :---------: | :-------------------------- |
+|   **[`type`](#type)**    |    `{String}`     |  `module`   | Format of generated exports |
+| **[`exports`](#import)** | `{String\|Array}` | `undefined` | List of exported values     |
 
 ### `type`
 
@@ -229,99 +229,6 @@ export { Foo };
 module.exports = { Foo };
 ```
 
-#### `Object`
-
-Allow to specify exported value and setup aliases.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
-        options: {
-          exports: {
-            syntax: 'named',
-            list: [
-              {
-                name: 'Foo',
-                alias: 'FooAlias',
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-Generate output:
-
-- When the **[`type`](#type)** option is `commonjs`
-
-```js
-// ...
-// Code
-// ...
-
-module.exports = { FooAlias: Foo };
-```
-
-- When the **[`type`](#type)** option is `module`
-
-```js
-// ...
-// Code
-// ...
-
-export { Foo as FooAlias };
-```
-
-You can generate `default` export for a single `export` statement:
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
-        options: {
-          exports: {
-            syntax: 'named',
-            list: [
-              {
-                name: 'Foo',
-                alias: 'default',
-              },
-              {
-                name: 'Bar',
-              },
-            ],
-          },
-        },
-      },
-    ],
-  },
-};
-```
-
-Generate output:
-
-```js
-// ...
-// Code
-// ...
-
-export { Foo as default, Bar };
-```
-
 #### `Array`
 
 Allow to specify multiple exported values and setup aliases.
@@ -336,21 +243,7 @@ module.exports = {
         test: require.resolve('./path/to/vendor.js'),
         loader: 'exports-loader',
         options: {
-          exports: [
-            {
-              syntax: 'default',
-              list: 'Foo',
-            },
-            {
-              list: [
-                'Bar',
-                {
-                  name: 'Baz',
-                  alias: 'myBaz',
-                },
-              ],
-            },
-          ],
+          exports: ['Foo', 'Bar'],
         },
       },
     ],
@@ -360,13 +253,24 @@ module.exports = {
 
 Generate output:
 
+- When the **[`type`](#type)** option is `module`
+
 ```js
 // ...
 // Code
 // ...
 
-export default Foo;
-export { Bar, Baz as myBaz };
+export { Foo, Bar };
+```
+
+- When the **[`type`](#type)** option is `commonjs`
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { Foo, Bar };
 ```
 
 ## Contributing
