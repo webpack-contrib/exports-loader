@@ -204,13 +204,16 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  function createSuccessCase(type, exports) {
-    it(`should work with the "${type}" export type for ${JSON.stringify(
-      exports
+  function createSuccessCase(moduleType, exportType, list) {
+    it(`should work with the "${moduleType}" module format with the "${exportType}" exports type for ${JSON.stringify(
+      list
     )} export list`, async () => {
       const compiler = getCompiler('simple.js', {
-        type,
-        exports,
+        type: moduleType,
+        exports: {
+          type: exportType,
+          list,
+        },
       });
       const stats = await compile(compiler);
 
@@ -223,13 +226,16 @@ describe('loader', () => {
     });
   }
 
-  function createFailedCase(type, exports) {
-    it(`should work with the "${type}" export type for ${JSON.stringify(
-      exports
+  function createFailedCase(moduleType, exportType, list) {
+    it(`should work with the "${moduleType}" module format with the "${exportType}" exports type for ${JSON.stringify(
+      list
     )} export list`, async () => {
       const compiler = getCompiler('simple.js', {
-        type,
-        exports,
+        type: moduleType,
+        exports: {
+          type: exportType,
+          list,
+        },
       });
       const stats = await compile(compiler);
 
@@ -238,5 +244,12 @@ describe('loader', () => {
     });
   }
 
-  createSuccessCase('commonjs', 'Foo');
+  createSuccessCase('commonjs', 'single', 'Foo');
+  createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
+  createSuccessCase('commonjs', 'multiple', 'Foo');
+  createSuccessCase('commonjs', 'multiple', ['Foo', 'Bar']);
+  createSuccessCase('module', 'default', 'Foo');
+  createFailedCase('module', 'default', ['Foo', 'Bar']);
+  createSuccessCase('module', 'named', 'Foo');
+  createSuccessCase('module', 'named', ['Foo', 'Bar']);
 });

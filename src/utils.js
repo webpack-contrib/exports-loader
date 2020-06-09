@@ -1,14 +1,17 @@
 import { interpolateName } from 'loader-utils';
 
-function getExports(type, exports) {
+function getExports(moduleType, exports) {
   let result = [];
 
+  const isCommonJs = moduleType === 'commonjs';
+  const defaultExportType = isCommonJs ? 'multiple' : 'named';
+
   if (typeof exports === 'string') {
-    result.push({ type: 'named', list: [{ name: exports }] });
+    result.push({ type: defaultExportType, list: [{ name: exports }] });
   } else if (Array.isArray(exports)) {
     result = [].concat(exports).map((item) => {
       if (typeof item === 'string') {
-        return { type: 'named', list: [{ name: item }] };
+        return { type: defaultExportType, list: [{ name: item }] };
       }
 
       return item;
@@ -30,6 +33,17 @@ function getExports(type, exports) {
           }
         : exports
     );
+  }
+
+  for (const item of result) {
+    if (
+      (item.type === 'single' || item.type === 'default') &&
+      item.list.length > 1
+    ) {
+      throw new Error(
+        `The "${moduleType}" format can't be used with "${item.type}" export type and multiple export list`
+      );
+    }
   }
 
   // TODO union
