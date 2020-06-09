@@ -149,12 +149,14 @@ describe('loader', () => {
   }
 
   createSuccessCase('commonjs', 'Foo');
+  createSuccessCase('commonjs', ['Foo', 'Bar']);
   createSuccessCase('commonjs', 'single Foo');
   createSuccessCase('commonjs', 'multiple Foo');
   createSuccessCase('commonjs', 'multiple Foo FooA');
   // TODO error for alias
 
   createSuccessCase('module', 'Foo');
+  createSuccessCase('module', ['Foo', 'Bar']);
   createSuccessCase('module', 'default Foo');
   createSuccessCase('module', 'named Foo');
   createSuccessCase('module', 'named Foo FooA');

@@ -32,9 +32,7 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  const exportsCode = exports.reduce((accumulator, item) => {
-    return `${accumulator}${renderExports(this, type, item)}\n`;
-  }, '');
+  const exportsCode = renderExports(this, type, exports);
 
   if (this.sourceMap && sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
@@ -42,7 +40,7 @@ export default function loader(content, sourceMap) {
       new SourceMapConsumer(sourceMap)
     );
 
-    node.add(`\n\n${FOOTER}${exportsCode}`);
+    node.add(`\n${FOOTER}${exportsCode}`);
 
     const result = node.toStringWithSourceMap({ file: this.resourcePath });
 
@@ -51,5 +49,5 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  callback(null, `${content}\n\n${FOOTER}${exportsCode}`, sourceMap);
+  callback(null, `${content}\n${FOOTER}${exportsCode}`, sourceMap);
 }

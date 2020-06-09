@@ -29,64 +29,70 @@ function getExports(type, exports) {
 
   if (typeof exports === 'string') {
     result.push(resolveExports(type, exports));
-  } else if (Array.isArray(exports)) {
+  } else {
     result = [].concat(exports).map((item) => resolveExports(type, item));
   }
 
   // TODO validation
-  // TODO union
 
   return result;
 }
 
-function renderExports(loaderContext, type, item) {
+function renderExports(loaderContext, type, exports) {
   let code = '';
 
-  const exportType = `${type}-${item.syntax}`;
+  const defaultExport = exports.filter(
+    (item) => item.syntax === 'default' || item.syntax === 'single'
+  );
+  const namedExports = exports.filter(
+    (item) => item.syntax === 'named' || item.syntax === 'multiple'
+  );
 
-  // eslint-disable-next-line default-case
-  switch (exportType) {
-    case 'commonjs-single':
-      code += 'module.exports = ';
-      break;
-    case 'commonjs-multiple':
-      code += 'module.exports = {\n';
-      break;
-    case 'module-default':
-      code += 'export default ';
-      break;
-    case 'module-named':
-      code += 'export {\n';
-      break;
+  if (defaultExport.length > 0) {
+    // eslint-disable-next-line default-case
+    switch (type) {
+      case 'commonjs':
+        code += 'module.exports = ';
+        break;
+      case 'module':
+        code += 'export default ';
+        break;
+    }
+
+    const name = interpolateName(loaderContext, defaultExport[0].name, {});
+
+    code += `${name};\n`;
   }
 
-  const isCommonJs = type === 'commonjs';
-  const isSingleExport = item.syntax === 'single' || item.syntax === 'default';
+  if (namedExports.length > 0) {
+    // eslint-disable-next-line default-case
+    switch (type) {
+      case 'commonjs':
+        code += 'module.exports = {\n';
+        break;
+      case 'module':
+        code += 'export {\n';
+        break;
+    }
 
-  const name = interpolateName(loaderContext, item.name, {});
-  const alias = item.alias
-    ? interpolateName(loaderContext, item.alias, {})
-    : // eslint-disable-next-line no-undefined
-      undefined;
+    namedExports.forEach((namedExport, i) => {
+      const needComma = i < namedExports.length - 1;
+      const name = interpolateName(loaderContext, namedExport.name, {});
+      const alias = namedExport.alias
+        ? interpolateName(loaderContext, namedExport.alias, {})
+        : // eslint-disable-next-line no-undefined
+          undefined;
 
-  code += `${isSingleExport ? '' : '  '}${
-    isCommonJs
-      ? alias
-        ? `${JSON.stringify(alias)}: (${name})`
-        : `${name}`
-      : `${name}${alias ? ` as ${alias}` : ''}`
-  }`;
+      code += `  ${
+        type === 'commonjs'
+          ? alias
+            ? `${JSON.stringify(alias)}: (${name})`
+            : `${name}`
+          : `${name}${alias ? ` as ${alias}` : ''}`
+      }${needComma ? ',\n' : ''}`;
+    });
 
-  // eslint-disable-next-line default-case
-  switch (exportType) {
-    case 'commonjs-single':
-    case 'module-default':
-      code += ';';
-      break;
-    case 'commonjs-multiple':
-    case 'module-named':
-      code += '\n};';
-      break;
+    code += '\n};\n';
   }
 
   return code;
