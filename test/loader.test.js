@@ -270,6 +270,9 @@ describe('loader', () => {
   createSuccessCase('commonjs', 'multiple', ['Foo', { name: 'Bar' }]);
   createSuccessCase('commonjs', 'multiple', [{ name: 'Foo', alias: 'FooA' }]);
   createSuccessCase('commonjs', 'multiple', [
+    { name: 'myVariable.myFunction', alias: 'myFunction' },
+  ]);
+  createSuccessCase('commonjs', 'multiple', [
     { name: 'Foo', alias: 'FooA' },
     { name: 'Bar', alias: 'BarA' },
   ]);
