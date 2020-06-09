@@ -51,37 +51,126 @@ exports[`loader should not work with source maps when the "devtool" options are 
 exports[`loader should work with inline syntax: errors 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: module 1`] = `
-"module.exports = require('../../src/cjs.js?exports=CV!./exports/cv.js');
+"const test1 = require('../../src/cjs.js?exports=Foo!./simple.js');
+const test2 = require('../../src/cjs.js?exports[]=Foo&exports[]=Bar!./simple.js');
+const test3 = require('../../src/cjs.js?exports=[name]!./simple.js');
+const test4 = require('../../src/cjs.js?exports=Foo!./simple.js');
+const test5 = require('../../src/cjs.js?type=commonjs&exports=Foo!./simple.js');
+const test6 = require('../../src/cjs.js?type=module&exports=Foo!./simple.js');
+
+module.exports = {
+  test1,
+  test2,
+  test3,
+  test4,
+  test5,
+  test6,
+};
 "
 `;
 
 exports[`loader should work with inline syntax: result 1`] = `
 Object {
-  "CV": Object {
-    "Image": [Function],
-    "stackBoxBlurMult": Array [
-      1,
-      171,
-      205,
-      293,
-      57,
-      373,
-      79,
-      137,
-      241,
-      27,
-      391,
-      357,
-      41,
-      19,
-      283,
-      265,
-    ],
+  "test1": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test2": Object {
+    "Bar": Object {
+      "test": Array [
+        1,
+        2,
+        3,
+        4,
+      ],
+    },
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test3": Object {
+    "simple": [Function],
+  },
+  "test4": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test5": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test6": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
   },
 }
 `;
 
 exports[`loader should work with inline syntax: warnings 1`] = `Array []`;
+
+exports[`loader should work with multiple object value with multiple list values with "default": errors 1`] = `Array []`;
+
+exports[`loader should work with multiple object value with multiple list values with "default": module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const myVariable = new MyClass();
+
+
+/*** EXPORTS FROM exports-loader ***/
+export default Foo;
+export {
+  Bar,
+  Baz as BazA
+};
+"
+`;
+
+exports[`loader should work with multiple object value with multiple list values with "default": result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "BazA": Object {
+    "nestedFunction": [Function],
+    "nestedNumber": "12",
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with multiple object value with multiple list values with "default": warnings 1`] = `Array []`;
 
 exports[`loader should work with multiple object values: errors 1`] = `Array []`;
 

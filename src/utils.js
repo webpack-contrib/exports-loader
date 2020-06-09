@@ -41,6 +41,7 @@ function getExports(moduleType, exports) {
       return {
         type: defaultExportType,
         ...item,
+        list: getExportsList(item.list),
       };
     });
   } else {

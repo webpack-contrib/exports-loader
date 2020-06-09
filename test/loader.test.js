@@ -67,6 +67,23 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work with multiple object value with multiple list values with "default"', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: [
+        { type: 'default', list: 'Foo' },
+        { list: ['Bar', { name: 'Baz', alias: 'BazA' }] },
+      ],
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work with multiple object values', async () => {
     const compiler = getCompiler('simple.js', {
       exports: [{ list: [{ name: 'Foo' }] }, { list: [{ name: 'Bar' }] }],
