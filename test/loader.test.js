@@ -149,33 +149,27 @@ describe('loader', () => {
   }
 
   createSuccessCase('commonjs', 'Foo');
-  createSuccessCase('commonjs', ['Foo', 'Bar']);
   createSuccessCase('commonjs', 'single Foo');
   createSuccessCase('commonjs', 'multiple Foo');
   createSuccessCase('commonjs', 'multiple Foo FooA');
+  createSuccessCase('commonjs', ['Foo', 'Bar']);
+  createSuccessCase('commonjs', ['multiple Foo', 'multiple Bar']);
+  createSuccessCase('commonjs', ['multiple Foo FooA', 'multiple Bar BarA']);
+  // TODO createSuccessCase('commonjs', 'multiple', [
+  //   { name: 'myVariable.myFunction', alias: 'myFunction' },
+  // ]);
   // TODO error for alias
+  // TODO createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
 
   createSuccessCase('module', 'Foo');
-  createSuccessCase('module', ['Foo', 'Bar']);
   createSuccessCase('module', 'default Foo');
   createSuccessCase('module', 'named Foo');
   createSuccessCase('module', 'named Foo FooA');
+  createSuccessCase('module', ['Foo', 'Bar']);
+  createSuccessCase('module', ['named Foo', 'named Bar']);
+  createSuccessCase('module', ['named Foo FooA', 'named Bar BarA']);
   // TODO error for alias
 
-  // createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
-  // createSuccessCase('commonjs', 'multiple', 'Foo');
-  // createSuccessCase('commonjs', 'multiple', { name: 'Foo' });
-  // createSuccessCase('commonjs', 'multiple', ['Foo', 'Bar']);
-  // createSuccessCase('commonjs', 'multiple', [{ name: 'Foo' }, { name: 'Bar' }]);
-  // createSuccessCase('commonjs', 'multiple', ['Foo', { name: 'Bar' }]);
-  // createSuccessCase('commonjs', 'multiple', [{ name: 'Foo', alias: 'FooA' }]);
-  // createSuccessCase('commonjs', 'multiple', [
-  //   { name: 'myVariable.myFunction', alias: 'myFunction' },
-  // ]);
-  // createSuccessCase('commonjs', 'multiple', [
-  //   { name: 'Foo', alias: 'FooA' },
-  //   { name: 'Bar', alias: 'BarA' },
-  // ]);
   // createSuccessCase('commonjs', 'multiple', [{ name: '[name]' }]);
   // createSuccessCase('commonjs', 'multiple', [
   //   { name: '[name]', alias: '[name]A' },
