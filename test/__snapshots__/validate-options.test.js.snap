@@ -3,72 +3,67 @@
 exports[`validate options should throw an error on the "exports" option with "() => {}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, alias? } | [non-empty string | object { name, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | object { list, type? } | [non-empty string | object { list, type? }, ...] (should not have fewer than 1 item)
    Details:
+    * options.exports should be a non-empty string.
+    * options.exports should be an object:
+      object { list, type? }
     * options.exports should be one of these:
-      non-empty string | object { name, alias? }
-      Details:
-       * options.exports should be a non-empty string.
-       * options.exports should be an object:
-         object { name, alias? }
+      non-empty string | object { list, type? }
     * options.exports should be an array:
-      [non-empty string | object { name, alias? }, ...] (should not have fewer than 1 item)"
+      [non-empty string | object { list, type? }, ...] (should not have fewer than 1 item)"
 `;
 
 exports[`validate options should throw an error on the "exports" option with "[1,2,3]" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, alias? } | [non-empty string | object { name, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | object { list, type? } | [non-empty string | object { list, type? }, ...] (should not have fewer than 1 item)
    Details:
+    * options.exports[0] should be a non-empty string.
+    * options.exports[0] should be an object:
+      object { list, type? }
+    * options.exports[0] should be one of these:
+      non-empty string | object { list, type? }
+    * options.exports[1] should be a non-empty string.
+    * options.exports[1] should be an object:
+      object { list, type? }
+    * options.exports[1] should be one of these:
+      non-empty string | object { list, type? }
+    * options.exports[2] should be a non-empty string.
+    * options.exports[2] should be an object:
+      object { list, type? }
     * options.exports[2] should be one of these:
-      non-empty string | object { name, alias? }
-      Details:
-       * options.exports[1] should be one of these:
-         non-empty string | object { name, alias? }
-         Details:
-          * options.exports[0] should be one of these:
-            non-empty string | object { name, alias? }
-            Details:
-             * options.exports[0] should be a non-empty string.
-             * options.exports[0] should be an object:
-               object { name, alias? }
-          * options.exports[1] should be a non-empty string.
-          * options.exports[1] should be an object:
-            object { name, alias? }
-       * options.exports[2] should be a non-empty string.
-       * options.exports[2] should be an object:
-         object { name, alias? }"
+      non-empty string | object { list, type? }"
 `;
 
 exports[`validate options should throw an error on the "exports" option with "true" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, alias? } | [non-empty string | object { name, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | object { list, type? } | [non-empty string | object { list, type? }, ...] (should not have fewer than 1 item)
    Details:
+    * options.exports should be a non-empty string.
+    * options.exports should be an object:
+      object { list, type? }
     * options.exports should be one of these:
-      non-empty string | object { name, alias? }
-      Details:
-       * options.exports should be a non-empty string.
-       * options.exports should be an object:
-         object { name, alias? }
+      non-empty string | object { list, type? }
     * options.exports should be an array:
-      [non-empty string | object { name, alias? }, ...] (should not have fewer than 1 item)"
+      [non-empty string | object { list, type? }, ...] (should not have fewer than 1 item)"
 `;
 
 exports[`validate options should throw an error on the "type" option with "false" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs-single\\" | \\"commonjs-multiple\\" | \\"module-default\\" | \\"module-named\\""
+   \\"commonjs\\" | \\"module\\""
 `;
 
 exports[`validate options should throw an error on the "type" option with "foo" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs-single\\" | \\"commonjs-multiple\\" | \\"module-default\\" | \\"module-named\\""
+   \\"commonjs\\" | \\"module\\""
 `;
 
 exports[`validate options should throw an error on the "type" option with "true" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs-single\\" | \\"commonjs-multiple\\" | \\"module-default\\" | \\"module-named\\""
+   \\"commonjs\\" | \\"module\\""
 `;

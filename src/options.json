@@ -1,9 +1,10 @@
 {
   "definitions": {
-    "ExportListItem": {
-      "type": "string"
+    "ExportListItemString": {
+      "type": "string",
+      "minLength": 1
     },
-    "ExportObject": {
+    "ExportListItemObject": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -17,6 +18,40 @@
         }
       },
       "required": ["name"]
+    },
+    "ExportListItem": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ExportListItemString"
+        },
+        {
+          "$ref": "#/definitions/ExportListItemObject"
+        }
+      ]
+    },
+    "ExportObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": ["single", "multiple", "default", "named"]
+        },
+        "list": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/ExportListItem"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ExportListItem"
+              },
+              "minItems": 1
+            }
+          ]
+        }
+      },
+      "required": ["list"]
     },
     "ExportItem": {
       "anyOf": [
@@ -34,12 +69,7 @@
   "additionalProperties": false,
   "properties": {
     "type": {
-      "enum": [
-        "commonjs-single",
-        "commonjs-multiple",
-        "module-default",
-        "module-named"
-      ]
+      "enum": ["commonjs", "module"]
     },
     "exports": {
       "anyOf": [

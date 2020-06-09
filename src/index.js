@@ -2,11 +2,12 @@
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
 */
-import { getOptions, interpolateName } from 'loader-utils';
+import { getOptions } from 'loader-utils';
 import { SourceMapConsumer, SourceNode } from 'source-map';
 import validateOptions from 'schema-utils';
 
 import schema from './options.json';
+import { getExports, renderExports } from './utils';
 
 const FOOTER = '/*** EXPORTS FROM exports-loader ***/\n';
 
@@ -18,80 +19,24 @@ export default function loader(content, sourceMap) {
     baseDataPath: 'options',
   });
 
+  const type = options.type || 'module';
   const callback = this.async();
-  const type = options.type || 'module-named';
-  const code = [];
 
-  // eslint-disable-next-line default-case
-  switch (type) {
-    case 'commonjs-single':
-      code.push(`module.exports = `);
-      break;
-    case 'commonjs-multiple':
-      code.push(`module.exports = {`);
-      break;
-    case 'module-default':
-      code.push(`export default`);
-      break;
-    case 'module-named':
-      code.push(`export {`);
-      break;
-  }
+  let exports;
 
-  const exports =
-    typeof options.exports === 'string'
-      ? [{ name: options.exports }]
-      : Array.isArray(options.exports)
-      ? options.exports.map((item) => {
-          if (typeof item === 'string') {
-            return { name: item };
-          }
-
-          return item;
-        })
-      : [options.exports];
-
-  if (
-    (type === 'commonjs-single' || type === 'module-default') &&
-    exports.filter((item) => item.alias).length > 0
-  ) {
-    callback(new Error(`The "${type}" exports type is not support aliases`));
+  try {
+    exports = getExports(type, options.exports);
+  } catch (error) {
+    callback(error);
 
     return;
   }
 
-  const isCommonJs = type.startsWith('commonjs');
+  const exportsCode = [];
 
-  exports.forEach((item, i) => {
-    const needComma = i < exports.length - 1;
-    const name = interpolateName(this, item.name, {});
-    const alias = item.alias
-      ? interpolateName(this, item.alias, {})
-      : // eslint-disable-next-line no-undefined
-        undefined;
-
-    code.push(
-      `${
-        isCommonJs
-          ? alias
-            ? `  ${JSON.stringify(alias)}: (${name})`
-            : `  ${name}`
-          : `  ${name}${alias ? ` as ${alias}` : ''}`
-      }${needComma ? ',' : ''}`
-    );
+  exports.forEach((item) => {
+    exportsCode.push(renderExports(this, type, item));
   });
-
-  // eslint-disable-next-line default-case
-  switch (type) {
-    case 'commonjs-single':
-    case 'module-default':
-      code.push(`;`);
-      break;
-    case 'commonjs-multiple':
-    case 'module-named':
-      code.push(`};`);
-      break;
-  }
 
   if (this.sourceMap && sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
@@ -99,7 +44,7 @@ export default function loader(content, sourceMap) {
       new SourceMapConsumer(sourceMap)
     );
 
-    node.add(`\n\n${FOOTER}${code.join('\n')}`);
+    node.add(`\n\n${FOOTER}${exportsCode.join('\n')}`);
 
     const result = node.toStringWithSourceMap({ file: this.resourcePath });
 
@@ -108,5 +53,5 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  callback(null, `${content}\n\n${FOOTER}${code.join('\n')}`, sourceMap);
+  callback(null, `${content}\n\n${FOOTER}${exportsCode.join('\n')}`, sourceMap);
 }
