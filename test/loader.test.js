@@ -269,6 +269,10 @@ describe('loader', () => {
   createSuccessCase('commonjs', 'multiple', [{ name: 'Foo' }, { name: 'Bar' }]);
   createSuccessCase('commonjs', 'multiple', ['Foo', { name: 'Bar' }]);
   createSuccessCase('commonjs', 'multiple', [{ name: 'Foo', alias: 'FooA' }]);
+  createSuccessCase('commonjs', 'multiple', [
+    { name: 'Foo', alias: 'FooA' },
+    { name: 'Bar', alias: 'BarA' },
+  ]);
   createSuccessCase('commonjs', 'multiple', [{ name: '[name]' }]);
   createSuccessCase('commonjs', 'multiple', [
     { name: '[name]', alias: '[name]A' },
@@ -285,6 +289,14 @@ describe('loader', () => {
   createSuccessCase('module', 'named', [{ name: 'Foo' }, { name: 'Bar' }]);
   createSuccessCase('module', 'named', ['Foo', { name: 'Bar' }]);
   createSuccessCase('module', 'named', [{ name: 'Foo', alias: 'FooA' }]);
+  createSuccessCase('module', 'named', [
+    { name: 'Foo', alias: 'FooA' },
+    { name: 'Bar', alias: 'BarA' },
+  ]);
+  createSuccessCase('module', 'named', [
+    { name: 'Foo', alias: 'default' },
+    { name: 'Bar', alias: 'BarA' },
+  ]);
   createSuccessCase('module', 'named', [{ name: '[name]' }]);
   createSuccessCase('module', 'named', [{ name: '[name]', alias: '[name]A' }]);
 });
