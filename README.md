@@ -89,7 +89,7 @@ module.exports = {
         test: require.resolve('./path/to/vendor.js'),
         loader: 'exports-loader',
         options: {
-          exports: { name: 'customFunction', alias: 'myFunction' },
+          exports: 'myFunction',
         },
       },
     ],
@@ -210,12 +210,24 @@ module.exports = {
 
 Generate output:
 
+- When the **[`type`](#type)** option is `module`
+
 ```js
 // ...
 // Code
 // ...
 
 export { Foo };
+```
+
+- When the **[`type`](#type)** option is `commonjs`
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { Foo };
 ```
 
 #### `Object`
@@ -250,6 +262,18 @@ module.exports = {
 
 Generate output:
 
+- When the **[`type`](#type)** option is `commonjs`
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { FooAlias: Foo };
+```
+
+- When the **[`type`](#type)** option is `module`
+
 ```js
 // ...
 // Code
@@ -258,7 +282,7 @@ Generate output:
 export { Foo as FooAlias };
 ```
 
-You can generate `default` export.
+You can generate `default` export for a single `export` statement:
 
 **webpack.config.js**
 
