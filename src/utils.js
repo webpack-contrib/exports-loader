@@ -81,13 +81,8 @@ function getExports(moduleType, exports) {
 function renderExports(loaderContext, moduleType, exports) {
   let code = '';
 
-  const exportType =
-    typeof exports.type !== 'undefined'
-      ? exports.type
-      : moduleType === 'commonjs'
-      ? 'multiple'
-      : 'named';
-  const type = `${moduleType}-${exportType}`;
+  const exportType = exports.type;
+  const type = `${moduleType}-${exports.type}`;
 
   // eslint-disable-next-line default-case
   switch (type) {
