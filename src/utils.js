@@ -79,7 +79,8 @@ function getExports(moduleType, exports) {
 }
 
 function renderExports(loaderContext, moduleType, exports) {
-  const code = [];
+  let code = '';
+
   const exportType =
     typeof exports.type !== 'undefined'
       ? exports.type
@@ -91,21 +92,22 @@ function renderExports(loaderContext, moduleType, exports) {
   // eslint-disable-next-line default-case
   switch (type) {
     case 'commonjs-single':
-      code.push(`module.exports = `);
+      code += 'module.exports = ';
       break;
     case 'commonjs-multiple':
-      code.push(`module.exports = {`);
+      code += 'module.exports = {\n';
       break;
     case 'module-default':
-      code.push(`export default`);
+      code += 'export default ';
       break;
     case 'module-named':
-      code.push(`export {`);
+      code += 'export {\n';
       break;
   }
 
   const { list } = exports;
   const isCommonJs = moduleType === 'commonjs';
+  const isSingleExport = exportType === 'single' || exportType === 'default';
 
   list.forEach((item, i) => {
     const needComma = i < list.length - 1;
@@ -115,30 +117,28 @@ function renderExports(loaderContext, moduleType, exports) {
       : // eslint-disable-next-line no-undefined
         undefined;
 
-    code.push(
-      `${
-        isCommonJs
-          ? alias
-            ? `  ${JSON.stringify(alias)}: (${name})`
-            : `  ${name}`
-          : `  ${name}${alias ? ` as ${alias}` : ''}`
-      }${needComma ? ',' : ''}`
-    );
+    code += `${isSingleExport ? '' : '  '}${
+      isCommonJs
+        ? alias
+          ? `${JSON.stringify(alias)}: (${name})`
+          : `${name}`
+        : `${name}${alias ? ` as ${alias}` : ''}`
+    }${needComma ? ',\n' : ''}`;
   });
 
   // eslint-disable-next-line default-case
   switch (type) {
     case 'commonjs-single':
     case 'module-default':
-      code.push(`;`);
+      code += ';';
       break;
     case 'commonjs-multiple':
     case 'module-named':
-      code.push(`};`);
+      code += '\n};';
       break;
   }
 
-  return code.join('\n');
+  return code;
 }
 
 export { getExports, renderExports };

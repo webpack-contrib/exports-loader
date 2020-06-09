@@ -34,7 +34,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should not work with source maps when the "devtool" options are disabled: result 1`] = `
@@ -117,7 +118,8 @@ export {
 };
 export {
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with multiple object values: result 1`] = `
@@ -173,7 +175,8 @@ export {
 };
 export {
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with multiple string values: result 1`] = `
@@ -227,7 +230,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with object value when the "list" option is array of string: result 1`] = `
@@ -281,7 +285,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with object value when the "list" option is array of strings and objects: result 1`] = `
@@ -334,7 +339,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with object value when the "list" option is object: result 1`] = `
@@ -379,7 +385,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with object value when the "list" option is string: result 1`] = `
@@ -425,7 +432,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with object value with multiple list values: result 1`] = `
@@ -478,7 +486,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with object value: result 1`] = `
@@ -525,7 +534,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with source maps when the "devtool" option is enabled: result 1`] = `Object {}`;
@@ -564,7 +574,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with string value: result 1`] = `
@@ -618,7 +629,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for "Foo" export list: result 1`] = `
@@ -664,7 +676,8 @@ const myVariable = new MyClass();
 module.exports = {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo","Bar"] export list: result 1`] = `
@@ -718,7 +731,8 @@ const myVariable = new MyClass();
 module.exports = {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for ["Foo",{"name":"Bar"}] export list: result 1`] = `
@@ -771,7 +785,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
   \\"simpleA\\": (simple)
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
@@ -814,7 +829,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
   simple
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"[name]"}] export list: result 1`] = `
@@ -857,7 +873,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
   \\"FooA\\": (Foo)
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
@@ -903,7 +920,8 @@ const myVariable = new MyClass();
 module.exports = {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
@@ -956,7 +974,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 module.exports = {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "multiple" exports type for {"name":"Foo"} export list: result 1`] = `
@@ -1008,9 +1027,8 @@ const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = 
-  Foo
-;"
+module.exports = Foo;
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "single" exports type for "Foo" export list: result 1`] = `
@@ -1060,9 +1078,8 @@ const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = 
-  Foo
-;"
+module.exports = Foo;
+"
 `;
 
 exports[`loader should work with the "commonjs" module format with the "single" exports type for {"name":"Foo"} export list: result 1`] = `
@@ -1103,9 +1120,8 @@ const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
-export default
-  Foo
-;"
+export default Foo;
+"
 `;
 
 exports[`loader should work with the "module" module format with the "default" exports type for "Foo" export list: result 1`] = `
@@ -1157,9 +1173,8 @@ const myVariable = new MyClass();
 
 
 /*** EXPORTS FROM exports-loader ***/
-export default
-  Foo
-;"
+export default Foo;
+"
 `;
 
 exports[`loader should work with the "module" module format with the "default" exports type for {"name":"Foo"} export list: result 1`] = `
@@ -1213,7 +1228,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for "Foo" export list: result 1`] = `
@@ -1259,7 +1275,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for ["Foo","Bar"] export list: result 1`] = `
@@ -1313,7 +1330,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for ["Foo",{"name":"Bar"}] export list: result 1`] = `
@@ -1366,7 +1384,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   simple as simpleA
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]","alias":"[name]A"}] export list: result 1`] = `
@@ -1409,7 +1428,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   simple
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"[name]"}] export list: result 1`] = `
@@ -1452,7 +1472,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo as FooA
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo","alias":"FooA"}] export list: result 1`] = `
@@ -1498,7 +1519,8 @@ const myVariable = new MyClass();
 export {
   Foo,
   Bar
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for [{"name":"Foo"},{"name":"Bar"}] export list: result 1`] = `
@@ -1551,7 +1573,8 @@ const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
   Foo
-};"
+};
+"
 `;
 
 exports[`loader should work with the "module" module format with the "named" exports type for {"name":"Foo"} export list: result 1`] = `

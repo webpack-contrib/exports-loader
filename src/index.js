@@ -32,11 +32,9 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  const exportsCode = [];
-
-  exports.forEach((item) => {
-    exportsCode.push(renderExports(this, type, item));
-  });
+  const exportsCode = exports.reduce((accumulator, item) => {
+    return `${accumulator}${renderExports(this, type, item)}\n`;
+  }, '');
 
   if (this.sourceMap && sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
@@ -44,7 +42,7 @@ export default function loader(content, sourceMap) {
       new SourceMapConsumer(sourceMap)
     );
 
-    node.add(`\n\n${FOOTER}${exportsCode.join('\n')}`);
+    node.add(`\n\n${FOOTER}${exportsCode}`);
 
     const result = node.toStringWithSourceMap({ file: this.resourcePath });
 
@@ -53,5 +51,5 @@ export default function loader(content, sourceMap) {
     return;
   }
 
-  callback(null, `${content}\n\n${FOOTER}${exportsCode.join('\n')}`, sourceMap);
+  callback(null, `${content}\n\n${FOOTER}${exportsCode}`, sourceMap);
 }
