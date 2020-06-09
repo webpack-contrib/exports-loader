@@ -259,6 +259,7 @@ describe('loader', () => {
   }
 
   createSuccessCase('commonjs', 'single', 'Foo');
+  createSuccessCase('commonjs', 'single', { name: 'Foo' });
   createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
   createSuccessCase('commonjs', 'multiple', 'Foo');
   createSuccessCase('commonjs', 'multiple', ['Foo', 'Bar']);
@@ -271,6 +272,7 @@ describe('loader', () => {
   ]);
 
   createSuccessCase('module', 'default', 'Foo');
+  createSuccessCase('module', 'default', { name: 'Foo' });
   createFailedCase('module', 'default', ['Foo', 'Bar']);
   createSuccessCase('module', 'named', 'Foo');
   createSuccessCase('module', 'named', ['Foo', 'Bar']);
