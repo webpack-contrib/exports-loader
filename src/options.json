@@ -1,66 +1,10 @@
 {
   "definitions": {
-    "ExportListItemString": {
-      "type": "string",
-      "minLength": 1
-    },
-    "ExportListItemObject": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "name": {
-          "type": "string",
-          "minLength": 1
-        },
-        "alias": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": ["name"]
-    },
-    "ExportListItem": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/ExportListItemString"
-        },
-        {
-          "$ref": "#/definitions/ExportListItemObject"
-        }
-      ]
-    },
-    "ExportObject": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "syntax": {
-          "enum": ["single", "multiple", "default", "named"]
-        },
-        "list": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/ExportListItem"
-            },
-            {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/ExportListItem"
-              },
-              "minItems": 1
-            }
-          ]
-        }
-      },
-      "required": ["list"]
-    },
     "ExportItem": {
       "anyOf": [
         {
           "type": "string",
           "minLength": 1
-        },
-        {
-          "$ref": "#/definitions/ExportObject"
         }
       ]
     }

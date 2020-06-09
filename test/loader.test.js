@@ -39,121 +39,6 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  it('should work with object value', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: [{ name: 'Foo' }] },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with object value with multiple list values', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: [{ name: 'Foo' }, { name: 'Bar' }] },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with multiple object value with multiple list values with "default"', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: [
-        { syntax: 'default', list: 'Foo' },
-        { list: ['Bar', { name: 'Baz', alias: 'BazA' }] },
-      ],
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with multiple object values', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: [{ list: [{ name: 'Foo' }] }, { list: [{ name: 'Bar' }] }],
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with object value when the "list" option is string', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: 'Foo' },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with object value when the "list" option is object', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: { name: 'Foo' } },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with object value when the "list" option is array of string', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: ['Foo', 'Bar'] },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
-  it('should work with object value when the "list" option is array of strings and objects', async () => {
-    const compiler = getCompiler('simple.js', {
-      exports: { list: ['Foo', { name: 'Bar' }] },
-    });
-    const stats = await compile(compiler);
-
-    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
-    expect(
-      execute(readAsset('main.bundle.js', compiler, stats))
-    ).toMatchSnapshot('result');
-    expect(getErrors(stats)).toMatchSnapshot('errors');
-    expect(getWarnings(stats)).toMatchSnapshot('warnings');
-  });
-
   it('should work with inline syntax', async () => {
     // eslint-disable-next-line no-undefined
     const compiler = getCompiler('inline.js', {}, { module: undefined });
@@ -235,14 +120,11 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
-  function createSuccessCase(moduleType, syntax, list) {
-    it(`should work with the "${moduleType}" module format with the "${syntax}" syntax for ${JSON.stringify(
-      list
+  function createSuccessCase(type, exports) {
+    it(`should work with the "${type}" module format for ${JSON.stringify(
+      exports
     )} export list`, async () => {
-      const compiler = getCompiler('simple.js', {
-        type: moduleType,
-        exports: { syntax, list },
-      });
+      const compiler = getCompiler('simple.js', { type, exports });
       const stats = await compile(compiler);
 
       expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
@@ -254,14 +136,11 @@ describe('loader', () => {
     });
   }
 
-  function createFailedCase(moduleType, syntax, list) {
-    it(`should work with the "${moduleType}" module format with the "${syntax}" syntax for ${JSON.stringify(
-      list
+  function createFailedCase(type, exports) {
+    it(`should work with the "${type}" module format for ${JSON.stringify(
+      exports
     )} export list`, async () => {
-      const compiler = getCompiler('simple.js', {
-        type: moduleType,
-        exports: { syntax, list },
-      });
+      const compiler = getCompiler('simple.js', { type, exports });
       const stats = await compile(compiler);
 
       expect(getErrors(stats)).toMatchSnapshot('errors');
@@ -269,48 +148,54 @@ describe('loader', () => {
     });
   }
 
-  createFailedCase('commonjs', 'default', 'Foo');
-  createFailedCase('commonjs', 'named', 'Foo');
-  createSuccessCase('commonjs', 'single', 'Foo');
-  createSuccessCase('commonjs', 'single', { name: 'Foo' });
-  createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
-  createSuccessCase('commonjs', 'multiple', 'Foo');
-  createSuccessCase('commonjs', 'multiple', { name: 'Foo' });
-  createSuccessCase('commonjs', 'multiple', ['Foo', 'Bar']);
-  createSuccessCase('commonjs', 'multiple', [{ name: 'Foo' }, { name: 'Bar' }]);
-  createSuccessCase('commonjs', 'multiple', ['Foo', { name: 'Bar' }]);
-  createSuccessCase('commonjs', 'multiple', [{ name: 'Foo', alias: 'FooA' }]);
-  createSuccessCase('commonjs', 'multiple', [
-    { name: 'myVariable.myFunction', alias: 'myFunction' },
-  ]);
-  createSuccessCase('commonjs', 'multiple', [
-    { name: 'Foo', alias: 'FooA' },
-    { name: 'Bar', alias: 'BarA' },
-  ]);
-  createSuccessCase('commonjs', 'multiple', [{ name: '[name]' }]);
-  createSuccessCase('commonjs', 'multiple', [
-    { name: '[name]', alias: '[name]A' },
-  ]);
+  createSuccessCase('commonjs', 'Foo');
+  createSuccessCase('commonjs', 'single Foo');
+  createSuccessCase('commonjs', 'multiple Foo');
+  // TODO error for alias
 
-  createFailedCase('module', 'single', 'Foo');
-  createFailedCase('module', 'multiple', 'Foo');
-  createSuccessCase('module', 'default', 'Foo');
-  createSuccessCase('module', 'default', { name: 'Foo' });
-  createFailedCase('module', 'default', ['Foo', 'Bar']);
-  createSuccessCase('module', 'named', 'Foo');
-  createSuccessCase('module', 'named', { name: 'Foo' });
-  createSuccessCase('module', 'named', ['Foo', 'Bar']);
-  createSuccessCase('module', 'named', [{ name: 'Foo' }, { name: 'Bar' }]);
-  createSuccessCase('module', 'named', ['Foo', { name: 'Bar' }]);
-  createSuccessCase('module', 'named', [{ name: 'Foo', alias: 'FooA' }]);
-  createSuccessCase('module', 'named', [
-    { name: 'Foo', alias: 'FooA' },
-    { name: 'Bar', alias: 'BarA' },
-  ]);
-  createSuccessCase('module', 'named', [
-    { name: 'Foo', alias: 'default' },
-    { name: 'Bar', alias: 'BarA' },
-  ]);
-  createSuccessCase('module', 'named', [{ name: '[name]' }]);
-  createSuccessCase('module', 'named', [{ name: '[name]', alias: '[name]A' }]);
+  createSuccessCase('module', 'Foo');
+  createSuccessCase('module', 'default Foo');
+  createSuccessCase('module', 'named Foo');
+  // TODO error for alias
+
+  // createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
+  // createSuccessCase('commonjs', 'multiple', 'Foo');
+  // createSuccessCase('commonjs', 'multiple', { name: 'Foo' });
+  // createSuccessCase('commonjs', 'multiple', ['Foo', 'Bar']);
+  // createSuccessCase('commonjs', 'multiple', [{ name: 'Foo' }, { name: 'Bar' }]);
+  // createSuccessCase('commonjs', 'multiple', ['Foo', { name: 'Bar' }]);
+  // createSuccessCase('commonjs', 'multiple', [{ name: 'Foo', alias: 'FooA' }]);
+  // createSuccessCase('commonjs', 'multiple', [
+  //   { name: 'myVariable.myFunction', alias: 'myFunction' },
+  // ]);
+  // createSuccessCase('commonjs', 'multiple', [
+  //   { name: 'Foo', alias: 'FooA' },
+  //   { name: 'Bar', alias: 'BarA' },
+  // ]);
+  // createSuccessCase('commonjs', 'multiple', [{ name: '[name]' }]);
+  // createSuccessCase('commonjs', 'multiple', [
+  //   { name: '[name]', alias: '[name]A' },
+  // ]);
+  //
+  // createFailedCase('module', 'single', 'Foo');
+  // createFailedCase('module', 'multiple', 'Foo');
+  // createSuccessCase('module', 'default', 'Foo');
+  // createSuccessCase('module', 'default', { name: 'Foo' });
+  // createFailedCase('module', 'default', ['Foo', 'Bar']);
+  // createSuccessCase('module', 'named', 'Foo');
+  // createSuccessCase('module', 'named', { name: 'Foo' });
+  // createSuccessCase('module', 'named', ['Foo', 'Bar']);
+  // createSuccessCase('module', 'named', [{ name: 'Foo' }, { name: 'Bar' }]);
+  // createSuccessCase('module', 'named', ['Foo', { name: 'Bar' }]);
+  // createSuccessCase('module', 'named', [{ name: 'Foo', alias: 'FooA' }]);
+  // createSuccessCase('module', 'named', [
+  //   { name: 'Foo', alias: 'FooA' },
+  //   { name: 'Bar', alias: 'BarA' },
+  // ]);
+  // createSuccessCase('module', 'named', [
+  //   { name: 'Foo', alias: 'default' },
+  //   { name: 'Bar', alias: 'BarA' },
+  // ]);
+  // createSuccessCase('module', 'named', [{ name: '[name]' }]);
+  // createSuccessCase('module', 'named', [{ name: '[name]', alias: '[name]A' }]);
 });

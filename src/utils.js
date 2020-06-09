@@ -1,91 +1,51 @@
 import { interpolateName } from 'loader-utils';
 
-function getExportsList(list) {
-  if (typeof list === 'string') {
-    return [{ name: list }];
+function resolveExports(type, item) {
+  const splittedItem = item.split(' ');
+
+  if (splittedItem.length === 0) {
+    throw new Error(`Invalid "${item}" for export`);
   }
 
-  if (Array.isArray(list)) {
-    return list.map((item) => {
-      if (typeof item === 'string') {
-        return { name: item };
-      }
-
-      return item;
-    });
+  if (splittedItem.length === 1) {
+    return {
+      syntax: type === 'module' ? 'named' : 'multiple',
+      name: splittedItem[0],
+      // eslint-disable-next-line no-undefined
+      alias: undefined,
+    };
   }
 
-  return [list];
+  return {
+    syntax: splittedItem[0],
+    name: splittedItem[1],
+    // eslint-disable-next-line no-undefined
+    alias: splittedItem[2] ? splittedItem[2] : undefined,
+  };
 }
 
-function getExports(moduleType, exports) {
+function getExports(type, exports) {
   let result = [];
 
-  const isModule = moduleType === 'module';
-  const defaultExportSyntax = isModule ? 'named' : 'multiple';
-
   if (typeof exports === 'string') {
-    result.push({
-      syntax: defaultExportSyntax,
-      list: getExportsList(exports),
-    });
+    result.push(resolveExports(type, exports));
   } else if (Array.isArray(exports)) {
-    result = [].concat(exports).map((item) => {
-      if (typeof item === 'string') {
-        return {
-          syntax: defaultExportSyntax,
-          list: getExportsList(item),
-        };
-      }
-
-      return {
-        syntax: defaultExportSyntax,
-        ...item,
-        list: getExportsList(item.list),
-      };
-    });
-  } else {
-    result.push({
-      syntax: defaultExportSyntax,
-      ...exports,
-      list: getExportsList(exports.list),
-    });
+    result = [].concat(exports).map((item) => resolveExports(type, item));
   }
 
-  for (const item of result) {
-    if (
-      (moduleType === 'commonjs' &&
-        !['single', 'multiple'].includes(item.syntax)) ||
-      (moduleType === 'module' && !['default', 'named'].includes(item.syntax))
-    ) {
-      throw new Error(
-        `The "${moduleType}" format can't be used with the "${item.syntax}" syntax`
-      );
-    }
-
-    if (
-      (item.syntax === 'single' || item.syntax === 'default') &&
-      item.list.length > 1
-    ) {
-      throw new Error(
-        `The "${moduleType}" format can't be used with the "${item.syntax}" syntax and multiple export list`
-      );
-    }
-  }
-
+  // TODO validation
   // TODO union
 
   return result;
 }
 
-function renderExports(loaderContext, moduleType, exports) {
+function renderExports(loaderContext, type, item) {
   let code = '';
 
-  const exportSyntax = exports.syntax;
-  const type = `${moduleType}-${exportSyntax}`;
+  const exportType = `${type}-${item.syntax}`;
 
   // eslint-disable-next-line default-case
-  switch (type) {
+  switch (exportType) {
     case 'commonjs-single':
       code += 'module.exports = ';
       break;
@@ -100,30 +60,25 @@ function renderExports(loaderContext, moduleType, exports) {
       break;
   }
 
-  const { list } = exports;
-  const isCommonJs = moduleType === 'commonjs';
-  const isSingleExport =
-    exportSyntax === 'single' || exportSyntax === 'default';
+  const isCommonJs = type === 'commonjs';
+  const isSingleExport = item.syntax === 'single' || item.syntax === 'default';
 
-  list.forEach((item, i) => {
-    const needComma = i < list.length - 1;
-    const name = interpolateName(loaderContext, item.name, {});
-    const alias = item.alias
-      ? interpolateName(loaderContext, item.alias, {})
-      : // eslint-disable-next-line no-undefined
-        undefined;
+  const name = interpolateName(loaderContext, item.name, {});
+  const alias = item.alias
+    ? interpolateName(loaderContext, item.alias, {})
+    : // eslint-disable-next-line no-undefined
+      undefined;
 
-    code += `${isSingleExport ? '' : '  '}${
-      isCommonJs
-        ? alias
-          ? `${JSON.stringify(alias)}: (${name})`
-          : `${name}`
-        : `${name}${alias ? ` as ${alias}` : ''}`
-    }${needComma ? ',\n' : ''}`;
-  });
+  code += `${isSingleExport ? '' : '  '}${
+    isCommonJs
+      ? alias
+        ? `${JSON.stringify(alias)}: (${name})`
+        : `${name}`
+      : `${name}${alias ? ` as ${alias}` : ''}`
+  }`;
 
   // eslint-disable-next-line default-case
-  switch (type) {
+  switch (exportType) {
     case 'commonjs-single':
     case 'module-default':
       code += ';';
