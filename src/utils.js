@@ -3,8 +3,8 @@ import { interpolateName } from 'loader-utils';
 function resolveExports(type, item) {
   const splittedItem = item.split(' ');
 
-  if (splittedItem.length === 0) {
-    throw new Error(`Invalid "${item}" for export`);
+  if (splittedItem.length === 0 || splittedItem.length > 3) {
+    throw new Error(`Invalid "${item}" value for export`);
   }
 
   let result;
@@ -27,13 +27,17 @@ function resolveExports(type, item) {
 
   if (type === 'commonjs') {
     if (result.syntax === 'default' || result.syntax === 'named') {
-      throw new Error(`The "${type}" format can't be used with the "${result.syntax}" syntax export`)
+      throw new Error(
+        `The "${type}" format can't be used with the "${result.syntax}" syntax export`
+      );
     }
   }
 
   if (type === 'module') {
     if (result.syntax === 'single' || result.syntax === 'multiple') {
-      throw new Error(`The "${type}" format can't be used with the "${result.syntax}" syntax export`)
+      throw new Error(
+        `The "${type}" format can't be used with the "${result.syntax}" syntax export`
+      );
     }
   }
 

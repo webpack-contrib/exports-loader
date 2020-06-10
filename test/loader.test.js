@@ -166,6 +166,7 @@ describe('loader', () => {
     'multiple myVariable.myFunction myFunction',
     'multiple Bar BarA',
   ]);
+  createFailedCase('commonjs', 'multiple Foo FooA FooB');
   // TODO error for alias
   // TODO createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
 
@@ -187,6 +188,7 @@ describe('loader', () => {
   createSuccessCase('module', ['default Foo', 'named Bar']);
   createSuccessCase('module', ['default Foo', 'named Bar BarA']);
   createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
+  createFailedCase('module', 'named Foo FooA FooB');
   // TODO error for alias
   // createFailedCase('module', 'default', ['Foo', 'Bar']);
 });

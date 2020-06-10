@@ -525,6 +525,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA FooB" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid \\"multiple Foo FooA FooB\\" value for export",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA FooB" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: module 1`] = `
@@ -1225,6 +1234,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for "named [name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA FooB" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid \\"named Foo FooA FooB\\" value for export",
+]
+`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA FooB" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "named Foo FooA" export list: errors 1`] = `Array []`;
 
