@@ -149,53 +149,40 @@ describe('loader', () => {
   }
 
   createSuccessCase('commonjs', 'Foo');
+  createSuccessCase('commonjs', '[name]');
   createSuccessCase('commonjs', 'single Foo');
+  createSuccessCase('commonjs', 'single [name]');
   createSuccessCase('commonjs', 'multiple Foo');
+  createSuccessCase('commonjs', 'multiple [name]');
   createSuccessCase('commonjs', 'multiple Foo FooA');
+  createSuccessCase('commonjs', 'multiple [name] FooA');
+  createSuccessCase('commonjs', 'multiple [name] [name]A');
   createSuccessCase('commonjs', ['Foo', 'Bar']);
   createSuccessCase('commonjs', ['multiple Foo', 'multiple Bar']);
   createSuccessCase('commonjs', ['multiple Foo FooA', 'multiple Bar BarA']);
-  // TODO createSuccessCase('commonjs', 'multiple', [
-  //   { name: 'myVariable.myFunction', alias: 'myFunction' },
-  // ]);
+  createSuccessCase('commonjs', ['multiple myVariable.myFunction myFunction', 'multiple Bar BarA']);
   // TODO error for alias
   // TODO createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
 
   createSuccessCase('module', 'Foo');
+  createSuccessCase('module', '[name]');
+  // createFailedCase('module', 'single Foo');
+  // createFailedCase('module', 'multiple Foo');
   createSuccessCase('module', 'default Foo');
+  createSuccessCase('module', 'default [name]');
   createSuccessCase('module', 'named Foo');
+  createSuccessCase('module', 'named [name]');
   createSuccessCase('module', 'named Foo FooA');
+  createSuccessCase('module', 'named [name] FooA');
+  createSuccessCase('module', 'named [name] [name]A');
   createSuccessCase('module', ['Foo', 'Bar']);
   createSuccessCase('module', ['named Foo', 'named Bar']);
   createSuccessCase('module', ['named Foo FooA', 'named Bar BarA']);
+  createSuccessCase('module', ['named Foo default', 'named Bar BarA']);
   createSuccessCase('module', ['default Foo', 'named Bar']);
   createSuccessCase('module', ['default Foo', 'named Bar BarA']);
+  createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
   // TODO error for alias
-
-  // createSuccessCase('commonjs', 'multiple', [{ name: '[name]' }]);
-  // createSuccessCase('commonjs', 'multiple', [
-  //   { name: '[name]', alias: '[name]A' },
-  // ]);
-  //
-  // createFailedCase('module', 'single', 'Foo');
-  // createFailedCase('module', 'multiple', 'Foo');
-  // createSuccessCase('module', 'default', 'Foo');
-  // createSuccessCase('module', 'default', { name: 'Foo' });
   // createFailedCase('module', 'default', ['Foo', 'Bar']);
-  // createSuccessCase('module', 'named', 'Foo');
-  // createSuccessCase('module', 'named', { name: 'Foo' });
-  // createSuccessCase('module', 'named', ['Foo', 'Bar']);
-  // createSuccessCase('module', 'named', [{ name: 'Foo' }, { name: 'Bar' }]);
-  // createSuccessCase('module', 'named', ['Foo', { name: 'Bar' }]);
-  // createSuccessCase('module', 'named', [{ name: 'Foo', alias: 'FooA' }]);
-  // createSuccessCase('module', 'named', [
-  //   { name: 'Foo', alias: 'FooA' },
-  //   { name: 'Bar', alias: 'BarA' },
-  // ]);
-  // createSuccessCase('module', 'named', [
-  //   { name: 'Foo', alias: 'default' },
-  //   { name: 'Bar', alias: 'BarA' },
-  // ]);
-  // createSuccessCase('module', 'named', [{ name: '[name]' }]);
-  // createSuccessCase('module', 'named', [{ name: '[name]', alias: '[name]A' }]);
+
 });

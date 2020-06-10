@@ -11,7 +11,6 @@ const test10 = require('../../src/cjs.js?type=commonjs&exports=multiple%20Foo!./
 const test11 = require('../../src/cjs.js?type=module&exports=named%20Foo%20FooA!./simple.js');
 const test12 = require('../../src/cjs.js?type=module&exports[]=named%20Foo%20FooA&exports[]=named%20Bar%20BarA!./simple.js');
 
-
 module.exports = {
   test1,
   test2,
