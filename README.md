@@ -387,6 +387,8 @@ export default Foo;
 Allow to specify multiple exports.
 
 > ⚠ Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
+> ⚠ Not possible to use multiple `default` syntaxes due to ES module format limitations.
+> ⚠ Not possible to use multiple `single` syntaxes due to CommonJS format limitations.
 
 **webpack.config.js**
 
