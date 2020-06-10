@@ -7,52 +7,20 @@ describe('validate options', () => {
       failure: [true, false, 'foo'],
     },
     exports: {
-      // success: [
-      //   // module.exports = Foo;
-      //   // export default Foo;
-      //   'Foo',
-      //   {
-      //     name: 'Foo',
-      //   },
-      //   // module.exports = { Foo, Bar };
-      //   // export { Foo, Bar };
-      //   ['Foo', 'Bar'],
-      //   [
-      //     {
-      //       name: 'Foo',
-      //     },
-      //     {
-      //       name: 'Bar',
-      //     },
-      //   ],
-      //   [
-      //     {
-      //       name: 'Foo',
-      //     },
-      //     'Bar',
-      //   ],
-      //   // export { Foo as Foo1, Bar as Bar1 };
-      //   [
-      //     {
-      //       name: 'Foo',
-      //       alias: 'Foo1',
-      //     },
-      //     {
-      //       name: 'Bar',
-      //       alias: 'Bar1',
-      //     },
-      //   ],
-      //   // export { Foo as default, Bar };
-      //   [
-      //     {
-      //       name: 'Foo',
-      //       alias: 'default',
-      //     },
-      //     'Bar',
-      //   ],
-      //   // Should we support it?
-      //   // export const { Foo, Bar: Baz } = o;
-      // ],
+      success: [
+        'Foo',
+        'default Foo',
+        'named Foo',
+        'named Foo FooA',
+        ['named Foo', 'named Bar'],
+        ['named Foo FooA', 'named Bar BarA'],
+        ['default Foo', 'named Bar BarA'],
+        'single Foo',
+        'multiple Foo',
+        'multiple Foo FooA',
+        ['multiple Foo', 'multiple Bar'],
+        ['multiple Foo FooA', 'multiple Bar BarA'],
+      ],
       failure: [true, () => {}, [1, 2, 3]],
     },
   };
@@ -72,10 +40,36 @@ describe('validate options', () => {
     it(`should ${
       type === 'success' ? 'successfully validate' : 'throw an error on'
     } the "${key}" option with "${stringifyValue(value)}" value`, async () => {
-      const compiler = getCompiler(
-        'simple.js',
-        key !== 'exports' ? { [key]: value, exports: 'Foo' } : { [key]: value }
-      );
+      // eslint-disable-next-line no-shadow
+      const getOptions = (key, value) => {
+        if (key === 'type') {
+          return { [key]: value, exports: 'Foo' };
+        }
+
+        if (
+          key === 'exports' &&
+          (typeof value === 'string' ||
+            (Array.isArray(value) &&
+              value.filter((item) => typeof item !== 'string').length === 0))
+        ) {
+          // eslint-disable-next-line no-shadow
+          const type = Array.isArray(value)
+            ? value.filter(
+                (item) => item.includes('single') || item.includes('multiple')
+              ).length > 0
+              ? 'commonjs'
+              : 'module'
+            : value.includes('single') || value.includes('multiple')
+            ? 'commonjs'
+            : 'module';
+
+          return { type, [key]: value };
+        }
+
+        return { [key]: value };
+      };
+
+      const compiler = getCompiler('simple.js', getOptions(key, value));
 
       let stats;
 
