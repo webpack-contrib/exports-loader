@@ -350,6 +350,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for "[name]" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "\`invalid\`" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "\`invalid\`" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for "Foo" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "Foo" export list: module 1`] = `
@@ -1076,6 +1085,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for "[name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "\`invalid\`" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "\`invalid\`" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "Foo" export list: errors 1`] = `Array []`;
 
