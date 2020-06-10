@@ -406,6 +406,15 @@ Error: The \\"commonjs\\" format can't be used with the \\"default\\" syntax exp
 
 exports[`loader should work with the "commonjs" module format for "default Foo" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected keyword 'default' (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "default" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: module 1`] = `
@@ -1220,6 +1229,15 @@ File was processed with these loaders:",
 `;
 
 exports[`loader should work with the "module" module format for "default default" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected keyword 'default' (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "default" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "multiple Foo" export list: errors 1`] = `
 Array [
