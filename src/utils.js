@@ -1,28 +1,32 @@
 import { interpolateName } from 'loader-utils';
 
 function resolveExports(type, item) {
-  const splittedItem = item.split(' ');
-
-  if (splittedItem.length === 0 || splittedItem.length > 3) {
-    throw new Error(`Invalid "${item}" value for export`);
-  }
-
   let result;
 
-  if (splittedItem.length === 1) {
-    result = {
-      syntax: type === 'module' ? 'named' : 'multiple',
-      name: splittedItem[0],
-      // eslint-disable-next-line no-undefined
-      alias: undefined,
-    };
+  if (typeof item === 'string') {
+    const splittedItem = item.split(' ');
+
+    if (splittedItem.length === 0 || splittedItem.length > 3) {
+      throw new Error(`Invalid "${item}" value for export`);
+    }
+
+    if (splittedItem.length === 1) {
+      result = {
+        syntax: type === 'module' ? 'named' : 'multiple',
+        name: splittedItem[0],
+        // eslint-disable-next-line no-undefined
+        alias: undefined,
+      };
+    } else {
+      result = {
+        syntax: splittedItem[0],
+        name: splittedItem[1],
+        // eslint-disable-next-line no-undefined
+        alias: splittedItem[2] ? splittedItem[2] : undefined,
+      };
+    }
   } else {
-    result = {
-      syntax: splittedItem[0],
-      name: splittedItem[1],
-      // eslint-disable-next-line no-undefined
-      alias: splittedItem[2] ? splittedItem[2] : undefined,
-    };
+    result = { syntax: type === 'module' ? 'named' : 'multiple', ...item };
   }
 
   if (!['default', 'named', 'single', 'multiple'].includes(result.syntax)) {

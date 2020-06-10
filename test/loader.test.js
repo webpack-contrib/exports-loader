@@ -25,9 +25,76 @@ describe('loader', () => {
     expect(getWarnings(stats)).toMatchSnapshot('warnings');
   });
 
+  it('should work with object value', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: { name: 'Foo' },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with object value (syntax, name and alias)', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: {
+        syntax: 'named',
+        name: 'Foo',
+        alias: 'FooA',
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with object value with "default" syntax', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: {
+        syntax: 'default',
+        name: 'Foo',
+      },
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
   it('should work with multiple string values', async () => {
     const compiler = getCompiler('simple.js', {
       exports: ['Foo', 'Bar'],
+    });
+    const stats = await compile(compiler);
+
+    expect(getModuleSource('./simple.js', stats)).toMatchSnapshot('module');
+    expect(
+      execute(readAsset('main.bundle.js', compiler, stats))
+    ).toMatchSnapshot('result');
+    expect(getErrors(stats)).toMatchSnapshot('errors');
+    expect(getWarnings(stats)).toMatchSnapshot('warnings');
+  });
+
+  it('should work with multiple object and string values', async () => {
+    const compiler = getCompiler('simple.js', {
+      exports: [
+        'Foo',
+        { syntax: 'default', name: 'Bar' },
+        { syntax: 'named', name: 'Baz', alias: 'BarA' },
+      ],
     });
     const stats = await compile(compiler);
 
