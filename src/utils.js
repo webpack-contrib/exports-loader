@@ -31,10 +31,19 @@ function resolveExports(type, item) {
     );
   }
 
+  if (
+    ['default', 'single'].includes(result.syntax) &&
+    typeof result.alias !== 'undefined'
+  ) {
+    throw new Error(
+      `The "${result.syntax}" syntax can't have "${result.alias}" alias in "${item}" value`
+    );
+  }
+
   if (type === 'commonjs') {
     if (result.syntax === 'default' || result.syntax === 'named') {
       throw new Error(
-        `The "${type}" format can't be used with the "${result.syntax}" syntax export`
+        `The "${type}" format can't be used with the "${result.syntax}" syntax export in "${item}" value`
       );
     }
   }
@@ -42,7 +51,7 @@ function resolveExports(type, item) {
   if (type === 'module') {
     if (result.syntax === 'single' || result.syntax === 'multiple') {
       throw new Error(
-        `The "${type}" format can't be used with the "${result.syntax}" syntax export`
+        `The "${type}" format can't be used with the "${result.syntax}" syntax export in "${item}" value`
       );
     }
   }
