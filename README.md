@@ -14,7 +14,9 @@
 
 # exports-loader
 
-Allow to setup custom exports `module.exports`/`export` for modules.
+Allow to setup exports `module.exports`/`export` for source files.
+
+Useful when a source file does not contain exports or something does not export.
 
 > ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
 
@@ -33,7 +35,7 @@ $ npm install exports-loader --save-dev
 Then add the loader to the desired `require` calls. For example:
 
 ```js
-const { myFunction } = require('exports-loader?exports=myFunction!./file.js');
+import { myFunction } from 'exports-loader?exports=myFunction!./file.js';
 // Adds the following code to the file's source:
 //
 // export { myFunction }
@@ -42,10 +44,10 @@ myFunction('Hello world');
 ```
 
 ```js
-const {
+import {
   myVariable,
   myFunction,
-} = require('exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js');
+} from 'exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js';
 // Adds the following code to the file's source:
 //
 // export { myVariable, myFunction };
@@ -58,7 +60,7 @@ myFunction('Hello world');
 ```
 
 ```js
-const { file } = require('exports-loader?[name]!./file.js');
+import { file } from 'exports-loader?[name]!./file.js';
 // Adds the following code to the file's source:
 //
 // export { file };
@@ -88,11 +90,21 @@ myFunction('Hello world');
 ```
 
 ```js
+const myFunction = require('exports-loader?type=commonjs&exports=single%20myFunction!./file.js');
+// `%20` is space in a query string, equivalently `default myFunction`
+// Adds the following code to the file's source:
+//
+// module.exports = myFunction;
+
+myFunction('Hello world');
+```
+
+```js
 import { myFunctionAlias } from 'exports-loader?exports=named%20myFunction%20myFunctionAlias!./file.js';
 // `%20` is space in a query string, equivalently `named myFunction myFunctionAlias`
 // Adds the following code to the file's source:
 //
-// exports default myFunction;
+// exports { myFunction as myFunctionAlias };
 
 myFunctionAlias('Hello world');
 ```
@@ -137,7 +149,7 @@ Default: `module`
 
 Format of generated exports.
 
-Possible values - `commonjs` and `module` (ES modules syntax).
+Possible values - `commonjs` (CommonJS module syntax) and `module` (ES module syntax).
 
 #### `commonjs`
 
@@ -210,7 +222,15 @@ List of exports.
 
 #### `String`
 
+##### `Syntax`
+
 String values let you specify export syntax, name, and alias.
+
+String syntax - `[[syntax] [name] [alias]]`, where:
+
+- `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format) (**may be omitted**)
+- `[name]` - name of exported value (**required**)
+- `[alias]` - alias of exported value (**may be omitted**)
 
 Examples:
 
@@ -226,15 +246,9 @@ Examples:
 
 > ⚠ Aliases can't be used together with `default` or `single` syntax.
 
-String syntax - `[[syntax] [name] [alias]]`, where:
+##### Examples
 
-- `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format) (may be omitted)
-- `[name]` - name of exported value (required)
-- `[alias]` - alias of exported value (may be omitted)
-
-Examples:
-
-- ES module default exports.
+###### ES Module Default Export
 
 **webpack.config.js**
 
@@ -264,7 +278,7 @@ Generate output:
 export default Foo;
 ```
 
-- ES module named exports.
+###### ES Module Named Exports
 
 **webpack.config.js**
 
@@ -294,7 +308,7 @@ Generate output:
 export { Foo as FooA };
 ```
 
-- CommonJS single export.
+###### CommonJS Single Export
 
 **webpack.config.js**
 
@@ -325,7 +339,7 @@ Generate output:
 module.exports = Foo;
 ```
 
-- CommonJS multiple exports.
+###### CommonJS Multiple Exports
 
 **webpack.config.js**
 
@@ -393,9 +407,9 @@ Generate output:
 export { Foo, Bar as BarA };
 ```
 
-Examples:
+##### Examples
 
-- Multiple CommonJS exports
+###### CommonJS Multiple Exports
 
 **webpack.config.js**
 
@@ -426,7 +440,7 @@ Generate output:
 module.exports = { Foo, Bar, BazA: Bar };
 ```
 
-- ES module default export and named exports together.
+###### ES Module Default Export And Named Exports Together
 
 **webpack.config.js**
 
@@ -480,3 +494,4 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [chat]: https://badges.gitter.im/webpack/webpack.svg
 [chat-url]: https://gitter.im/webpack/webpack
 [size]: https://packagephobia.now.sh/badge?p=exports-loader
+[size-url]: https://packagephobia.now.sh/result?p=exports-loader
