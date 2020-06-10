@@ -218,6 +218,7 @@ Examples:
 - `[single Foo]` - generates CommonJS single export and exports `Foo` value.
 - `[multiple Foo FooA]` - generates CommonJS multiple exports and exports `Foo` value under `FooA` name.
 - `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`.
+- `[named [name] [name]A]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleA`
 
 > ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntax.
 
