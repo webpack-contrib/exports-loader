@@ -226,9 +226,9 @@ Examples:
 
 String syntax - `[[syntax] [name] [alias]]`, where:
 
-- `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format)
-- `[name]` - name of exported value
-- `[alias]` - alias of exported value
+- `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format) (may be omitted)
+- `[name]` - name of exported value (required)
+- `[alias]` - alias of exported value (may be omitted)
 
 Examples:
 
