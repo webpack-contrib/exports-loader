@@ -7,21 +7,37 @@ function resolveExports(type, item) {
     throw new Error(`Invalid "${item}" for export`);
   }
 
+  let result;
+
   if (splittedItem.length === 1) {
-    return {
+    result = {
       syntax: type === 'module' ? 'named' : 'multiple',
       name: splittedItem[0],
       // eslint-disable-next-line no-undefined
       alias: undefined,
     };
+  } else {
+    result = {
+      syntax: splittedItem[0],
+      name: splittedItem[1],
+      // eslint-disable-next-line no-undefined
+      alias: splittedItem[2] ? splittedItem[2] : undefined,
+    };
   }
 
-  return {
-    syntax: splittedItem[0],
-    name: splittedItem[1],
-    // eslint-disable-next-line no-undefined
-    alias: splittedItem[2] ? splittedItem[2] : undefined,
-  };
+  if (type === 'commonjs') {
+    if (result.syntax === 'default' || result.syntax === 'named') {
+      throw new Error(`The "${type}" format can't be used with the "${result.syntax}" syntax export`)
+    }
+  }
+
+  if (type === 'module') {
+    if (result.syntax === 'single' || result.syntax === 'multiple') {
+      throw new Error(`The "${type}" format can't be used with the "${result.syntax}" syntax export`)
+    }
+  }
+
+  return result;
 }
 
 function getExports(type, exports) {

@@ -150,6 +150,8 @@ describe('loader', () => {
 
   createSuccessCase('commonjs', 'Foo');
   createSuccessCase('commonjs', '[name]');
+  createFailedCase('commonjs', 'default Foo');
+  createFailedCase('commonjs', 'named Foo');
   createSuccessCase('commonjs', 'single Foo');
   createSuccessCase('commonjs', 'single [name]');
   createSuccessCase('commonjs', 'multiple Foo');
@@ -160,14 +162,17 @@ describe('loader', () => {
   createSuccessCase('commonjs', ['Foo', 'Bar']);
   createSuccessCase('commonjs', ['multiple Foo', 'multiple Bar']);
   createSuccessCase('commonjs', ['multiple Foo FooA', 'multiple Bar BarA']);
-  createSuccessCase('commonjs', ['multiple myVariable.myFunction myFunction', 'multiple Bar BarA']);
+  createSuccessCase('commonjs', [
+    'multiple myVariable.myFunction myFunction',
+    'multiple Bar BarA',
+  ]);
   // TODO error for alias
   // TODO createFailedCase('commonjs', 'single', ['Foo', 'Bar']);
 
   createSuccessCase('module', 'Foo');
   createSuccessCase('module', '[name]');
-  // createFailedCase('module', 'single Foo');
-  // createFailedCase('module', 'multiple Foo');
+  createFailedCase('module', 'single Foo');
+  createFailedCase('module', 'multiple Foo');
   createSuccessCase('module', 'default Foo');
   createSuccessCase('module', 'default [name]');
   createSuccessCase('module', 'named Foo');
@@ -184,5 +189,4 @@ describe('loader', () => {
   createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
   // TODO error for alias
   // createFailedCase('module', 'default', ['Foo', 'Bar']);
-
 });

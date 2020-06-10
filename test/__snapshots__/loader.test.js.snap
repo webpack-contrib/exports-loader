@@ -387,6 +387,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for "Foo" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "default Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with the \\"default\\" syntax export",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "default Foo" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: module 1`] = `
@@ -605,6 +614,15 @@ Object {
 `;
 
 exports[`loader should work with the "commonjs" module format for "multiple Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "named Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with the \\"named\\" syntax export",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "named Foo" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "single [name]" export list: errors 1`] = `Array []`;
 
@@ -1070,6 +1088,15 @@ Object {
 
 exports[`loader should work with the "module" module format for "default Foo" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "module" module format for "multiple Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with the \\"multiple\\" syntax export",
+]
+`;
+
+exports[`loader should work with the "module" module format for "multiple Foo" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "module" module format for "named [name] [name]A" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "named [name] [name]A" export list: module 1`] = `
@@ -1288,6 +1315,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for "named Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "single Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with the \\"single\\" syntax export",
+]
+`;
+
+exports[`loader should work with the "module" module format for "single Foo" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: errors 1`] = `Array []`;
 
