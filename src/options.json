@@ -1,10 +1,34 @@
 {
   "definitions": {
+    "ExportItemString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ExportItemObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "syntax": {
+          "enum": ["default", "named", "single", "multiple"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alias": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": ["name"]
+    },
     "ExportItem": {
       "anyOf": [
         {
-          "type": "string",
-          "minLength": 1
+          "$ref": "#/definitions/ExportItemString"
+        },
+        {
+          "$ref": "#/definitions/ExportItemObject"
         }
       ]
     }

@@ -20,8 +20,27 @@ describe('validate options', () => {
         'multiple Foo FooA',
         ['multiple Foo', 'multiple Bar'],
         ['multiple Foo FooA', 'multiple Bar BarA'],
+        { name: 'Foo' },
+        { syntax: 'default', name: 'Foo' },
+        { syntax: 'named', name: 'Foo' },
+        { syntax: 'single', name: 'Foo' },
+        { syntax: 'multiple', name: 'Foo' },
+        { syntax: 'named', name: 'Foo', alias: 'FooA' },
+        { syntax: 'multiple', name: 'Foo', alias: 'FooA' },
+        ['Foo', { syntax: 'default', name: 'Foo' }],
+        [
+          { syntax: 'named', name: 'Foo' },
+          { syntax: 'named', name: 'Bar' },
+        ],
       ],
-      failure: [true, () => {}, [1, 2, 3]],
+      failure: [
+        true,
+        () => {},
+        [1, 2, 3],
+        { syntax: 'default' },
+        { alias: 'FooA' },
+        { syntax: 'foo', name: 'Foo' },
+      ],
     },
   };
 
@@ -46,24 +65,27 @@ describe('validate options', () => {
           return { [key]: value, exports: 'Foo' };
         }
 
-        if (
-          key === 'exports' &&
-          (typeof value === 'string' ||
-            (Array.isArray(value) &&
-              value.filter((item) => typeof item !== 'string').length === 0))
-        ) {
-          // eslint-disable-next-line no-shadow
-          const type = Array.isArray(value)
-            ? value.filter(
-                (item) => item.includes('single') || item.includes('multiple')
-              ).length > 0
-              ? 'commonjs'
-              : 'module'
-            : value.includes('single') || value.includes('multiple')
-            ? 'commonjs'
-            : 'module';
+        if (key === 'exports') {
+          let isModule = false;
 
-          return { type, [key]: value };
+          if (typeof value === 'string') {
+            isModule = value.includes('default') || value.includes('named');
+          } else if (Array.isArray(value)) {
+            isModule =
+              value.filter((item) =>
+                typeof item === 'string'
+                  ? item.includes('default') || item.includes('named')
+                  : item.syntax
+                  ? item.syntax === 'default' || item.syntax === 'named'
+                  : false
+              ).length > 0;
+          } else {
+            isModule =
+              value.syntax &&
+              (value.syntax === 'default' || value.syntax === 'named');
+          }
+
+          return { type: isModule ? 'module' : 'commonjs', [key]: value };
         }
 
         return { [key]: value };
