@@ -21,4 +21,6 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();

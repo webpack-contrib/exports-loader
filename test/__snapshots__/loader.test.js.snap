@@ -29,6 +29,7 @@ class MyClass {
 
 }
 
+const single = 'single';
 const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -185,6 +186,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -242,6 +245,7 @@ class MyClass {
 
 }
 
+const single = 'single';
 const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
 export {
@@ -279,6 +283,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -325,6 +331,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -367,6 +375,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -422,6 +432,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -465,6 +477,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -507,6 +521,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -560,6 +576,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -604,6 +622,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -659,6 +679,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -705,6 +727,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -719,6 +743,45 @@ Object {
 `;
 
 exports[`loader should work with the "commonjs" module format for "single Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = single;
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: result 1`] = `"single"`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for "unknown Foo" export list: errors 1`] = `
 Array [
@@ -754,6 +817,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -809,6 +874,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -863,6 +930,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -916,6 +985,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -978,6 +1049,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1020,6 +1093,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1065,6 +1140,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1116,6 +1193,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1132,6 +1211,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for "default Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (29:15)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "default default" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "multiple Foo" export list: errors 1`] = `
 Array [
@@ -1167,6 +1255,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1211,6 +1301,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1253,6 +1345,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1306,6 +1400,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1350,6 +1446,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1414,6 +1512,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1477,6 +1577,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1536,6 +1638,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1589,6 +1693,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
@@ -1644,6 +1750,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1698,6 +1806,8 @@ class MyClass {
   }
 }
 
+const single = 'single';
+
 const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
@@ -1751,6 +1861,8 @@ class MyClass {
     return 12;
   }
 }
+
+const single = 'single';
 
 const myVariable = new MyClass();
 
