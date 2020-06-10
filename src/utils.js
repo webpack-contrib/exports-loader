@@ -53,7 +53,17 @@ function getExports(type, exports) {
     result = [].concat(exports).map((item) => resolveExports(type, item));
   }
 
-  // TODO validation
+  const hasMultipleDefault = result.filter(
+    (item) => item.syntax === 'default' || item.syntax === 'single'
+  );
+
+  if (hasMultipleDefault.length > 1) {
+    throw new Error(
+      `The "${type}" format can't have multiple "${
+        type === 'module' ? 'default' : 'single'
+      }" exports`
+    );
+  }
 
   return result;
 }

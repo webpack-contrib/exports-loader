@@ -925,6 +925,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't have multiple \\"single\\" exports",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "module" module format for "[name]" export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "[name]" export list: module 1`] = `
@@ -1396,6 +1405,15 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","default Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't have multiple \\"default\\" exports",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","default Bar"] export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA","named Baz"] export list: errors 1`] = `Array []`;
 
