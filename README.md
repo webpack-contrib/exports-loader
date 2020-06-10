@@ -17,6 +17,7 @@
 Allow to setup custom exports `module.exports`/`export` for modules.
 
 > ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
+
 > ⚠ By default loader generate ES module named syntax.
 
 ## Getting Started
@@ -219,9 +220,10 @@ Examples:
 - `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`.
 
 > ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntax.
+
 > ⚠ Aliases can't be used together with `default` or `single` syntax.
 
-Syntax - `[[syntax] [name] [alias]]`, where:
+String syntax - `[[syntax] [name] [alias]]`, where:
 
 - `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format)
 - `[name]` - name of exported value
@@ -387,7 +389,9 @@ export default Foo;
 Allow to specify multiple exports.
 
 > ⚠ Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
+
 > ⚠ Not possible to use multiple `default` syntaxes due to ES module format limitations.
+
 > ⚠ Not possible to use multiple `single` syntaxes due to CommonJS format limitations.
 
 **webpack.config.js**
