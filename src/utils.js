@@ -4,9 +4,15 @@ function resolveExports(type, item) {
   let result;
 
   if (typeof item === 'string') {
-    const splittedItem = item.split(' ');
+    const noWhitespaceItem = item.trim();
 
-    if (splittedItem.length === 0 || splittedItem.length > 3) {
+    if (noWhitespaceItem.length === 0) {
+      throw new Error(`Invalid "${item}" value for export`);
+    }
+
+    const splittedItem = noWhitespaceItem.split(' ');
+
+    if (splittedItem.length > 3) {
       throw new Error(`Invalid "${item}" value for export`);
     }
 

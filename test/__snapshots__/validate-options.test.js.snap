@@ -46,6 +46,16 @@ exports[`validate options should throw an error on the "exports" option with "{"
    non-empty string"
 `;
 
+exports[`validate options should throw an error on the "exports" option with "{"name":""}" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.exports.name should be an non-empty string."
+`;
+
+exports[`validate options should throw an error on the "exports" option with "{"name":"Foo","alias":""}" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.exports.alias should be an non-empty string."
+`;
+
 exports[`validate options should throw an error on the "exports" option with "{"syntax":"default"}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports misses the property 'name'. Should be:

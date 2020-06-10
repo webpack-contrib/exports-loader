@@ -40,6 +40,8 @@ describe('validate options', () => {
         { syntax: 'default' },
         { alias: 'FooA' },
         { syntax: 'foo', name: 'Foo' },
+        { name: '' },
+        { name: 'Foo', alias: '' },
       ],
     },
   };
