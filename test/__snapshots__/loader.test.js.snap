@@ -559,6 +559,53 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"Foo-Bar\\": (Foo)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: result 1`] = `
+Object {
+  "Foo-Bar": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for "multiple Foo FooA FooB" export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):

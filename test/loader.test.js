@@ -160,6 +160,7 @@ describe('loader', () => {
   createSuccessCase('commonjs', 'multiple Foo');
   createSuccessCase('commonjs', 'multiple [name]');
   createSuccessCase('commonjs', 'multiple Foo FooA');
+  createSuccessCase('commonjs', 'multiple Foo Foo-Bar');
   createSuccessCase('commonjs', 'multiple [name] FooA');
   createSuccessCase('commonjs', 'multiple [name] [name]A');
   createSuccessCase('commonjs', ['Foo', 'Bar']);

@@ -208,6 +208,8 @@ Default: `undefined`
 
 List of exports.
 
+#### `String`
+
 String values let you specify export syntax, name, and alias.
 
 Examples:
@@ -218,7 +220,7 @@ Examples:
 - `[single Foo]` - generates CommonJS single export and exports `Foo` value.
 - `[multiple Foo FooA]` - generates CommonJS multiple exports and exports `Foo` value under `FooA` name.
 - `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`.
-- `[named [name] [name]A]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleA`
+- `[named [name] [name]Alias]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleAlias`
 
 > ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntax.
 
@@ -353,47 +355,15 @@ Generate output:
 module.exports = { FooA: Foo };
 ```
 
-#### `String`
-
-Allow to specify exported value.
-
-**webpack.config.js**
-
-```js
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
-        options: {
-          exports: 'default Foo',
-        },
-      },
-    ],
-  },
-};
-```
-
-Generate output:
-
-```js
-// ...
-// Code
-// ...
-
-export default Foo;
-```
-
 #### `Array`
 
 Allow to specify multiple exports.
 
 > ⚠ Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
 
-> ⚠ Not possible to use multiple `default` syntaxes due to ES module format limitations.
+> ⚠ Not possible to use multiple `default` values due to ES module format limitations.
 
-> ⚠ Not possible to use multiple `single` syntaxes due to CommonJS format limitations.
+> ⚠ Not possible to use multiple `single` values due to CommonJS format limitations.
 
 **webpack.config.js**
 
@@ -438,7 +408,7 @@ module.exports = {
         loader: 'exports-loader',
         options: {
           type: 'commonjs',
-          exports: ['Foo', 'multiple Baz BazA'],
+          exports: ['Foo', 'multiple Bar', 'multiple Baz BazA'],
         },
       },
     ],
