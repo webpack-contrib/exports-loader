@@ -1,243 +1,1976 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`loader should throw an error without options: errors 1`] = `
-Array [
-  "ModuleBuildError: Module build failed (from \`replaced original path\`):
-ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
-]
-`;
+exports[`loader should not work with source maps when the "devtool" options are disabled: errors 1`] = `Array []`;
 
-exports[`loader should throw an error without options: warnings 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports with "exports": errors 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports with "exports": module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
+exports[`loader should not work with source maps when the "devtool" options are disabled: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
 };
 
-exports = { foo: 'bar' };
+var simple = function simple() {};
 
+var simple_foo = [1, 2, 3, 4, 5];
 
+Foo.Image = function (width, height, data) {
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+
+}
+
+const single = 'single';
+const myVariable = new MyClass();
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-  \\"otherObject\\": (otherObject),
-};"
+export {
+  Foo
+};
+"
 `;
 
-exports[`loader should work for multiple CommonJS exports with "exports": result 1`] = `
+exports[`loader should not work with source maps when the "devtool" options are disabled: result 1`] = `
 Object {
-  "object": Object {
-    "key": "value",
-  },
-  "otherObject": Object {
-    "otherKey": "otherValue",
+  "Foo": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work for multiple CommonJS exports with "exports": warnings 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports with "module.exports": errors 1`] = `Array []`;
-
-exports[`loader should work for multiple CommonJS exports with "module.exports": module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
-};
-
-module.exports = { foo: 'bar' };
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-  \\"otherObject\\": (otherObject),
-};"
-`;
-
-exports[`loader should work for multiple CommonJS exports with "module.exports": result 1`] = `
-Object {
-  "object": Object {
-    "key": "value",
-  },
-  "otherObject": Object {
-    "otherKey": "otherValue",
-  },
-}
-`;
-
-exports[`loader should work for multiple CommonJS exports with "module.exports": warnings 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export with "exports": errors 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export with "exports": module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
-};
-
-exports = { foo: 'bar' };
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-};"
-`;
-
-exports[`loader should work for single CommonJS export with "exports": result 1`] = `
-Object {
-  "object": Object {
-    "key": "value",
-  },
-}
-`;
-
-exports[`loader should work for single CommonJS export with "exports": warnings 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export with "module.exports": errors 1`] = `Array []`;
-
-exports[`loader should work for single CommonJS export with "module.exports": module 1`] = `
-"const object = {
-  key: 'value'
-};
-const otherObject = {
-  otherKey: 'otherValue'
-};
-
-module.exports = { foo: 'bar' };
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"object\\": (object),
-};"
-`;
-
-exports[`loader should work for single CommonJS export with "module.exports": result 1`] = `
-Object {
-  "object": Object {
-    "key": "value",
-  },
-}
-`;
-
-exports[`loader should work for single CommonJS export with "module.exports": warnings 1`] = `Array []`;
+exports[`loader should not work with source maps when the "devtool" options are disabled: warnings 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: errors 1`] = `Array []`;
 
 exports[`loader should work with inline syntax: module 1`] = `
-"module.exports = require('../../src/cjs.js?CV!./exports/cv.js');
+"const test1 = require('../../src/cjs.js?exports=Foo!./simple.js');
+const test2 = require('../../src/cjs.js?exports[]=Foo&exports[]=Bar!./simple.js');
+const test3 = require('../../src/cjs.js?exports=[name]!./simple.js');
+const test4 = require('../../src/cjs.js?exports=Foo!./simple.js');
+const test5 = require('../../src/cjs.js?type=commonjs&exports=Foo!./simple.js');
+const test6 = require('../../src/cjs.js?type=module&exports=Foo!./simple.js');
+const test7 = require('../../src/cjs.js?type=module&exports=default%20Foo!./simple.js');
+const test8 = require('../../src/cjs.js?type=module&exports=named%20Foo!./simple.js');
+const test9 = require('../../src/cjs.js?type=commonjs&exports=single%20Foo!./simple.js');
+const test10 = require('../../src/cjs.js?type=commonjs&exports=multiple%20Foo!./simple.js');
+const test11 = require('../../src/cjs.js?type=module&exports=named%20Foo%20FooA!./simple.js');
+const test12 = require('../../src/cjs.js?type=module&exports[]=named%20Foo%20FooA&exports[]=named%20Bar%20BarA!./simple.js');
+
+module.exports = {
+  test1,
+  test2,
+  test3,
+  test4,
+  test5,
+  test6,
+  test7,
+  test8,
+  test9,
+  test10,
+  test11,
+  test12
+};
 "
 `;
 
 exports[`loader should work with inline syntax: result 1`] = `
 Object {
-  "CV": Object {
+  "test1": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test10": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test11": Object {
+    "FooA": Object {
+      "Image": [Function],
+    },
+  },
+  "test12": Object {
+    "BarA": Object {
+      "test": Array [
+        1,
+        2,
+        3,
+        4,
+      ],
+    },
+    "FooA": Object {
+      "Image": [Function],
+    },
+  },
+  "test2": Object {
+    "Bar": Object {
+      "test": Array [
+        1,
+        2,
+        3,
+        4,
+      ],
+    },
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test3": Object {
+    "simple": [Function],
+  },
+  "test4": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test5": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test6": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test7": Object {
+    "default": Object {
+      "Image": [Function],
+    },
+  },
+  "test8": Object {
+    "Foo": Object {
+      "Image": [Function],
+    },
+  },
+  "test9": Object {
     "Image": [Function],
-    "stackBoxBlurMult": Array [
-      1,
-      171,
-      205,
-      293,
-      57,
-      373,
-      79,
-      137,
-      241,
-      27,
-      391,
-      357,
-      41,
-      19,
-      283,
-      265,
-    ],
   },
 }
 `;
 
 exports[`loader should work with inline syntax: warnings 1`] = `Array []`;
 
-exports[`loader should work with source maps: errors 1`] = `Array []`;
+exports[`loader should work with multiple string values: errors 1`] = `Array []`;
 
-exports[`loader should work with source maps: module 1`] = `
-"var CV = CV || {};
+exports[`loader should work with multiple string values: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
 
-CV.Image = function(width, height, data){
+Foo.Image = function(width, height, data){
   this.width = width || 0;
   this.height = height || 0;
   this.data = data || [];
 };
 
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
+Bar.test = [1, 2, 3, 4];
 
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
 
 /*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"CV\\": (CV),
-};"
-`;
-
-exports[`loader should work with source maps: result 1`] = `Object {}`;
-
-exports[`loader should work with source maps: warnings 1`] = `Array []`;
-
-exports[`loader should work: errors 1`] = `Array []`;
-
-exports[`loader should work: module 1`] = `
-"var CV = CV || {};
-
-CV.Image = function(width, height, data){
-  this.width = width || 0;
-  this.height = height || 0;
-  this.data = data || [];
+export {
+  Foo,
+  Bar
 };
-
-CV.stackBoxBlurMult =
-  [1, 171, 205, 293, 57, 373, 79, 137, 241, 27, 391, 357, 41, 19, 283, 265];
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = exports = {
-  \\"CV\\": (CV),
-};"
+"
 `;
 
-exports[`loader should work: result 1`] = `
+exports[`loader should work with multiple string values: result 1`] = `
 Object {
-  "CV": Object {
-    "Image": [Function],
-    "stackBoxBlurMult": Array [
+  "Bar": Object {
+    "test": Array [
       1,
-      171,
-      205,
-      293,
-      57,
-      373,
-      79,
-      137,
-      241,
-      27,
-      391,
-      357,
-      41,
-      19,
-      283,
-      265,
+      2,
+      3,
+      4,
     ],
+  },
+  "Foo": Object {
+    "Image": [Function],
   },
 }
 `;
 
-exports[`loader should work: warnings 1`] = `Array []`;
+exports[`loader should work with multiple string values: warnings 1`] = `Array []`;
+
+exports[`loader should work with source maps when the "devtool" option is enabled: errors 1`] = `Array []`;
+
+exports[`loader should work with source maps when the "devtool" option is enabled: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+
+var simple = function simple() {};
+
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function (width, height, data) {
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+
+}
+
+const single = 'single';
+const myVariable = new MyClass();
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with source maps when the "devtool" option is enabled: result 1`] = `Object {}`;
+
+exports[`loader should work with source maps when the "devtool" option is enabled: warnings 1`] = `Array []`;
+
+exports[`loader should work with string value: errors 1`] = `Array []`;
+
+exports[`loader should work with string value: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with string value: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with string value: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "[name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "[name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  simple
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "[name]" export list: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "[name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "\`invalid\`" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "\`invalid\`" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "Foo" export list: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "default Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with the \\"default\\" syntax export in \\"default Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "default Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected keyword 'default' (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "default" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"simpleA\\": (simple)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: result 1`] = `
+Object {
+  "simpleA": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] [name]A" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] FooA" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] FooA" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"FooA\\": (simple)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] FooA" export list: result 1`] = `
+Object {
+  "FooA": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name] FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  simple
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple [name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"Foo-Bar\\": (Foo)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: result 1`] = `
+Object {
+  "Foo-Bar": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo Foo-Bar" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA FooB" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid \\"multiple Foo FooA FooB\\" value for export",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA FooB" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"FooA\\": (Foo)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: result 1`] = `
+Object {
+  "FooA": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo" export list: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "multiple Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "named Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with the \\"named\\" syntax export in \\"named Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "named Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single [name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single [name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = simple;
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "single [name]" export list: result 1`] = `[Function]`;
+
+exports[`loader should work with the "commonjs" module format for "single [name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo FooA" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"single\\" syntax can't have \\"FooA\\" alias in \\"single Foo FooA\\" value",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = Foo;
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo" export list: result 1`] = `
+Object {
+  "Image": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for "single Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = single;
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: result 1`] = `"single"`;
+
+exports[`loader should work with the "commonjs" module format for "single single" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for "unknown Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Unknown \\"unknown\\" syntax export in \\"unknown Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "unknown Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  Foo,
+  Bar
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"FooA\\": (Foo),
+  \\"BarA\\": (Bar)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "FooA": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  Foo,
+  Bar
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = {
+  \\"myFunction\\": (myVariable.myFunction),
+  \\"BarA\\": (Bar)
+};
+"
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "myFunction": [Function],
+}
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't have multiple \\"single\\" exports",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "[name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "[name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "[name]" export list: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "[name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "\`invalid\`" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "\`invalid\`" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "Foo" export list: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for "Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default [name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default [name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export default simple;
+"
+`;
+
+exports[`loader should work with the "module" module format for "default [name]" export list: result 1`] = `
+Object {
+  "default": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "default [name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default Foo FooA" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"default\\" syntax can't have \\"FooA\\" alias in \\"default Foo FooA\\" value",
+]
+`;
+
+exports[`loader should work with the "module" module format for "default Foo FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export default Foo;
+"
+`;
+
+exports[`loader should work with the "module" module format for "default Foo" export list: result 1`] = `
+Object {
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for "default Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected token (29:15)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "default default" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "default" export list: errors 1`] = `
+Array [
+  "ModuleParseError: Module parse failed: Unexpected keyword 'default' (30:2)
+File was processed with these loaders:",
+]
+`;
+
+exports[`loader should work with the "module" module format for "default" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "multiple Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with the \\"multiple\\" syntax export in \\"multiple Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "module" module format for "multiple Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name] [name]A" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name] [name]A" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple as simpleA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named [name] [name]A" export list: result 1`] = `
+Object {
+  "simpleA": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "named [name] [name]A" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name] FooA" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name] FooA" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple as FooA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named [name] FooA" export list: result 1`] = `
+Object {
+  "FooA": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "named [name] FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name]" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named [name]" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named [name]" export list: result 1`] = `
+Object {
+  "simple": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "named [name]" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA FooB" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid \\"named Foo FooA FooB\\" value for export",
+]
+`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA FooB" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as FooA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA" export list: result 1`] = `
+Object {
+  "FooA": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for "named Foo FooA" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named Foo" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named Foo" export list: result 1`] = `
+Object {
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for "named Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "single Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with the \\"single\\" syntax export in \\"single Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "module" module format for "single Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "unknown Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Unknown \\"unknown\\" syntax export in \\"unknown Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "module" module format for "unknown Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo,
+  Bar
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","default Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't have multiple \\"default\\" exports",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","default Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA","named Baz"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA","named Baz"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export default Foo;
+export {
+  Bar as BarA,
+  Baz
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA","named Baz"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Baz": Object {
+    "nestedFunction": [Function],
+    "nestedNumber": "12",
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA","named Baz"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export default Foo;
+export {
+  Bar as BarA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export default Foo;
+export {
+  Bar
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar"] export list: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["default Foo","named Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as FooA,
+  Bar as BarA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "FooA": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo default","named Bar BarA"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo default","named Bar BarA"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo as default,
+  Bar as BarA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo default","named Bar BarA"] export list: result 1`] = `
+Object {
+  "BarA": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "default": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo default","named Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  Foo,
+  Bar
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: result 1`] = `
+Object {
+  "Bar": Object {
+    "test": Array [
+      1,
+      2,
+      3,
+      4,
+    ],
+  },
+  "Foo": Object {
+    "Image": [Function],
+  },
+}
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: warnings 1`] = `Array []`;

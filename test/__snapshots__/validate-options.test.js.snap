@@ -1,19 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validate options should throw an error on the "name" option with "() => {}" value 1`] = `
+exports[`validate options should throw an error on the "exports" option with "() => {}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
- - options['name'] should be one of these:
-   boolean | string
+ - options.exports should be one of these:
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options['name'] should be a boolean.
-    * options['name'] should be a string."
+    * options.exports should be a non-empty string.
+    * options.exports should be an array:
+      [non-empty string, ...] (should not have fewer than 1 item)"
 `;
 
-exports[`validate options should throw an error on the "name" option with "[1,2,3]" value 1`] = `
+exports[`validate options should throw an error on the "exports" option with "[1,2,3]" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
- - options['name'] should be one of these:
-   boolean | string
+ - options.exports should be one of these:
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
    Details:
-    * options['name'] should be a boolean.
-    * options['name'] should be a string."
+    * options.exports[2] should be a non-empty string."
+`;
+
+exports[`validate options should throw an error on the "exports" option with "true" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.exports should be one of these:
+   non-empty string | [non-empty string, ...] (should not have fewer than 1 item)
+   Details:
+    * options.exports should be a non-empty string.
+    * options.exports should be an array:
+      [non-empty string, ...] (should not have fewer than 1 item)"
+`;
+
+exports[`validate options should throw an error on the "type" option with "false" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"commonjs\\" | \\"module\\""
+`;
+
+exports[`validate options should throw an error on the "type" option with "foo" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"commonjs\\" | \\"module\\""
+`;
+
+exports[`validate options should throw an error on the "type" option with "true" value 1`] = `
+"Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
+ - options.type should be one of these:
+   \\"commonjs\\" | \\"module\\""
 `;

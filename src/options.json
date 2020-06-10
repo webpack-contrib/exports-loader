@@ -1,14 +1,34 @@
 {
+  "definitions": {
+    "ExportItem": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ]
+    }
+  },
   "type": "object",
-  "minProperties": 1,
-  "additionalProperties": {
-    "anyOf": [
-      {
-        "type": "boolean"
-      },
-      {
-        "type": "string"
-      }
-    ]
-  }
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "enum": ["commonjs", "module"]
+    },
+    "exports": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ExportItem"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExportItem"
+          },
+          "minItems": 1
+        }
+      ]
+    }
+  },
+  "required": ["exports"]
 }

@@ -16,7 +16,9 @@
 
 Allow to setup custom exports `module.exports`/`export` for modules.
 
-> ⚠ Be careful, existing exports (`module.exports`/`exports`) will be overwritten.
+> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
+
+> ⚠ By default loader generate ES module named syntax.
 
 ## Getting Started
 
@@ -31,10 +33,10 @@ $ npm install exports-loader --save-dev
 Then add the loader to the desired `require` calls. For example:
 
 ```js
-const { myFunction } = require('exports-loader?myFunction!./file.js');
+const { myFunction } = require('exports-loader?exports=myFunction!./file.js');
 // Adds the following code to the file's source:
 //
-// module.exports = exports = { 'myFunction': myFunction };
+// export { myFunction }
 
 myFunction('Hello world');
 ```
@@ -43,10 +45,10 @@ myFunction('Hello world');
 const {
   myVariable,
   myFunction,
-} = require('exports-loader?myVariable,myFunction=helpers.parse!./file.js');
+} = require('exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js');
 // Adds the following code to the file's source:
 //
-// module.exports = exports = { 'myVariable' : myVariable, 'myFunction': helpers.parse };
+// export { myVariable, myFunction };
 
 const newVariable = myVariable + '!!!';
 
@@ -59,10 +61,43 @@ myFunction('Hello world');
 const { file } = require('exports-loader?[name]!./file.js');
 // Adds the following code to the file's source:
 //
-// module.exports = exports = { 'file' : file };
+// export { file };
 
 file('string');
 ```
+
+```js
+const {
+  myFunction,
+} = require('exports-loader?type=commonjs&exports=myFunction!./file.js');
+// Adds the following code to the file's source:
+//
+// module.exports = { myFunction }
+
+myFunction('Hello world');
+```
+
+```js
+import myFunction from 'exports-loader?exports=default%20myFunction!./file.js';
+// `%20` is space in a query string, equivalently `default myFunction`
+// Adds the following code to the file's source:
+//
+// exports default myFunction;
+
+myFunction('Hello world');
+```
+
+```js
+import { myFunctionAlias } from 'exports-loader?exports=named%20myFunction%20myFunctionAlias!./file.js';
+// `%20` is space in a query string, equivalently `named myFunction myFunctionAlias`
+// Adds the following code to the file's source:
+//
+// exports default myFunction;
+
+myFunctionAlias('Hello world');
+```
+
+Description of string values can be found in the documentation below.
 
 ### Using Configuration
 
@@ -78,10 +113,7 @@ module.exports = {
         test: require.resolve('./path/to/vendor.js'),
         loader: 'exports-loader',
         options: {
-          myFunction: true,
-          myVariable: true,
-          myNestedFunction: 'lib.parse',
-          '[name]': true,
+          exports: 'myFunction',
         },
       },
     ],
@@ -90,6 +122,340 @@ module.exports = {
 ```
 
 And run `webpack` via your preferred method.
+
+## Options
+
+|           Name           |       Type        |   Default   | Description                 |
+| :----------------------: | :---------------: | :---------: | :-------------------------- |
+|   **[`type`](#type)**    |    `{String}`     |  `module`   | Format of generated exports |
+| **[`exports`](#import)** | `{String\|Array}` | `undefined` | List of exports             |
+
+### `type`
+
+Type: `String`
+Default: `module`
+
+Format of generated exports.
+
+Possible values - `commonjs` and `module` (ES modules syntax).
+
+#### `commonjs`
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          type: 'commonjs',
+          exports: 'Foo',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { Foo };
+```
+
+#### `module`
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          type: 'module',
+          exports: 'Foo',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+export { Foo };
+```
+
+### `exports`
+
+Type: `String|Array`
+Default: `undefined`
+
+List of exports.
+
+#### `String`
+
+String values let you specify export syntax, name, and alias.
+
+Examples:
+
+- `[Foo]` - generates ES module named exports and exports `Foo` value.
+- `[default Foo]` - generates ES module default export and exports `Foo` value.
+- `[named Foo FooA]` - generates ES module named exports and exports `Foo` value under `FooA` name.
+- `[single Foo]` - generates CommonJS single export and exports `Foo` value.
+- `[multiple Foo FooA]` - generates CommonJS multiple exports and exports `Foo` value under `FooA` name.
+- `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`.
+- `[named [name] [name]Alias]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleAlias`
+
+> ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntax.
+
+> ⚠ Aliases can't be used together with `default` or `single` syntax.
+
+String syntax - `[[syntax] [name] [alias]]`, where:
+
+- `[syntax]` can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format) (may be omitted)
+- `[name]` - name of exported value (required)
+- `[alias]` - alias of exported value (may be omitted)
+
+Examples:
+
+- ES module default exports.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          exports: 'default Foo',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+export default Foo;
+```
+
+- ES module named exports.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          exports: 'named Foo FooA',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+export { Foo as FooA };
+```
+
+- CommonJS single export.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          type: 'commonjs',
+          exports: 'single Foo',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = Foo;
+```
+
+- CommonJS multiple exports.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          exports: 'multiple Foo FooA',
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { FooA: Foo };
+```
+
+#### `Array`
+
+Allow to specify multiple exports.
+
+> ⚠ Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
+
+> ⚠ Not possible to use multiple `default` values due to ES module format limitations.
+
+> ⚠ Not possible to use multiple `single` values due to CommonJS format limitations.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          exports: ['Foo', 'named Bar BarA'],
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+export { Foo, Bar as BarA };
+```
+
+Examples:
+
+- Multiple CommonJS exports
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          type: 'commonjs',
+          exports: ['Foo', 'multiple Bar', 'multiple Baz BazA'],
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+module.exports = { Foo, Bar, BazA: Bar };
+```
+
+- ES module default export and named exports together.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: require.resolve('./path/to/vendor.js'),
+        loader: 'exports-loader',
+        options: {
+          exports: ['default Foo', 'named Bar BarA'],
+        },
+      },
+    ],
+  },
+};
+```
+
+Generate output:
+
+```js
+// ...
+// Code
+// ...
+
+export default Foo;
+export { Bar as BarA };
+```
 
 ## Contributing
 
