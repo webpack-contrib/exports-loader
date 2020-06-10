@@ -168,7 +168,7 @@ describe('loader', () => {
   ]);
   createFailedCase('commonjs', 'multiple Foo FooA FooB');
   createFailedCase('commonjs', ['single Foo', 'single Bar']);
-  // TODO error for alias
+  createFailedCase('commonjs', 'unknown Foo');
 
   createSuccessCase('module', 'Foo');
   createSuccessCase('module', '[name]');
@@ -190,5 +190,5 @@ describe('loader', () => {
   createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
   createFailedCase('module', 'named Foo FooA FooB');
   createFailedCase('module', ['default Foo', 'default Bar']);
-  // TODO error for alias
+  createFailedCase('module', 'unknown Foo');
 });

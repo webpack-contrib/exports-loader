@@ -711,6 +711,15 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for "single Foo" export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for "unknown Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Unknown \\"unknown\\" syntax export in \\"unknown Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for "unknown Foo" export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: module 1`] = `
@@ -1351,6 +1360,15 @@ Error: The \\"module\\" format can't be used with the \\"single\\" syntax export
 `;
 
 exports[`loader should work with the "module" module format for "single Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "unknown Foo" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Unknown \\"unknown\\" syntax export in \\"unknown Foo\\" value",
+]
+`;
+
+exports[`loader should work with the "module" module format for "unknown Foo" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for ["Foo","Bar"] export list: errors 1`] = `Array []`;
 

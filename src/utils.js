@@ -25,6 +25,12 @@ function resolveExports(type, item) {
     };
   }
 
+  if (!['default', 'named', 'single', 'multiple'].includes(result.syntax)) {
+    throw new Error(
+      `Unknown "${result.syntax}" syntax export in "${item}" value`
+    );
+  }
+
   if (type === 'commonjs') {
     if (result.syntax === 'default' || result.syntax === 'named') {
       throw new Error(
