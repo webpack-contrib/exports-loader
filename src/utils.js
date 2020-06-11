@@ -27,8 +27,9 @@ function resolveExports(type, item) {
       result = {
         syntax: splittedItem[0],
         name: splittedItem[1],
-        // eslint-disable-next-line no-undefined
-        alias: splittedItem[2] ? splittedItem[2] : undefined,
+        alias:
+          // eslint-disable-next-line no-undefined
+          typeof splittedItem[2] !== 'undefined' ? splittedItem[2] : undefined,
       };
     }
   } else {
@@ -70,16 +71,16 @@ function resolveExports(type, item) {
 }
 
 function getExports(type, exports) {
-  let result = [];
+  let result;
 
-  if (typeof exports === 'string') {
-    result.push(resolveExports(type, exports));
+  if (Array.isArray(exports)) {
+    result = exports.map((item) => resolveExports(type, item));
   } else {
-    result = [].concat(exports).map((item) => resolveExports(type, item));
+    result = [resolveExports(type, exports)];
   }
 
   const hasMultipleDefault = result.filter(
-    (item) => item.syntax === 'default' || item.syntax === 'single'
+    ({ syntax }) => syntax === 'default' || syntax === 'single'
   );
 
   if (hasMultipleDefault.length > 1) {
@@ -97,10 +98,10 @@ function renderExports(loaderContext, type, exports) {
   let code = '';
 
   const defaultExport = exports.filter(
-    (item) => item.syntax === 'default' || item.syntax === 'single'
+    ({ syntax }) => syntax === 'default' || syntax === 'single'
   );
   const namedExports = exports.filter(
-    (item) => item.syntax === 'named' || item.syntax === 'multiple'
+    ({ syntax }) => syntax === 'named' || syntax === 'multiple'
   );
 
   if (defaultExport.length > 0) {
