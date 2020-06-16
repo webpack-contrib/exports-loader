@@ -18,9 +18,9 @@ Allow to setup exports `module.exports`/`export` for source files.
 
 Useful when a source file does not contain exports or something does not export.
 
-> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) can break the source code or be overwritten.
-
 > ⚠ By default loader generate ES module named syntax.
+>
+> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause failure.
 
 ## Getting Started
 
@@ -226,27 +226,33 @@ Allows to use a string to describe an export.
 
 ##### `Syntax`
 
-String values let you specify export syntax, name, and alias.
+String values let you specify export syntax, name and alias.
 
 String syntax - `[[syntax] [name] [alias]]`, where:
 
-- `[syntax]` - can be `default` or `named` for the `module` type (`ES modules` module format), and `single` or `multiple` for the `commonjs` type (`CommonJS` module format) (**may be omitted**)
+- `[syntax]` (**may be omitted**) -
+
+  - if `type` is `module`- can be `default` and `named`,
+  - if `type` is `commonjs`- can be `single` and `multiple`
+
 - `[name]` - name of an exported value (**required**)
 - `[alias]` - alias of an exported value (**may be omitted**)
 
 Examples:
 
-- `[Foo]` - generates ES module named exports and exports `Foo` value.
-- `[default Foo]` - generates ES module default export and exports `Foo` value.
-- `[named Foo FooA]` - generates ES module named exports and exports `Foo` value under `FooA` name.
-- `[single Foo]` - generates CommonJS single export and exports `Foo` value.
-- `[multiple Foo FooA]` - generates CommonJS multiple exports and exports `Foo` value under `FooA` name.
-- `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`.
-- `[named [name] [name]Alias]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleAlias`
+- `[Foo]` - generates `export { Foo };`.
+- `[default Foo]` - generates `export default Foo;`.
+- `[named Foo]` - generates `export { Foo };`.
+- `[named Foo FooA]` - generates `export { Foo as FooA };`.
+- `[single Foo]` - generates `module.exports = Foo;`.
+- `[multiple Foo]` - generates `module.exports = { Foo };`.
+- `[multiple Foo FooA]` - generates `module.exports = { 'FooA': Foo };`.
+- `[[name]]` - generates ES module named exports and exports a variable equal to the filename, for `single.js` it will be `single`, generates `export { single };`.
+- `[named [name] [name]Alias]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleAlias`, generates `export { single as singleAlias };`.
 
-> ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntax.
+> ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntaxes.
 
-> ⚠ Aliases can't be used together with `default` or `single` syntax.
+> ⚠ Aliases can't be used together with `default` or `single` syntaxes.
 
 ##### Examples
 
