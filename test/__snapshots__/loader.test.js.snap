@@ -1196,6 +1196,24 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for ["Foo","Bar"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for ["multiple Foo Bar","multiple Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Bar\\" (as \\"alias\\"), \\"Bar\\" (as \\"name\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo Bar","multiple Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo Baz","multiple Bar Baz"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Baz\\" (as \\"alias\\"), \\"Baz\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo Baz","multiple Bar Baz"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: module 1`] = `
@@ -1251,6 +1269,15 @@ Object {
 `;
 
 exports[`loader should work with the "commonjs" module format for ["multiple Foo FooA","multiple Bar BarA"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar Foo"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Foo\\" (as \\"name\\"), \\"Foo\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar Foo"] export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: errors 1`] = `Array []`;
 
@@ -1308,6 +1335,24 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Bar"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Foo"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Foo\\" (as \\"name\\"), \\"Foo\\" (as \\"name\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple Foo","multiple Foo"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction foo.bar","multiple Bar foo.bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"foo.bar\\" (as \\"alias\\"), \\"foo.bar\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction foo.bar","multiple Bar foo.bar"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: module 1`] = `
@@ -1362,14 +1407,50 @@ Object {
 
 exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction myFunction","multiple Bar BarA"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction","multiple Bar myVariable.myFunction"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"myVariable.myFunction\\" (as \\"name\\"), \\"myVariable.myFunction\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for ["multiple myVariable.myFunction","multiple Bar myVariable.myFunction"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"commonjs\\" format can't have multiple \\"single\\" exports",
+Error: The \\"commonjs\\" format can't have multiple \\"single\\" exports in \\"",
 ]
 `;
 
 exports[`loader should work with the "commonjs" module format for ["single Foo","single Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"default","name":"Foo"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"commonjs\\" format can't be used with the \\"default\\" syntax export in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"default","name":"Foo"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"single","name":"Foo","alias":"FooA"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"single\\" syntax can't have \\"FooA\\" alias in \\"",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"single","name":"Foo","alias":"FooA"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"unknown","name":"Foo"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
+]
+`;
+
+exports[`loader should work with the "commonjs" module format for {"syntax":"unknown","name":"Foo"} export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "    " export list: errors 1`] = `
 Array [
@@ -1994,7 +2075,7 @@ exports[`loader should work with the "module" module format for ["Foo","Bar"] ex
 exports[`loader should work with the "module" module format for ["default Foo","default Bar"] export list: errors 1`] = `
 Array [
   "ModuleBuildError: Module build failed (from \`replaced original path\`):
-Error: The \\"module\\" format can't have multiple \\"default\\" exports",
+Error: The \\"module\\" format can't have multiple \\"default\\" exports in \\"",
 ]
 `;
 
@@ -2173,6 +2254,24 @@ Object {
 
 exports[`loader should work with the "module" module format for ["default Foo","named Bar"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "module" module format for ["named Foo Bar","named Bar"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Bar\\" (as \\"alias\\"), \\"Bar\\" (as \\"name\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo Bar","named Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo Baz","named Bar Baz"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Baz\\" (as \\"alias\\"), \\"Baz\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo Baz","named Bar Baz"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for ["named Foo FooA","named Bar BarA"] export list: module 1`] = `
@@ -2285,6 +2384,15 @@ Object {
 
 exports[`loader should work with the "module" module format for ["named Foo default","named Bar BarA"] export list: warnings 1`] = `Array []`;
 
+exports[`loader should work with the "module" module format for ["named Foo","named Bar Foo"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Foo\\" (as \\"name\\"), \\"Foo\\" (as \\"alias\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Bar Foo"] export list: warnings 1`] = `Array []`;
+
 exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: errors 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: module 1`] = `
@@ -2340,3 +2448,39 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for ["named Foo","named Bar"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Foo"] export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Duplicate \\"Foo\\" (as \\"name\\"), \\"Foo\\" (as \\"name\\") identifiers found in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for ["named Foo","named Foo"] export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for {"syntax":"single","name":"Foo","alias":"FooA"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"single\\" syntax can't have \\"FooA\\" alias in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for {"syntax":"single","name":"Foo","alias":"FooA"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for {"syntax":"single","name":"Foo"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: The \\"module\\" format can't be used with the \\"single\\" syntax export in \\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for {"syntax":"single","name":"Foo"} export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for {"syntax":"unknown","name":"Foo"} export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+ValidationError: Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.",
+]
+`;
+
+exports[`loader should work with the "module" module format for {"syntax":"unknown","name":"Foo"} export list: warnings 1`] = `Array []`;

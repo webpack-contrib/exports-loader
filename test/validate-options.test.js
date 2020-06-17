@@ -27,7 +27,7 @@ describe('validate options', () => {
         { syntax: 'multiple', name: 'Foo' },
         { syntax: 'named', name: 'Foo', alias: 'FooA' },
         { syntax: 'multiple', name: 'Foo', alias: 'FooA' },
-        ['Foo', { syntax: 'default', name: 'Foo' }],
+        ['Foo', { syntax: 'default', name: 'Bar' }],
         [
           { syntax: 'named', name: 'Foo' },
           { syntax: 'named', name: 'Bar' },
