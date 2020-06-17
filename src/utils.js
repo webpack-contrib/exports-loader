@@ -1,5 +1,11 @@
 import { interpolateName } from 'loader-utils';
 
+function forError(item) {
+  return typeof item === 'string'
+    ? item
+    : `\n${JSON.stringify(item, null, ' ')}\n`;
+}
+
 function resolveExports(type, item) {
   let result;
 
@@ -38,7 +44,7 @@ function resolveExports(type, item) {
 
   if (!['default', 'named', 'single', 'multiple'].includes(result.syntax)) {
     throw new Error(
-      `Unknown "${result.syntax}" syntax export in "${item}" value`
+      `Unknown "${result.syntax}" syntax export in "${forError(item)}" value`
     );
   }
 
@@ -47,14 +53,18 @@ function resolveExports(type, item) {
     typeof result.alias !== 'undefined'
   ) {
     throw new Error(
-      `The "${result.syntax}" syntax can't have "${result.alias}" alias in "${item}" value`
+      `The "${result.syntax}" syntax can't have "${
+        result.alias
+      }" alias in "${forError(item)}" value`
     );
   }
 
   if (type === 'commonjs') {
     if (result.syntax === 'default' || result.syntax === 'named') {
       throw new Error(
-        `The "${type}" format can't be used with the "${result.syntax}" syntax export in "${item}" value`
+        `The "${type}" format can't be used with the "${
+          result.syntax
+        }" syntax export in "${forError(item)}" value`
       );
     }
   }
@@ -62,12 +72,28 @@ function resolveExports(type, item) {
   if (type === 'module') {
     if (result.syntax === 'single' || result.syntax === 'multiple') {
       throw new Error(
-        `The "${type}" format can't be used with the "${result.syntax}" syntax export in "${item}" value`
+        `The "${type}" format can't be used with the "${
+          result.syntax
+        }" syntax export in "${forError(item)}" value`
       );
     }
   }
 
   return result;
+}
+
+function getIdentifiers(array) {
+  return array.reduce((accumulator, item) => {
+    if (typeof item.alias !== 'undefined') {
+      accumulator.push({ type: 'alias', value: item.alias });
+
+      return accumulator;
+    }
+
+    accumulator.push({ type: 'name', value: item.name });
+
+    return accumulator;
+  }, []);
 }
 
 function getExports(type, exports) {
@@ -87,11 +113,34 @@ function getExports(type, exports) {
     throw new Error(
       `The "${type}" format can't have multiple "${
         type === 'module' ? 'default' : 'single'
-      }" exports`
+      }" exports in "\n${JSON.stringify(exports, null, ' ')}\n" value`
+    );
+  }
+
+  const identifiers = getIdentifiers(result);
+  const duplicates = duplicateBy(identifiers, 'value');
+
+  if (duplicates.length > 0) {
+    throw new Error(
+      `Duplicate ${duplicates
+        .map((identifier) => `"${identifier.value}" (as "${identifier.type}")`)
+        .join(', ')} identifiers found in "\n${JSON.stringify(
+        exports,
+        null,
+        ' '
+      )}\n" value`
     );
   }
 
   return result;
+}
+
+function duplicateBy(array, key) {
+  return array.filter(
+    (a, aIndex) =>
+      array.filter((b, bIndex) => b[key] === a[key] && aIndex !== bIndex)
+        .length > 0
+  );
 }
 
 function renderExports(loaderContext, type, exports) {

@@ -214,17 +214,23 @@ describe('loader', () => {
       expect(getWarnings(stats)).toMatchSnapshot('warnings');
     });
   }
-
+  //
   createSuccessCase('commonjs', 'Foo');
   createSuccessCase('commonjs', '   Foo   ');
   createSuccessCase('commonjs', '[name]');
   createFailedCase('commonjs', 'default');
   createFailedCase('commonjs', 'default Foo');
+  createFailedCase('commonjs', { syntax: 'default', name: 'Foo' });
   createFailedCase('commonjs', 'named Foo');
   createSuccessCase('commonjs', 'single Foo');
   createSuccessCase('commonjs', 'single [name]');
   createSuccessCase('commonjs', 'single single');
   createFailedCase('commonjs', 'single Foo FooA');
+  createFailedCase('commonjs', {
+    syntax: 'single',
+    name: 'Foo',
+    alias: 'FooA',
+  });
   createSuccessCase('commonjs', 'multiple Foo');
   createSuccessCase('commonjs', 'multiple [name]');
   createSuccessCase('commonjs', 'multiple Foo FooA');
@@ -240,7 +246,20 @@ describe('loader', () => {
   ]);
   createFailedCase('commonjs', 'multiple Foo FooA FooB');
   createFailedCase('commonjs', ['single Foo', 'single Bar']);
+  createFailedCase('commonjs', ['multiple Foo', 'multiple Foo']);
+  createFailedCase('commonjs', ['multiple Foo', 'multiple Bar Foo']);
+  createFailedCase('commonjs', ['multiple Foo Bar', 'multiple Bar']);
+  createFailedCase('commonjs', ['multiple Foo Baz', 'multiple Bar Baz']);
+  createFailedCase('commonjs', [
+    'multiple myVariable.myFunction',
+    'multiple Bar myVariable.myFunction',
+  ]);
+  createFailedCase('commonjs', [
+    'multiple myVariable.myFunction foo.bar',
+    'multiple Bar foo.bar',
+  ]);
   createFailedCase('commonjs', 'unknown Foo');
+  createFailedCase('commonjs', { syntax: 'unknown', name: 'Foo' });
   createFailedCase('commonjs', '`invalid`');
   createFailedCase('commonjs', ' ');
   createFailedCase('commonjs', '  ');
@@ -252,11 +271,17 @@ describe('loader', () => {
   createSuccessCase('module', '[name]');
   createFailedCase('module', 'default');
   createFailedCase('module', 'single Foo');
+  createFailedCase('module', { syntax: 'single', name: 'Foo' });
   createFailedCase('module', 'multiple Foo');
   createSuccessCase('module', 'default Foo');
   createSuccessCase('module', 'default [name]');
   createFailedCase('module', 'default default');
   createFailedCase('module', 'default Foo FooA');
+  createFailedCase('module', {
+    syntax: 'single',
+    name: 'Foo',
+    alias: 'FooA',
+  });
   createSuccessCase('module', 'named Foo');
   createSuccessCase('module', 'named [name]');
   createSuccessCase('module', 'named Foo FooA');
@@ -271,7 +296,12 @@ describe('loader', () => {
   createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
   createFailedCase('module', 'named Foo FooA FooB');
   createFailedCase('module', ['default Foo', 'default Bar']);
+  createFailedCase('module', ['named Foo', 'named Foo']);
+  createFailedCase('module', ['named Foo', 'named Bar Foo']);
+  createFailedCase('module', ['named Foo Bar', 'named Bar']);
+  createFailedCase('module', ['named Foo Baz', 'named Bar Baz']);
   createFailedCase('module', 'unknown Foo');
+  createFailedCase('module', { syntax: 'unknown', name: 'Foo' });
   createFailedCase('module', '`invalid`');
   createFailedCase('module', ' ');
   createFailedCase('module', '  ');
