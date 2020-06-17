@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.1](https://github.com/webpack-contrib/exports-loader/compare/v1.0.0...v1.0.1) (2020-06-17)
+
+
+### Bug Fixes
+
+* better error reporting ([#44](https://github.com/webpack-contrib/exports-loader/issues/44)) ([0397393](https://github.com/webpack-contrib/exports-loader/commit/03973937083d5e7217e74f18bd62b1e7d2615a89))
+
 ## [1.0.0](https://github.com/webpack-contrib/exports-loader/compare/v0.7.0...v1.0.0) (2020-06-10)
 
 
