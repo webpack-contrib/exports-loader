@@ -18,6 +18,8 @@ Allow to setup exports `module.exports`/`export` for source files.
 
 Useful when a source file does not contain exports or something does not export.
 
+For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
+
 > ⚠ By default loader generate ES module named syntax.
 >
 > ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause failure.
