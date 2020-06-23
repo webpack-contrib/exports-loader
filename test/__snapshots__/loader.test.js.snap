@@ -62,7 +62,7 @@ const test8 = require('../../src/cjs.js?type=module&exports=named%20Foo!./simple
 const test9 = require('../../src/cjs.js?type=commonjs&exports=single%20Foo!./simple.js');
 const test10 = require('../../src/cjs.js?type=commonjs&exports=multiple%20Foo!./simple.js');
 const test11 = require('../../src/cjs.js?type=module&exports=named%20Foo%20FooA!./simple.js');
-const test12 = require('../../src/cjs.js?type=module&exports[]=named%20Foo%20FooA&exports[]=named%20Bar%20BarA!./simple.js');
+const test12 = require('../../src/cjs.js?type=module&exports[]=named|Foo%20FooA&exports[]=named%20Bar%20BarA!./simple.js');
 
 module.exports = {
   test1,
@@ -1997,6 +1997,60 @@ Object {
 `;
 
 exports[`loader should work with the "module" module format for "named Foo" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named|[name]   [name]A" export list: errors 1`] = `
+Array [
+  "ModuleBuildError: Module build failed (from \`replaced original path\`):
+Error: Invalid command \\"\\" in \\"named|[name]   [name]A\\" for exports. There must be only one separator: \\" \\", or \\"|\\"",
+]
+`;
+
+exports[`loader should work with the "module" module format for "named|[name]   [name]A" export list: warnings 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named|[name] [name]A" export list: errors 1`] = `Array []`;
+
+exports[`loader should work with the "module" module format for "named|[name] [name]A" export list: module 1`] = `
+"var Foo = Foo || {};
+var Bar = Bar || {};
+var Baz = {
+  nestedNumber: '12',
+  nestedFunction: function test() {}
+};
+var simple = function simple() {};
+var simple_foo = [1, 2, 3, 4, 5];
+
+Foo.Image = function(width, height, data){
+  this.width = width || 0;
+  this.height = height || 0;
+  this.data = data || [];
+};
+
+Bar.test = [1, 2, 3, 4];
+
+class MyClass {
+  myFunction() {
+    return 12;
+  }
+}
+
+const single = 'single';
+
+const myVariable = new MyClass();
+
+/*** EXPORTS FROM exports-loader ***/
+export {
+  simple as simpleA
+};
+"
+`;
+
+exports[`loader should work with the "module" module format for "named|[name] [name]A" export list: result 1`] = `
+Object {
+  "simpleA": [Function],
+}
+`;
+
+exports[`loader should work with the "module" module format for "named|[name] [name]A" export list: warnings 1`] = `Array []`;
 
 exports[`loader should work with the "module" module format for "single Foo" export list: errors 1`] = `
 Array [

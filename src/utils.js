@@ -6,6 +6,23 @@ function forError(item) {
     : `\n${JSON.stringify(item, null, ' ')}\n`;
 }
 
+function splitCommand(command) {
+  const result = command
+    .split('|')
+    .map((item) => item.split(' '))
+    .reduce((acc, val) => acc.concat(val), []);
+
+  for (const item of result) {
+    if (!item) {
+      throw new Error(
+        `Invalid command "${item}" in "${command}" for exports. There must be only one separator: " ", or "|"`
+      );
+    }
+  }
+
+  return result;
+}
+
 function resolveExports(type, item) {
   let result;
 
@@ -16,7 +33,7 @@ function resolveExports(type, item) {
       throw new Error(`Invalid "${item}" value for export`);
     }
 
-    const splittedItem = noWhitespaceItem.split(' ');
+    const splittedItem = splitCommand(noWhitespaceItem);
 
     if (splittedItem.length > 3) {
       throw new Error(`Invalid "${item}" value for export`);

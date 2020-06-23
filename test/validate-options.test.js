@@ -12,6 +12,8 @@ describe('validate options', () => {
         'default Foo',
         'named Foo',
         'named Foo FooA',
+        'named|Foo FooA',
+        'named|Foo|FooA',
         ['named Foo', 'named Bar'],
         ['named Foo FooA', 'named Bar BarA'],
         ['default Foo', 'named Bar BarA'],
