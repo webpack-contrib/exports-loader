@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/webpack-contrib/exports-loader/compare/v1.0.1...v1.1.0) (2020-06-24)
+
+
+### Features
+
+* "|" character can be used as delimiter for inline string syntax ([#46](https://github.com/webpack-contrib/exports-loader/issues/46)) ([e0bc930](https://github.com/webpack-contrib/exports-loader/commit/e0bc930d84d83107f3d7bf1c761f9af8bca26931))
+
 ## [1.0.1](https://github.com/webpack-contrib/exports-loader/compare/v1.0.0...v1.0.1) (2020-06-17)
 
 

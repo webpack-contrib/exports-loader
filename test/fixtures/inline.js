@@ -10,6 +10,8 @@ const test9 = require('../../src/cjs.js?type=commonjs&exports=single%20Foo!./sim
 const test10 = require('../../src/cjs.js?type=commonjs&exports=multiple%20Foo!./simple.js');
 const test11 = require('../../src/cjs.js?type=module&exports=named%20Foo%20FooA!./simple.js');
 const test12 = require('../../src/cjs.js?type=module&exports[]=named|Foo%20FooA&exports[]=named%20Bar%20BarA!./simple.js');
+const test13 = require('../../src/cjs.js?type=module&exports[]=named|Foo|FooA&exports[]=named|Bar|BarA!./simple.js');
+const test14 = require('../../src/cjs.js?type=module&exports=default|Foo!./simple.js');
 
 module.exports = {
   test1,
@@ -23,5 +25,7 @@ module.exports = {
   test9,
   test10,
   test11,
-  test12
+  test12,
+  test13,
+  test14
 };

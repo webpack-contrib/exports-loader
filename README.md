@@ -22,7 +22,7 @@ For further hints on compatibility issues, check out [Shimming](https://webpack.
 
 > ⚠ By default loader generate ES module named syntax.
 >
-> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause failure.
+> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause a failure.
 
 ## Getting Started
 
@@ -34,11 +34,7 @@ $ npm install exports-loader --save-dev
 
 ### Inline
 
-The `|` or `%20` (space) separate command parts.
-
-> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
-
-Then add the loader to the desired `require` calls. For example:
+Then add the loader to the desired `import` statemtnt and `require` calls. For example:
 
 ```js
 import { myFunction } from 'exports-loader?exports=myFunction!./file.js';
@@ -85,8 +81,14 @@ const {
 myFunction('Hello world');
 ```
 
+The `|` or `%20` (space) allow to separate the [`syntax`](#syntax), [`name`](#name) and [`alias`](#alias) of export.
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
+
 ```js
-import myFunction from 'exports-loader?exports=default%20myFunction!./file.js';
+// Alternative syntax:
+// import myFunction from 'exports-loader?exports=default%20myFunction!./file.js';
+import myFunction from 'exports-loader?exports=default|myFunction!./file.js';
 // `%20` is space in a query string, equivalently `default myFunction`
 // Adds the following code to the file's source:
 //
