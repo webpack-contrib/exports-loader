@@ -34,6 +34,10 @@ $ npm install exports-loader --save-dev
 
 ### Inline
 
+The `|` or `%20` (space) separate command parts.
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
+
 Then add the loader to the desired `require` calls. For example:
 
 ```js
@@ -92,8 +96,8 @@ myFunction('Hello world');
 ```
 
 ```js
-const myFunction = require('exports-loader?type=commonjs&exports=single%20myFunction!./file.js');
-// `%20` is space in a query string, equivalently `default myFunction`
+const myFunction = require('exports-loader?type=commonjs&exports=single|myFunction!./file.js');
+// `|` is separator in a query string, equivalently `single|myFunction`
 // Adds the following code to the file's source:
 //
 // module.exports = myFunction;
@@ -102,8 +106,8 @@ myFunction('Hello world');
 ```
 
 ```js
-import { myFunctionAlias } from 'exports-loader?exports=named%20myFunction%20myFunctionAlias!./file.js';
-// `%20` is space in a query string, equivalently `named myFunction myFunctionAlias`
+import { myFunctionAlias } from 'exports-loader?exports=named|myFunction|myFunctionAlias!./file.js';
+// `|` is separator in a query string, equivalently `named|myFunction|myFunctionAlias`
 // Adds the following code to the file's source:
 //
 // exports { myFunction as myFunctionAlias };
@@ -228,9 +232,11 @@ Allows to use a string to describe an export.
 
 ##### `Syntax`
 
+The `" "` or `|` (space) separate command parts.
+
 String values let you specify export syntax, name and alias.
 
-String syntax - `[[syntax] [name] [alias]]`, where:
+String syntax - `[[syntax] [name] [alias]]` or `[[syntax]|[name]|[alias]]`, where:
 
 - `[syntax]` (**may be omitted**) -
 

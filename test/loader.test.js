@@ -287,6 +287,7 @@ describe('loader', () => {
   createSuccessCase('module', 'named Foo FooA');
   createSuccessCase('module', 'named [name] FooA');
   createSuccessCase('module', 'named [name] [name]A');
+  createSuccessCase('module', 'named|[name] [name]A');
   createSuccessCase('module', ['Foo', 'Bar']);
   createSuccessCase('module', ['named Foo', 'named Bar']);
   createSuccessCase('module', ['named Foo FooA', 'named Bar BarA']);
@@ -294,6 +295,7 @@ describe('loader', () => {
   createSuccessCase('module', ['default Foo', 'named Bar']);
   createSuccessCase('module', ['default Foo', 'named Bar BarA']);
   createSuccessCase('module', ['default Foo', 'named Bar BarA', 'named Baz']);
+  createFailedCase('module', 'named|[name]   [name]A');
   createFailedCase('module', 'named Foo FooA FooB');
   createFailedCase('module', ['default Foo', 'default Bar']);
   createFailedCase('module', ['named Foo', 'named Foo']);
