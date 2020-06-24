@@ -237,6 +237,9 @@ describe('loader', () => {
   createSuccessCase('commonjs', 'multiple Foo Foo-Bar');
   createSuccessCase('commonjs', 'multiple [name] FooA');
   createSuccessCase('commonjs', 'multiple [name] [name]A');
+  createSuccessCase('commonjs', 'multiple|[name] [name]A');
+  createSuccessCase('commonjs', 'multiple|Foo');
+  createSuccessCase('commonjs', 'multiple|Foo|FooA');
   createSuccessCase('commonjs', ['Foo', 'Bar']);
   createSuccessCase('commonjs', ['multiple Foo', 'multiple Bar']);
   createSuccessCase('commonjs', ['multiple Foo FooA', 'multiple Bar BarA']);
@@ -288,6 +291,8 @@ describe('loader', () => {
   createSuccessCase('module', 'named [name] FooA');
   createSuccessCase('module', 'named [name] [name]A');
   createSuccessCase('module', 'named|[name] [name]A');
+  createSuccessCase('module', 'named|Foo');
+  createSuccessCase('module', 'named|Foo|FooA');
   createSuccessCase('module', ['Foo', 'Bar']);
   createSuccessCase('module', ['named Foo', 'named Bar']);
   createSuccessCase('module', ['named Foo FooA', 'named Bar BarA']);
