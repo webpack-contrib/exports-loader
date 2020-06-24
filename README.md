@@ -34,11 +34,20 @@ $ npm install exports-loader --save-dev
 
 ### Inline
 
-Then add the loader to the desired `import` statemtnt and `require` calls. For example:
+The `|` or `%20` (space) allow to separate the `syntax`, `name` and `alias` of export.
+The documentation and syntax examples can be read [here](#syntax).
+
+> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
+
+Then add the loader to the desired `import` statement or `require` calls. For example:
 
 ```js
 import { myFunction } from 'exports-loader?exports=myFunction!./file.js';
 // Adds the following code to the file's source:
+//
+// ...
+// Code
+// ...
 //
 // export { myFunction }
 
@@ -51,6 +60,10 @@ import {
   myFunction,
 } from 'exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js';
 // Adds the following code to the file's source:
+//
+// ...
+// Code
+// ...
 //
 // export { myVariable, myFunction };
 
@@ -65,6 +78,10 @@ myFunction('Hello world');
 import { file } from 'exports-loader?[name]!./file.js';
 // Adds the following code to the file's source:
 //
+// ...
+// Code
+// ...
+//
 // export { file };
 
 file('string');
@@ -76,14 +93,14 @@ const {
 } = require('exports-loader?type=commonjs&exports=myFunction!./file.js');
 // Adds the following code to the file's source:
 //
+// ...
+// Code
+// ...
+//
 // module.exports = { myFunction }
 
 myFunction('Hello world');
 ```
-
-The `|` or `%20` (space) allow to separate the [`syntax`](#syntax), [`name`](#name) and [`alias`](#alias) of export.
-
-> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
 
 ```js
 // Alternative syntax:
@@ -91,6 +108,10 @@ The `|` or `%20` (space) allow to separate the [`syntax`](#syntax), [`name`](#na
 import myFunction from 'exports-loader?exports=default|myFunction!./file.js';
 // `%20` is space in a query string, equivalently `default myFunction`
 // Adds the following code to the file's source:
+//
+// ...
+// Code
+// ...
 //
 // exports default myFunction;
 
@@ -102,6 +123,10 @@ const myFunction = require('exports-loader?type=commonjs&exports=single|myFuncti
 // `|` is separator in a query string, equivalently `single|myFunction`
 // Adds the following code to the file's source:
 //
+// ...
+// Code
+// ...
+//
 // module.exports = myFunction;
 
 myFunction('Hello world');
@@ -111,6 +136,10 @@ myFunction('Hello world');
 import { myFunctionAlias } from 'exports-loader?exports=named|myFunction|myFunctionAlias!./file.js';
 // `|` is separator in a query string, equivalently `named|myFunction|myFunctionAlias`
 // Adds the following code to the file's source:
+//
+// ...
+// Code
+// ...
 //
 // exports { myFunction as myFunctionAlias };
 
@@ -234,9 +263,7 @@ Allows to use a string to describe an export.
 
 ##### `Syntax`
 
-The `" "` or `|` (space) separate command parts.
-
-String values let you specify export syntax, name and alias.
+The `|` or `%20` (space) allow to separate the `syntax`, `name` and `alias` of export.
 
 String syntax - `[[syntax] [name] [alias]]` or `[[syntax]|[name]|[alias]]`, where:
 
