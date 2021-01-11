@@ -115,11 +115,15 @@ function getIdentifiers(array) {
 
 function getExports(type, exports) {
   let result;
+  const exportItems =
+    typeof exports === 'string' && exports.includes(',')
+      ? exports.split(',')
+      : exports;
 
-  if (Array.isArray(exports)) {
-    result = exports.map((item) => resolveExports(type, item));
+  if (Array.isArray(exportItems)) {
+    result = exportItems.map((item) => resolveExports(type, item));
   } else {
-    result = [resolveExports(type, exports)];
+    result = [resolveExports(type, exportItems)];
   }
 
   const hasMultipleDefault = result.filter(

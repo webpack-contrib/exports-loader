@@ -58,7 +58,7 @@ myFunction('Hello world');
 import {
   myVariable,
   myFunction,
-} from 'exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js';
+} from 'exports-loader?exports=myVariable,myFunction!./file.js';
 // Adds the following code to the file's source:
 //
 // ...

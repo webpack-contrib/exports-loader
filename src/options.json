@@ -1,4 +1,5 @@
 {
+  "title": "Exports Loader options",
   "definitions": {
     "ExportItemString": {
       "type": "string",
@@ -41,6 +42,10 @@
     },
     "exports": {
       "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
         {
           "$ref": "#/definitions/ExportItem"
         },
