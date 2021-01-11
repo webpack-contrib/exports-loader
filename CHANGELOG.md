@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/webpack-contrib/exports-loader/compare/v1.1.1...v2.0.0) (2021-01-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* minimum supported `webpack` version is `5` ([#58](https://github.com/webpack-contrib/exports-loader/issues/58)) ([9176392](https://github.com/webpack-contrib/exports-loader/commit/917639250b68e8c1b10769dcb43d751e12c52677))
+* inline syntax was changed: `[]` is no longer supported (i.e. `exports-loader?exports[]=myVariable&exports[]=myFunction!./file.js`), please use `,` (i.e. `exports-loader?exports=myVariable,myFunction!./file.js`)
+* removed filename template support for export names and aliases (i.e. `[name]`) due unstable behaviour in some cases and very rarely used
+
 ### [1.1.1](https://github.com/webpack-contrib/exports-loader/compare/v1.1.0...v1.1.1) (2020-10-09)
 
 ### Chore
