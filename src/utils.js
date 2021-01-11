@@ -1,5 +1,3 @@
-import { interpolateName } from 'loader-utils';
-
 function forError(item) {
   return typeof item === 'string'
     ? item
@@ -185,9 +183,7 @@ function renderExports(loaderContext, type, exports) {
         break;
     }
 
-    const name = interpolateName(loaderContext, defaultExport[0].name, {});
-
-    code += `${name};\n`;
+    code += `${defaultExport[0].name};\n`;
   }
 
   if (namedExports.length > 0) {
@@ -203,11 +199,9 @@ function renderExports(loaderContext, type, exports) {
 
     namedExports.forEach((namedExport, i) => {
       const needComma = i < namedExports.length - 1;
-      const name = interpolateName(loaderContext, namedExport.name, {});
-      const alias = namedExport.alias
-        ? interpolateName(loaderContext, namedExport.alias, {})
-        : // eslint-disable-next-line no-undefined
-          undefined;
+      const { name } = namedExport;
+      // eslint-disable-next-line no-undefined
+      const alias = namedExport.alias || undefined;
 
       code += `  ${
         type === 'commonjs'
