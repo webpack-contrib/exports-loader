@@ -3,8 +3,9 @@
 exports[`validate options should throw an error on the "exports" option with "() => {}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
    Details:
+    * options.exports should be a non-empty string.
     * options.exports should be one of these:
       non-empty string | object { name, syntax?, alias? }
       Details:
@@ -18,7 +19,7 @@ exports[`validate options should throw an error on the "exports" option with "()
 exports[`validate options should throw an error on the "exports" option with "[1,2,3]" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
    Details:
     * options.exports[2] should be one of these:
       non-empty string | object { name, syntax?, alias? }
@@ -71,8 +72,9 @@ exports[`validate options should throw an error on the "exports" option with "{"
 exports[`validate options should throw an error on the "exports" option with "true" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
-   non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
    Details:
+    * options.exports should be a non-empty string.
     * options.exports should be one of these:
       non-empty string | object { name, syntax?, alias? }
       Details:
