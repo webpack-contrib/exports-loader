@@ -42,7 +42,7 @@ The documentation and syntax examples can be read [here](#syntax).
 Then add the loader to the desired `import` statement or `require` calls. For example:
 
 ```js
-import { myFunction } from 'exports-loader?exports=myFunction!./file.js';
+import { myFunction } from "exports-loader?exports=myFunction!./file.js";
 // Adds the following code to the file's source:
 //
 // ...
@@ -51,14 +51,14 @@ import { myFunction } from 'exports-loader?exports=myFunction!./file.js';
 //
 // export { myFunction }
 
-myFunction('Hello world');
+myFunction("Hello world");
 ```
 
 ```js
 import {
   myVariable,
   myFunction,
-} from 'exports-loader?exports=myVariable,myFunction!./file.js';
+} from "exports-loader?exports=myVariable,myFunction!./file.js";
 // Adds the following code to the file's source:
 //
 // ...
@@ -67,17 +67,17 @@ import {
 //
 // export { myVariable, myFunction };
 
-const newVariable = myVariable + '!!!';
+const newVariable = myVariable + "!!!";
 
 console.log(newVariable);
 
-myFunction('Hello world');
+myFunction("Hello world");
 ```
 
 ```js
 const {
   myFunction,
-} = require('exports-loader?type=commonjs&exports=myFunction!./file.js');
+} = require("exports-loader?type=commonjs&exports=myFunction!./file.js");
 // Adds the following code to the file's source:
 //
 // ...
@@ -86,13 +86,13 @@ const {
 //
 // module.exports = { myFunction }
 
-myFunction('Hello world');
+myFunction("Hello world");
 ```
 
 ```js
 // Alternative syntax:
 // import myFunction from 'exports-loader?exports=default%20myFunction!./file.js';
-import myFunction from 'exports-loader?exports=default|myFunction!./file.js';
+import myFunction from "exports-loader?exports=default|myFunction!./file.js";
 // `%20` is space in a query string, equivalently `default myFunction`
 // Adds the following code to the file's source:
 //
@@ -102,11 +102,11 @@ import myFunction from 'exports-loader?exports=default|myFunction!./file.js';
 //
 // exports default myFunction;
 
-myFunction('Hello world');
+myFunction("Hello world");
 ```
 
 ```js
-const myFunction = require('exports-loader?type=commonjs&exports=single|myFunction!./file.js');
+const myFunction = require("exports-loader?type=commonjs&exports=single|myFunction!./file.js");
 // `|` is separator in a query string, equivalently `single|myFunction`
 // Adds the following code to the file's source:
 //
@@ -116,11 +116,11 @@ const myFunction = require('exports-loader?type=commonjs&exports=single|myFuncti
 //
 // module.exports = myFunction;
 
-myFunction('Hello world');
+myFunction("Hello world");
 ```
 
 ```js
-import { myFunctionAlias } from 'exports-loader?exports=named|myFunction|myFunctionAlias!./file.js';
+import { myFunctionAlias } from "exports-loader?exports=named|myFunction|myFunctionAlias!./file.js";
 // `|` is separator in a query string, equivalently `named|myFunction|myFunctionAlias`
 // Adds the following code to the file's source:
 //
@@ -130,7 +130,7 @@ import { myFunctionAlias } from 'exports-loader?exports=named|myFunction|myFunct
 //
 // exports { myFunction as myFunctionAlias };
 
-myFunctionAlias('Hello world');
+myFunctionAlias("Hello world");
 ```
 
 Description of string values can be found in the documentation below.
@@ -146,10 +146,10 @@ module.exports = {
       {
         // You can use `regexp`
         // test: /vendor\.js/$
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          exports: 'myFunction',
+          exports: "myFunction",
         },
       },
     ],
@@ -184,11 +184,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
-          exports: 'Foo',
+          type: "commonjs",
+          exports: "Foo",
         },
       },
     ],
@@ -215,11 +215,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'module',
-          exports: 'Foo',
+          type: "module",
+          exports: "Foo",
         },
       },
     ],
@@ -288,10 +288,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          exports: 'default Foo',
+          exports: "default Foo",
         },
       },
     ],
@@ -318,10 +318,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          exports: 'named Foo FooA',
+          exports: "named Foo FooA",
         },
       },
     ],
@@ -348,11 +348,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
-          exports: 'single Foo',
+          type: "commonjs",
+          exports: "single Foo",
         },
       },
     ],
@@ -379,11 +379,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
-          exports: 'multiple Foo FooA',
+          type: "commonjs",
+          exports: "multiple Foo FooA",
         },
       },
     ],
@@ -422,12 +422,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
           exports: {
-            syntax: 'default',
-            name: 'Foo',
+            syntax: "default",
+            name: "Foo",
           },
         },
       },
@@ -455,13 +455,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
           exports: {
-            syntax: 'named',
-            name: 'Foo',
-            alias: 'FooA',
+            syntax: "named",
+            name: "Foo",
+            alias: "FooA",
           },
         },
       },
@@ -489,13 +489,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
+          type: "commonjs",
           exports: {
-            syntax: 'single',
-            name: 'Foo',
+            syntax: "single",
+            name: "Foo",
           },
         },
       },
@@ -523,14 +523,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
+          type: "commonjs",
           exports: {
-            syntax: 'multiple',
-            name: 'Foo',
-            alias: 'FooA',
+            syntax: "multiple",
+            name: "Foo",
+            alias: "FooA",
           },
         },
       },
@@ -570,11 +570,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          type: 'commonjs',
-          exports: ['Foo', 'multiple Bar', 'multiple Baz BazA'],
+          type: "commonjs",
+          exports: ["Foo", "multiple Bar", "multiple Baz BazA"],
         },
       },
     ],
@@ -601,10 +601,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
-          exports: ['default Foo', 'named Bar BarA'],
+          exports: ["default Foo", "named Bar BarA"],
         },
       },
     ],
@@ -632,13 +632,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: require.resolve('./path/to/vendor.js'),
-        loader: 'exports-loader',
+        test: require.resolve("./path/to/vendor.js"),
+        loader: "exports-loader",
         options: {
           exports: [
-            { syntax: 'named', name: 'Foo', alias: 'FooA' },
-            { syntax: 'named', name: 'Bar' },
-            'Baz',
+            { syntax: "named", name: "Foo", alias: "FooA" },
+            { syntax: "named", name: "Bar" },
+            "Baz",
           ],
         },
       },
