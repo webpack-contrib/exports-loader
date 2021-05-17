@@ -1,13 +1,13 @@
 function forError(item) {
-  return typeof item === 'string'
+  return typeof item === "string"
     ? item
-    : `\n${JSON.stringify(item, null, ' ')}\n`;
+    : `\n${JSON.stringify(item, null, " ")}\n`;
 }
 
 function splitCommand(command) {
   const result = command
-    .split('|')
-    .map((item) => item.split(' '))
+    .split("|")
+    .map((item) => item.split(" "))
     .reduce((acc, val) => acc.concat(val), []);
 
   for (const item of result) {
@@ -24,7 +24,7 @@ function splitCommand(command) {
 function resolveExports(type, item) {
   let result;
 
-  if (typeof item === 'string') {
+  if (typeof item === "string") {
     const noWhitespaceItem = item.trim();
 
     if (noWhitespaceItem.length === 0) {
@@ -39,7 +39,7 @@ function resolveExports(type, item) {
 
     if (splittedItem.length === 1) {
       result = {
-        syntax: type === 'module' ? 'named' : 'multiple',
+        syntax: type === "module" ? "named" : "multiple",
         name: splittedItem[0],
         // eslint-disable-next-line no-undefined
         alias: undefined,
@@ -50,22 +50,22 @@ function resolveExports(type, item) {
         name: splittedItem[1],
         alias:
           // eslint-disable-next-line no-undefined
-          typeof splittedItem[2] !== 'undefined' ? splittedItem[2] : undefined,
+          typeof splittedItem[2] !== "undefined" ? splittedItem[2] : undefined,
       };
     }
   } else {
-    result = { syntax: type === 'module' ? 'named' : 'multiple', ...item };
+    result = { syntax: type === "module" ? "named" : "multiple", ...item };
   }
 
-  if (!['default', 'named', 'single', 'multiple'].includes(result.syntax)) {
+  if (!["default", "named", "single", "multiple"].includes(result.syntax)) {
     throw new Error(
       `Unknown "${result.syntax}" syntax export in "${forError(item)}" value`
     );
   }
 
   if (
-    ['default', 'single'].includes(result.syntax) &&
-    typeof result.alias !== 'undefined'
+    ["default", "single"].includes(result.syntax) &&
+    typeof result.alias !== "undefined"
   ) {
     throw new Error(
       `The "${result.syntax}" syntax can't have "${
@@ -74,8 +74,8 @@ function resolveExports(type, item) {
     );
   }
 
-  if (type === 'commonjs') {
-    if (result.syntax === 'default' || result.syntax === 'named') {
+  if (type === "commonjs") {
+    if (result.syntax === "default" || result.syntax === "named") {
       throw new Error(
         `The "${type}" format can't be used with the "${
           result.syntax
@@ -84,8 +84,8 @@ function resolveExports(type, item) {
     }
   }
 
-  if (type === 'module') {
-    if (result.syntax === 'single' || result.syntax === 'multiple') {
+  if (type === "module") {
+    if (result.syntax === "single" || result.syntax === "multiple") {
       throw new Error(
         `The "${type}" format can't be used with the "${
           result.syntax
@@ -99,13 +99,13 @@ function resolveExports(type, item) {
 
 function getIdentifiers(array) {
   return array.reduce((accumulator, item) => {
-    if (typeof item.alias !== 'undefined') {
-      accumulator.push({ type: 'alias', value: item.alias });
+    if (typeof item.alias !== "undefined") {
+      accumulator.push({ type: "alias", value: item.alias });
 
       return accumulator;
     }
 
-    accumulator.push({ type: 'name', value: item.name });
+    accumulator.push({ type: "name", value: item.name });
 
     return accumulator;
   }, []);
@@ -114,8 +114,8 @@ function getIdentifiers(array) {
 function getExports(type, exports) {
   let result;
   const exportItems =
-    typeof exports === 'string' && exports.includes(',')
-      ? exports.split(',')
+    typeof exports === "string" && exports.includes(",")
+      ? exports.split(",")
       : exports;
 
   if (Array.isArray(exportItems)) {
@@ -125,28 +125,28 @@ function getExports(type, exports) {
   }
 
   const hasMultipleDefault = result.filter(
-    ({ syntax }) => syntax === 'default' || syntax === 'single'
+    ({ syntax }) => syntax === "default" || syntax === "single"
   );
 
   if (hasMultipleDefault.length > 1) {
     throw new Error(
       `The "${type}" format can't have multiple "${
-        type === 'module' ? 'default' : 'single'
-      }" exports in "\n${JSON.stringify(exports, null, ' ')}\n" value`
+        type === "module" ? "default" : "single"
+      }" exports in "\n${JSON.stringify(exports, null, " ")}\n" value`
     );
   }
 
   const identifiers = getIdentifiers(result);
-  const duplicates = duplicateBy(identifiers, 'value');
+  const duplicates = duplicateBy(identifiers, "value");
 
   if (duplicates.length > 0) {
     throw new Error(
       `Duplicate ${duplicates
         .map((identifier) => `"${identifier.value}" (as "${identifier.type}")`)
-        .join(', ')} identifiers found in "\n${JSON.stringify(
+        .join(", ")} identifiers found in "\n${JSON.stringify(
         exports,
         null,
-        ' '
+        " "
       )}\n" value`
     );
   }
@@ -163,23 +163,23 @@ function duplicateBy(array, key) {
 }
 
 function renderExports(loaderContext, type, exports) {
-  let code = '';
+  let code = "";
 
   const defaultExport = exports.filter(
-    ({ syntax }) => syntax === 'default' || syntax === 'single'
+    ({ syntax }) => syntax === "default" || syntax === "single"
   );
   const namedExports = exports.filter(
-    ({ syntax }) => syntax === 'named' || syntax === 'multiple'
+    ({ syntax }) => syntax === "named" || syntax === "multiple"
   );
 
   if (defaultExport.length > 0) {
     // eslint-disable-next-line default-case
     switch (type) {
-      case 'commonjs':
-        code += 'module.exports = ';
+      case "commonjs":
+        code += "module.exports = ";
         break;
-      case 'module':
-        code += 'export default ';
+      case "module":
+        code += "export default ";
         break;
     }
 
@@ -189,11 +189,11 @@ function renderExports(loaderContext, type, exports) {
   if (namedExports.length > 0) {
     // eslint-disable-next-line default-case
     switch (type) {
-      case 'commonjs':
-        code += 'module.exports = {\n';
+      case "commonjs":
+        code += "module.exports = {\n";
         break;
-      case 'module':
-        code += 'export {\n';
+      case "module":
+        code += "export {\n";
         break;
     }
 
@@ -204,15 +204,15 @@ function renderExports(loaderContext, type, exports) {
       const alias = namedExport.alias || undefined;
 
       code += `  ${
-        type === 'commonjs'
+        type === "commonjs"
           ? alias
             ? `${JSON.stringify(alias)}: (${name})`
             : `${name}`
-          : `${name}${alias ? ` as ${alias}` : ''}`
-      }${needComma ? ',\n' : ''}`;
+          : `${name}${alias ? ` as ${alias}` : ""}`
+      }${needComma ? ",\n" : ""}`;
     });
 
-    code += '\n};\n';
+    code += "\n};\n";
   }
 
   return code;
