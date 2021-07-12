@@ -38,7 +38,9 @@
   "additionalProperties": false,
   "properties": {
     "type": {
-      "enum": ["commonjs", "module"]
+      "enum": ["commonjs", "module"],
+      "description": "Format of generated exports.",
+      "link": "https://github.com/webpack-contrib/exports-loader#type"
     },
     "exports": {
       "anyOf": [
@@ -56,7 +58,9 @@
           },
           "minItems": 1
         }
-      ]
+      ],
+      "description": "List of exports.",
+      "link": "https://github.com/webpack-contrib/exports-loader#exports"
     }
   },
   "required": ["exports"]

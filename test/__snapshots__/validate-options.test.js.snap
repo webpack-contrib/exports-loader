@@ -4,6 +4,8 @@ exports[`validate options should throw an error on the "exports" option with "()
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
    non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   -> List of exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#exports
    Details:
     * options.exports should be a non-empty string.
     * options.exports should be one of these:
@@ -20,6 +22,8 @@ exports[`validate options should throw an error on the "exports" option with "[1
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
    non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   -> List of exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#exports
    Details:
     * options.exports[2] should be one of these:
       non-empty string | object { name, syntax?, alias? }
@@ -49,12 +53,12 @@ exports[`validate options should throw an error on the "exports" option with "{"
 
 exports[`validate options should throw an error on the "exports" option with "{"name":""}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
- - options.exports.name should be an non-empty string."
+ - options.exports.name should be a non-empty string."
 `;
 
 exports[`validate options should throw an error on the "exports" option with "{"name":"Foo","alias":""}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
- - options.exports.alias should be an non-empty string."
+ - options.exports.alias should be a non-empty string."
 `;
 
 exports[`validate options should throw an error on the "exports" option with "{"syntax":"default"}" value 1`] = `
@@ -73,6 +77,8 @@ exports[`validate options should throw an error on the "exports" option with "tr
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports should be one of these:
    non-empty string | non-empty string | object { name, syntax?, alias? } | [non-empty string | object { name, syntax?, alias? }, ...] (should not have fewer than 1 item)
+   -> List of exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#exports
    Details:
     * options.exports should be a non-empty string.
     * options.exports should be one of these:
@@ -88,17 +94,23 @@ exports[`validate options should throw an error on the "exports" option with "tr
 exports[`validate options should throw an error on the "type" option with "false" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\""
+   \\"commonjs\\" | \\"module\\"
+   -> Format of generated exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
 
 exports[`validate options should throw an error on the "type" option with "foo" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\""
+   \\"commonjs\\" | \\"module\\"
+   -> Format of generated exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
 
 exports[`validate options should throw an error on the "type" option with "true" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\""
+   \\"commonjs\\" | \\"module\\"
+   -> Format of generated exports.
+   -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
