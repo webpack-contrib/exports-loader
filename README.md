@@ -29,7 +29,19 @@ For further hints on compatibility issues, check out [Shimming](https://webpack.
 To begin, you'll need to install `exports-loader`:
 
 ```console
-$ npm install exports-loader --save-dev
+npm install exports-loader --save-dev
+```
+
+or
+
+```console
+yarn add -D exports-loader
+```
+
+or
+
+```console
+pnpm add -D exports-loader
 ```
 
 ### Inline
