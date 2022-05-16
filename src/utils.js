@@ -1,9 +1,47 @@
+/** @typedef {import("source-map").RawSourceMap} RawSourceMap */
+
+/**
+ * @template T
+ * @typedef {Object} LoaderOptions<T>
+ * @property {string} [type]
+ * @property {string| object | string[] | object[]} [exports]
+ */
+
+/**
+ * The exports loader allows to setup exports
+ * @template T
+ * @typedef {import("webpack").LoaderContext<LoaderOptions<T>>} LoaderOption
+ * @param {string} content
+ * @param { RawSourceMap } sourceMap
+ */
+
+/**
+ * @typedef {Object} Identifier
+ * @property {string} type
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef {Object} Export
+ * @property {string} syntax
+ * @property {string} [name]
+ * @property {string} [alias]
+ */
+
+/**
+ *
+ * @param {string | object | string[] | Object[]} item
+ * @returns
+ */
 function forError(item) {
   return typeof item === "string"
     ? item
     : `\n${JSON.stringify(item, null, " ")}\n`;
 }
 
+/**
+ * @param {string} command
+ */
 function splitCommand(command) {
   const result = command
     .split("|")
@@ -21,8 +59,13 @@ function splitCommand(command) {
   return result;
 }
 
+/**
+ *
+ * @param {string} type
+ * @param {string | object | string[] | Object[] } item
+ */
 function resolveExports(type, item) {
-  let result;
+  let /** @type {Export} */ result;
 
   if (typeof item === "string") {
     const noWhitespaceItem = item.trim();
@@ -97,8 +140,12 @@ function resolveExports(type, item) {
   return result;
 }
 
+/**
+ *
+ * @param {Array<Export>} array
+ */
 function getIdentifiers(array) {
-  return array.reduce((accumulator, item) => {
+  return array.reduce((/** @type {Array<Identifier>} */ accumulator, item) => {
     if (typeof item.alias !== "undefined") {
       accumulator.push({ type: "alias", value: item.alias });
 
@@ -111,6 +158,12 @@ function getIdentifiers(array) {
   }, []);
 }
 
+/**
+ *
+ * @param {string} type
+ * @param {string| object | string[] | object[]} exports
+ * @returns
+ */
 function getExports(type, exports) {
   let result;
   const exportItems =
@@ -142,7 +195,10 @@ function getExports(type, exports) {
   if (duplicates.length > 0) {
     throw new Error(
       `Duplicate ${duplicates
-        .map((identifier) => `"${identifier.value}" (as "${identifier.type}")`)
+        .map(
+          (/** @type {Identifier} */ identifier) =>
+            `"${identifier.value}" (as "${identifier.type}")`
+        )
         .join(", ")} identifiers found in "\n${JSON.stringify(
         exports,
         null,
@@ -154,6 +210,12 @@ function getExports(type, exports) {
   return result;
 }
 
+/**
+ *
+ * @param {Identifier[]} array
+ * @param {"value"} key
+ * @returns
+ */
 function duplicateBy(array, key) {
   return array.filter(
     (a, aIndex) =>
@@ -162,6 +224,13 @@ function duplicateBy(array, key) {
   );
 }
 
+/**
+ * @template T
+ * @param {LoaderOption<T>} loaderContext
+ * @param {"commonjs"|"module"} type
+ * @param {Array<Export>} exports
+ * @returns
+ */
 function renderExports(loaderContext, type, exports) {
   let code = "";
 
