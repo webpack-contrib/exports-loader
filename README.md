@@ -6,7 +6,6 @@
 
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
-[![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 [![coverage][cover]][cover-url]
 [![chat][chat]][chat-url]
@@ -683,8 +682,6 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 [npm-url]: https://npmjs.com/package/exports-loader
 [node]: https://img.shields.io/node/v/exports-loader.svg
 [node-url]: https://nodejs.org
-[deps]: https://david-dm.org/webpack-contrib/exports-loader.svg
-[deps-url]: https://david-dm.org/webpack-contrib/exports-loader
 [tests]: https://github.com/webpack-contrib/exports-loader/workflows/exports-loader/badge.svg
 [tests-url]: https://github.com/webpack-contrib/exports-loader/actions
 [cover]: https://codecov.io/gh/webpack-contrib/exports-loader/branch/master/graph/badge.svg
