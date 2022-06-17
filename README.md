@@ -19,9 +19,13 @@ Useful when a source file does not contain exports or something does not export.
 
 For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
 
-> ⚠ By default loader generate ES module named syntax.
+> **Warning**
 >
-> ⚠ Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause a failure.
+> By default loader generate ES module named syntax.
+
+> **Warning**
+>
+> Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause a failure.
 
 ## Getting Started
 
@@ -48,7 +52,9 @@ pnpm add -D exports-loader
 The `|` or `%20` (space) allow to separate the `syntax`, `name` and `alias` of export.
 The documentation and syntax examples can be read [here](#syntax).
 
-> ⚠ `%20` is space in a query string, because you can't use spaces in URLs
+> **Warning**
+>
+> `%20` is space in a query string, because you can't use spaces in URLs
 
 Then add the loader to the desired `import` statement or `require` calls. For example:
 
@@ -284,9 +290,13 @@ Examples:
 - `[multiple Foo FooA]` - generates `module.exports = { 'FooA': Foo };`.
 - `[named [name] [name]Alias]` - generates ES module named exports and exports a value equal to the filename under other name., for `single.js` it will be `single` and `singleAlias`, generates `export { single as singleAlias };`.
 
-> ⚠ You need to set `type: "commonjs"` to use `single` or `multiple` syntaxes.
+> **Warning**
+>
+> You need to set `type: "commonjs"` to use `single` or `multiple` syntaxes.
 
-> ⚠ Aliases can't be used together with `default` or `single` syntaxes.
+> **Warning**
+>
+> Aliases can't be used together with `default` or `single` syntaxes.
 
 ##### Examples
 
@@ -564,11 +574,17 @@ module.exports = { FooA: Foo };
 
 Allow to specify multiple exports. Each item can be a [`string`](https://github.com/webpack-contrib/exports-loader#string) or an [`object`](https://github.com/webpack-contrib/exports-loader#object).
 
-> ⚠ Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
+> **Warning**
+>
+> Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
 
-> ⚠ Not possible to use multiple `default` values due to ES module format limitations.
+> **Warning**
+>
+> Not possible to use multiple `default` values due to ES module format limitations.
 
-> ⚠ Not possible to use multiple `single` values due to CommonJS format limitations.
+> **Warning**
+>
+> Not possible to use multiple `single` values due to CommonJS format limitations.
 
 ##### Examples
 
