@@ -2,14 +2,15 @@
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
 */
-import { SourceMapConsumer, SourceNode } from "source-map";
+const { SourceMapConsumer, SourceNode } = require("source-map");
 
-import schema from "./options.json";
-import { getExports, renderExports } from "./utils";
+const schema = require("./options.json");
+
+const { getExports, renderExports } = require("./utils");
 
 const FOOTER = "/*** EXPORTS FROM exports-loader ***/\n";
 
-export default function loader(content, sourceMap) {
+module.exports = function loader(content, sourceMap) {
   const options = this.getOptions(schema);
   const type = options.type || "module";
   const callback = this.async();
@@ -42,4 +43,4 @@ export default function loader(content, sourceMap) {
   }
 
   callback(null, `${content}\n${FOOTER}${exportsCode}`, sourceMap);
-}
+};

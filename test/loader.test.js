@@ -1,6 +1,6 @@
-import path from "path";
+const path = require("path");
 
-import {
+const {
   compile,
   execute,
   getCompiler,
@@ -8,7 +8,7 @@ import {
   getModuleSource,
   getWarnings,
   readAsset,
-} from "./helpers";
+} = require("./helpers");
 
 describe("loader", () => {
   it("should work with string value", async () => {

@@ -218,4 +218,4 @@ function renderExports(loaderContext, type, exports) {
   return code;
 }
 
-export { getExports, renderExports };
+module.exports = { getExports, renderExports };
