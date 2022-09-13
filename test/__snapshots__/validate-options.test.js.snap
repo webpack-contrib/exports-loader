@@ -70,7 +70,7 @@ exports[`validate options should throw an error on the "exports" option with "{"
 exports[`validate options should throw an error on the "exports" option with "{"syntax":"foo","name":"Foo"}" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.exports.syntax should be one of these:
-   \\"default\\" | \\"named\\" | \\"single\\" | \\"multiple\\""
+   "default" | "named" | "single" | "multiple""
 `;
 
 exports[`validate options should throw an error on the "exports" option with "true" value 1`] = `
@@ -94,7 +94,7 @@ exports[`validate options should throw an error on the "exports" option with "tr
 exports[`validate options should throw an error on the "type" option with "false" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\"
+   "commonjs" | "module"
    -> Format of generated exports.
    -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
@@ -102,7 +102,7 @@ exports[`validate options should throw an error on the "type" option with "false
 exports[`validate options should throw an error on the "type" option with "foo" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\"
+   "commonjs" | "module"
    -> Format of generated exports.
    -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
@@ -110,7 +110,7 @@ exports[`validate options should throw an error on the "type" option with "foo" 
 exports[`validate options should throw an error on the "type" option with "true" value 1`] = `
 "Invalid options object. Exports Loader has been initialized using an options object that does not match the API schema.
  - options.type should be one of these:
-   \\"commonjs\\" | \\"module\\"
+   "commonjs" | "module"
    -> Format of generated exports.
    -> Read more at https://github.com/webpack-contrib/exports-loader#type"
 `;
