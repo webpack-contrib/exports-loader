@@ -80,8 +80,8 @@ describe("validate options", () => {
                 typeof item === "string"
                   ? item.includes("default") || item.includes("named")
                   : item.syntax
-                  ? item.syntax === "default" || item.syntax === "named"
-                  : false
+                    ? item.syntax === "default" || item.syntax === "named"
+                    : false,
               ).length > 0;
           } else {
             isModule =

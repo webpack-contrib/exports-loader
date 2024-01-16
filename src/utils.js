@@ -13,7 +13,7 @@ function splitCommand(command) {
   for (const item of result) {
     if (!item) {
       throw new Error(
-        `Invalid command "${item}" in "${command}" for exports. There must be only one separator: " ", or "|"`
+        `Invalid command "${item}" in "${command}" for exports. There must be only one separator: " ", or "|"`,
       );
     }
   }
@@ -59,7 +59,7 @@ function resolveExports(type, item) {
 
   if (!["default", "named", "single", "multiple"].includes(result.syntax)) {
     throw new Error(
-      `Unknown "${result.syntax}" syntax export in "${forError(item)}" value`
+      `Unknown "${result.syntax}" syntax export in "${forError(item)}" value`,
     );
   }
 
@@ -70,7 +70,7 @@ function resolveExports(type, item) {
     throw new Error(
       `The "${result.syntax}" syntax can't have "${
         result.alias
-      }" alias in "${forError(item)}" value`
+      }" alias in "${forError(item)}" value`,
     );
   }
 
@@ -79,7 +79,7 @@ function resolveExports(type, item) {
       throw new Error(
         `The "${type}" format can't be used with the "${
           result.syntax
-        }" syntax export in "${forError(item)}" value`
+        }" syntax export in "${forError(item)}" value`,
       );
     }
   }
@@ -89,7 +89,7 @@ function resolveExports(type, item) {
       throw new Error(
         `The "${type}" format can't be used with the "${
           result.syntax
-        }" syntax export in "${forError(item)}" value`
+        }" syntax export in "${forError(item)}" value`,
       );
     }
   }
@@ -125,14 +125,14 @@ function getExports(type, exports) {
   }
 
   const hasMultipleDefault = result.filter(
-    ({ syntax }) => syntax === "default" || syntax === "single"
+    ({ syntax }) => syntax === "default" || syntax === "single",
   );
 
   if (hasMultipleDefault.length > 1) {
     throw new Error(
       `The "${type}" format can't have multiple "${
         type === "module" ? "default" : "single"
-      }" exports in "\n${JSON.stringify(exports, null, " ")}\n" value`
+      }" exports in "\n${JSON.stringify(exports, null, " ")}\n" value`,
     );
   }
 
@@ -146,8 +146,8 @@ function getExports(type, exports) {
         .join(", ")} identifiers found in "\n${JSON.stringify(
         exports,
         null,
-        " "
-      )}\n" value`
+        " ",
+      )}\n" value`,
     );
   }
 
@@ -158,7 +158,7 @@ function duplicateBy(array, key) {
   return array.filter(
     (a, aIndex) =>
       array.filter((b, bIndex) => b[key] === a[key] && aIndex !== bIndex)
-        .length > 0
+        .length > 0,
   );
 }
 
@@ -166,10 +166,10 @@ function renderExports(loaderContext, type, exports) {
   let code = "";
 
   const defaultExport = exports.filter(
-    ({ syntax }) => syntax === "default" || syntax === "single"
+    ({ syntax }) => syntax === "default" || syntax === "single",
   );
   const namedExports = exports.filter(
-    ({ syntax }) => syntax === "named" || syntax === "multiple"
+    ({ syntax }) => syntax === "named" || syntax === "multiple",
   );
 
   if (defaultExport.length > 0) {

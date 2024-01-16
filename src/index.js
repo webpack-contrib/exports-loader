@@ -29,7 +29,7 @@ export default function loader(content, sourceMap) {
   if (this.sourceMap && sourceMap) {
     const node = SourceNode.fromStringWithSourceMap(
       content,
-      new SourceMapConsumer(sourceMap)
+      new SourceMapConsumer(sourceMap),
     );
 
     node.add(`\n${FOOTER}${exportsCode}`);
