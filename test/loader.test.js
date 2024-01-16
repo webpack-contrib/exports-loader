@@ -19,7 +19,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -33,7 +33,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -51,7 +51,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -68,7 +68,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -82,7 +82,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -100,7 +100,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -113,7 +113,7 @@ describe("loader", () => {
 
     expect(getModuleSource("./inline.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -141,13 +141,13 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -175,13 +175,13 @@ describe("loader", () => {
             },
           ],
         },
-      }
+      },
     );
     const stats = await compile(compiler);
 
     expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
     expect(
-      execute(readAsset("main.bundle.js", compiler, stats))
+      execute(readAsset("main.bundle.js", compiler, stats)),
     ).toMatchSnapshot("result");
     expect(getErrors(stats)).toMatchSnapshot("errors");
     expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -189,14 +189,14 @@ describe("loader", () => {
 
   function createSuccessCase(type, exports) {
     it(`should work with the "${type}" module format for ${JSON.stringify(
-      exports
+      exports,
     )} export list`, async () => {
       const compiler = getCompiler("simple.js", { type, exports });
       const stats = await compile(compiler);
 
       expect(getModuleSource("./simple.js", stats)).toMatchSnapshot("module");
       expect(
-        execute(readAsset("main.bundle.js", compiler, stats))
+        execute(readAsset("main.bundle.js", compiler, stats)),
       ).toMatchSnapshot("result");
       expect(getErrors(stats)).toMatchSnapshot("errors");
       expect(getWarnings(stats)).toMatchSnapshot("warnings");
@@ -205,7 +205,7 @@ describe("loader", () => {
 
   function createFailedCase(type, exports) {
     it(`should work with the "${type}" module format for ${JSON.stringify(
-      exports
+      exports,
     )} export list`, async () => {
       const compiler = getCompiler("simple.js", { type, exports });
       const stats = await compile(compiler);

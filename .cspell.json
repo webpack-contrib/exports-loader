@@ -1,8 +1,14 @@
 {
   "version": "0.2",
   "language": "en,en-gb",
-  "words": ["commitlint", "Koppers", "sokra", "memfs"],
-
+  "words": [
+    "commitlint",
+    "Koppers",
+    "sokra",
+    "memfs",
+    "cspellcache",
+    "eslintcache"
+  ],
   "ignorePaths": [
     "CHANGELOG.md",
     "package.json",
