@@ -381,44 +381,7 @@ exports[`loader should work with object value with "default" syntax: warnings 1`
 
 exports[`loader should work with object value: errors 1`] = `[]`;
 
-exports[`loader should work with object value: errors 2`] = `[]`;
-
 exports[`loader should work with object value: module 1`] = `
-"var Foo = Foo || {};
-var Bar = Bar || {};
-var Baz = {
-  nestedNumber: '12',
-  nestedFunction: function test() {}
-};
-var simple = function simple() {};
-var simple_foo = [1, 2, 3, 4, 5];
-
-Foo.Image = function(width, height, data){
-  this.width = width || 0;
-  this.height = height || 0;
-  this.data = data || [];
-};
-
-Bar.test = [1, 2, 3, 4];
-
-class MyClass {
-  myFunction() {
-    return 12;
-  }
-}
-
-const single = 'single';
-
-const myVariable = new MyClass();
-
-/*** EXPORTS FROM exports-loader ***/
-export {
-  Foo
-};
-"
-`;
-
-exports[`loader should work with object value: module 2`] = `
 "var Foo = Foo || {};
 var Bar = Bar || {};
 var Baz = {
@@ -461,17 +424,7 @@ exports[`loader should work with object value: result 1`] = `
 }
 `;
 
-exports[`loader should work with object value: result 2`] = `
-{
-  "Foo": {
-    "Image": [Function],
-  },
-}
-`;
-
 exports[`loader should work with object value: warnings 1`] = `[]`;
-
-exports[`loader should work with object value: warnings 2`] = `[]`;
 
 exports[`loader should work with source maps when the "devtool" option is enabled: errors 1`] = `[]`;
 
