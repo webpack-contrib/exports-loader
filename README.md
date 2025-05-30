@@ -13,19 +13,19 @@
 
 # exports-loader
 
-Allow to setup exports `module.exports`/`export` for source files.
+Allows you to set up exports using `module.exports` or `export` for source files.
 
-Useful when a source file does not contain exports or something does not export.
+Useful when a source file does not contain exports or when something is not exported.
 
-For further hints on compatibility issues, check out [Shimming](https://webpack.js.org/guides/shimming/) of the official docs.
-
-> [!WARNING]
->
-> By default loader generate ES module named syntax.
+For more information on compatibility issues, refer to the [Shimming](https://webpack.js.org/guides/shimming/) guide in the official documentation.
 
 > [!WARNING]
 >
-> Be careful, existing exports (`export`/`module.exports`/`exports`) in the original code and exporting new values can cause a failure.
+> By default, the loader generates exports using ES module syntax.
+
+> [!WARNING]
+>
+> Be careful: modifying existing exports (`export`, `module.exports`, or `exports`) or adding new exports can lead to errors.
 
 ## Getting Started
 
@@ -54,7 +54,7 @@ The documentation and syntax examples can be read [here](#syntax).
 
 > [!WARNING]
 >
-> `%20` is space in a query string, because you can't use spaces in URLs
+> `%20` represents a space in a query string because spaces are not allowed in URLs.
 
 Then add the loader to the desired `import` statement or `require` calls. For example:
 
@@ -150,7 +150,7 @@ import { myFunctionAlias } from "exports-loader?exports=named|myFunction|myFunct
 myFunctionAlias("Hello world");
 ```
 
-Description of string values can be found in the documentation below.
+Descriptions of string values can be found in the documentation below.
 
 ### Using Configuration
 
@@ -174,7 +174,7 @@ module.exports = {
 };
 ```
 
-And run `webpack` via your preferred method.
+Finally, run `webpack` using the method you normally use (e.g., via CLI or an npm script).
 
 ## Options
 
@@ -576,7 +576,7 @@ Allow to specify multiple exports. Each item can be a [`string`](https://github.
 
 > [!WARNING]
 >
-> Not possible to use `single` and `multiple` syntaxes together due to CommonJS format limitations.
+> Not possible to use both `single` and `multiple` syntaxes together due to CommonJS format limitations.
 
 > [!WARNING]
 >
@@ -686,7 +686,8 @@ export { Foo as FooA, Bar, Baz };
 
 ## Contributing
 
-Please take a moment to read our contributing guidelines if you haven't yet done so.
+We welcome all contributions!
+If you're new here, please take a moment to review our contributing guidelines.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
 
