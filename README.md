@@ -50,6 +50,7 @@ pnpm add -D exports-loader
 ### Inline
 
 The `|` or `%20` (space) allow to separate the `syntax`, `name` and `alias` of export.
+
 The documentation and syntax examples can be read [here](#syntax).
 
 > [!WARNING]
@@ -687,6 +688,7 @@ export { Foo as FooA, Bar, Baz };
 ## Contributing
 
 We welcome all contributions!
+
 If you're new here, please take a moment to review our contributing guidelines.
 
 [CONTRIBUTING](./.github/CONTRIBUTING.md)
